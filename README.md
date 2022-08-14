@@ -22,7 +22,7 @@ In case of error or misconfiguration, exit properly + return "Error\n" followed 
 
 ## Elements
 ### Ambient lightning (A)
-```A	0.2	255,255,255```
+```A  0.2  255,255,255```
 
 Identifier A
 
@@ -33,7 +33,7 @@ R,G,B colors, ranging from 0 to 255
 - There can't be more than 1 ambient light as they don't even have positioning, right?
 
 ### Camera (C)
-```C	-50.0,0,20	0,0,1	70```
+```C  -50.0,0,20  0,0,1  70```
 
 Identifier C
 
@@ -46,7 +46,7 @@ FOV (horizontal field of view) in degrees, ranging from 0 to 180
 - There can be more than one camera, the same image can be viewed from multiple points of view
 
 ### Light (L)
-```L	-40.0,50.0,0.0	0.6	10,0,255```
+```L  -40.0,50.0,0.0  0.6  10,0,255```
 
 Identifier L
 
@@ -59,7 +59,7 @@ Bonus: R,G,B colors, ranging from 0 to 255
 - There can be more than one light
 
 ### Plane (pl)
-```pl	0.0,0.0,-10.0	0.0,1.0,0.0	0,0,225```
+```pl  0.0,0.0,-10.0  0.0,1.0,0.0  0,0,225```
 
 Identifier pl
 
@@ -73,7 +73,7 @@ Add the formula and relevant notes
 
 
 ### Sphere (sp)
-```sp	0.0,0.0,20.6	12.6	10,0,255```
+```sp  0.0,0.0,20.6  12.6  10,0,255```
 
 Identifier sp
 
@@ -87,7 +87,7 @@ Formula + notes
 
 
 ### Cylinder (cy)
-```cy	50.0,0.0,20.6	0.0,0.0,1.0	14.2 21.42	10,0,255```
+```cy  50.0,0.0,20.6  0.0,0.0,1.0  14.2 21.42  10,0,255```
 
 Identifier cy
 

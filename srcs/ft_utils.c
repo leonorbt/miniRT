@@ -1,23 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/14 21:23:52 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 00:10:24 by lbraz-te         ###   ########.fr       */
+/*   Created: 2022/08/15 00:08:15 by lbraz-te          #+#    #+#             */
+/*   Updated: 2022/08/15 00:10:15 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-int	main (int argc, char **argv)
+int	ft_strlen(const char *str)
 {
-	if (argc != 2)
-		return (ft_errors(ERR_N_ARGS));
-	if (ft_parsing(argv[1]) == 1)
-		return (1);
-	else
+	unsigned long	i;
+
+	i = 0;
+	if (str == NULL)
 		return (0);
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	unsigned char	*str;
+
+	if (!s)
+		return ;
+	str = (unsigned char *)s;
+	while (*str)
+	{
+		write(fd, str, 1);
+		str++;
+	}
 }

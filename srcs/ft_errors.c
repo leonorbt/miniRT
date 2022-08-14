@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_errors.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/14 21:23:52 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 00:10:24 by lbraz-te         ###   ########.fr       */
+/*   Created: 2022/08/14 23:46:02 by lbraz-te          #+#    #+#             */
+/*   Updated: 2022/08/15 00:10:10 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-int	main (int argc, char **argv)
+int	ft_errors(int error_code)
 {
-	if (argc != 2)
-		return (ft_errors(ERR_N_ARGS));
-	if (ft_parsing(argv[1]) == 1)
-		return (1);
-	else
-		return (0);
+	if (error_code == ERR_N_ARGS)
+		ft_putstr_fd("Error\nThis program takes 1 argument, the .rt scene\n", 2);
+	else if (error_code == ERR_FILE_TYPE)
+		ft_putstr_fd("Error\nThe scene file must be .rt\n", 2);
+	else if (error_code == ERR_OPEN)
+		ft_putstr_fd("Error\nCouldn't open scene file\n", 2);
+	else if (error_code == ERR_CLOSE)
+		ft_putstr_fd("Error\nCouldn't close scene file\n", 2);
+	return (1);
 }

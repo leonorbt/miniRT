@@ -6,14 +6,16 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/14 22:15:24 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/15 00:17:54 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# include <stdio.h>
+# include <stdio.h> //this is for debugging only so far
+# include <unistd.h>
+# include <fcntl.h>
 
 typedef struct s_a
 {
@@ -83,10 +85,9 @@ typedef struct s_cy
 
 typedef struct s_elem
 {
-	int		error;
 	t_a		ambient_light;
 	int		n_camera;
-	t_c		*camera:
+	t_c		*camera;
 	int		n_light;
 	t_l		*light;
 	int		n_plane;
@@ -95,8 +96,25 @@ typedef struct s_elem
 	t_sp	*sphere;
 	int		n_cylinder;
 	t_cy	*cylinder;
-} t_elem;
+}	t_elem;
 
-t_elem	ft_parsing(char *scene_file);
+typedef enum e_error_codes
+{
+	ERR_N_ARGS = 1,
+	ERR_FILE_TYPE,
+	ERR_OPEN,
+	ERR_CLOSE,
+	ERR_NO_CAM
+}	t_error_codes;
+
+/* ft_utils */
+void	ft_putstr_fd(char *s, int fd);
+int		ft_strlen(const char *str);
+
+/* ft_errors */
+int		ft_errors(int error_code);
+
+/* ft_parsing */
+int		ft_parsing(char *scene_file);
 
 #endif
