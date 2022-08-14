@@ -14,6 +14,8 @@ Doing miniRT with António
 - https://github.com/nesvoboda/minirt
 - https://github.com/solaldunckel/miniRT
 - https://github.com/eljommys/miniRT-for-Linux
+- https://github.com/jpceia/42-miniRT
+- https://github.com/m4r11/02.miniRT 
 
 ### Ray tracing
 - [How Ray tracking work?](https://polaron3d.com/Hub/ray-tracing)
