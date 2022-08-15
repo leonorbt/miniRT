@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 22:12:37 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 23:39:32 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/16 00:15:20 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ int	ft_parse_line(char *line, t_elem *elements)
 		f_error = ft_parse_camera(line, elements);
 	else if (line[i] == 'L')
 		f_error = ft_parse_light(line, elements);
+	// !!! doesnt this risk a segfault like redirs?
+	else if (line[i] == 'p' && line[i + 1] == 'l')
+		f_error = ft_parse_plane(line, elements);
 	return (f_error);
 }
 
