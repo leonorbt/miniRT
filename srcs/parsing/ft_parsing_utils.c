@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 13:49:11 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 22:37:54 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/16 00:09:14 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,31 +65,54 @@ float	ft_parse_float(char	*str)
 	return (left + right);
 }
 
-int	ft_parse_3int(char	*str, int pos)
+t_array_int	ft_parse_3int(char *str)
 {
-	char	**parts;
-	int		part;
-	int		size;
+	char		**parts;
+	int			size;
+	t_array_int	array;
 
 	parts = ft_split(str, ',');
 	size = 0;
 	while (parts[size] != NULL)
+	{
+		if (size == 0)
+			array.elem1 = ft_parse_int(parts[size]);
+		if (size == 1)
+			array.elem2 = ft_parse_int(parts[size]);
+		if (size == 2)
+			array.elem3 = ft_parse_int(parts[size]);
 		size++;
-	if (pos > size || parts[pos] == NULL)
-		part = -5;
+	}
+	if (size == 3)
+		array.f_error = 0;
 	else
-		part = ft_parse_int(parts[pos]);
+		array.f_error = 1;
 	ft_free_arrays(parts);
-	return (part);
+	return (array);
 }
 
-float	ft_parse_3float(char *str, int pos)
+t_array_float	ft_parse_3float(char *str)
 {
-	char	**parts;
-	float	part;
+	char			**parts;
+	int				size;
+	t_array_float	array;
 
 	parts = ft_split(str, ',');
-	part = ft_parse_float(parts[pos]);
+	size = 0;
+	while (parts[size] != NULL)
+	{
+		if (size == 0)
+			array.elem1 = ft_parse_float(parts[size]);
+		if (size == 1)
+			array.elem2 = ft_parse_float(parts[size]);
+		if (size == 2)
+			array.elem3 = ft_parse_float(parts[size]);
+		size++;
+	}
+	if (size == 3)
+		array.f_error = 0;
+	else
+		array.f_error = 1;
 	ft_free_arrays(parts);
-	return (part);
+	return (array);
 }

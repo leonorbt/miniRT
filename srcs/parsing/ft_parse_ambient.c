@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_elements.c                                :+:      :+:    :+:   */
+/*   ft_parse_ambient.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:49:21 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 22:40:51 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/16 00:00:25 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ int	ft_validate_ambient(t_a ambient_light)
 {
 	if (ambient_light.ratio < 0.0 || ambient_light.ratio > 1.0)
 		return (1);
-	if (ambient_light.color[0] < 0 || ambient_light.color[0] > 255)
+	if (ambient_light.color.f_error == 1)
 		return (1);
-	if (ambient_light.color[1] < 0 || ambient_light.color[1] > 255)
+	if (ambient_light.color.elem1 < 0 || ambient_light.color.elem1 > 255)
 		return (1);
-	if (ambient_light.color[2] < 0 || ambient_light.color[2] > 255)
+	if (ambient_light.color.elem2 < 0 || ambient_light.color.elem2 > 255)
+		return (1);
+	if (ambient_light.color.elem3 < 0 || ambient_light.color.elem3 > 255)
 		return (1);
 	return (0);
 }
@@ -44,16 +46,12 @@ int	ft_parse_ambient(char *line, t_elem *elements)
 		if (i == 1)
 			ambient_light.ratio = ft_parse_float(line_in_pieces[i]);
 		if (i == 2)
-		{
-			ambient_light.color[0] = ft_parse_3int(line_in_pieces[i], 0);
-			ambient_light.color[1] = ft_parse_3int(line_in_pieces[i], 1);
-			ambient_light.color[2] = ft_parse_3int(line_in_pieces[i], 2);
-		}
+			ambient_light.color = ft_parse_3int(line_in_pieces[i]);
 		i++;
 	}
 	ft_free_arrays(line_in_pieces);
 	if (i > 3 || ft_validate_ambient(ambient_light) == 1)
 		return (ft_errors(ERR_AMBIENT_ARGS));
 	elements->ambient_light = ambient_light;
-	return (1);
+	return (0);
 }

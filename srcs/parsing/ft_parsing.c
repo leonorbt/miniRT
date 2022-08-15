@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 22:12:37 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 22:22:43 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/15 23:39:32 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,14 @@ int	ft_parse_line(char *line, t_elem *elements)
 	f_error = 1;
 	while (line[i] == ' ')
 		i++;
+	if (ft_line_has_alpha(line) == 1)
+		return (ft_errors(ERR_ALPHA));
 	if (line[i] == 'A')
 		f_error = ft_parse_ambient(line, elements);
+	else if (line[i] == 'C')
+		f_error = ft_parse_camera(line, elements);
+	else if (line[i] == 'L')
+		f_error = ft_parse_light(line, elements);
 	return (f_error);
 }
 
