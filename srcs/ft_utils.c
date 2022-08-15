@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 00:08:15 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 00:10:15 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/15 11:22:25 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,18 @@ void	ft_putstr_fd(char *s, int fd)
 		write(fd, str, 1);
 		str++;
 	}
+}
+
+int	ft_check_line(char *str)
+{
+	int		i;
+
+	if (str == NULL)
+		return (1);
+	i = 0;
+	while (str[i] != '\n' && str[i] != '\0')
+		i++;
+	if (str[i] == '\n')
+		return (0);
+	return (1);
 }

@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_parse_elements.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/14 21:23:52 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 11:11:33 by lbraz-te         ###   ########.fr       */
+/*   Created: 2022/08/15 11:49:21 by lbraz-te          #+#    #+#             */
+/*   Updated: 2022/08/15 12:10:22 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-int	main (int argc, char **argv)
+int	ft_parse_ambient(char *line, t_elem *elements)
 {
-	if (argc != 2)
-		return (ft_errors(ERR_N_ARGS));
-	if (ft_start_parsing(argv[1]) == 1)
-		return (1);
+	if (elements->has_ambient > 0)
+		return (ft_errors(ERR_N_AMBIENT));
 	else
-		return (0);
+		return (printf("The line is %s\n", line));
 }
