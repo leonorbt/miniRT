@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 11:58:26 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/15 12:27:10 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,16 +97,15 @@ typedef struct s_elem
 {
 	int		has_ambient;
 	t_a		ambient_light;
-	int		n_camera;
 	t_c		camera;
 	int		n_light;
-	t_l		light;
+	t_l		*lights;
 	int		n_plane;
-	t_pl	plane;
+	t_pl	*planes;
 	int		n_sphere;
-	t_sp	sphere;
+	t_sp	*spheres;
 	int		n_cylinder;
-	t_cy	cylinder;
+	t_cy	*cylinders;
 }	t_elem;
 
 typedef enum e_error_codes
