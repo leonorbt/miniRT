@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 18:35:11 by aazevedo         ###   ########.fr       */
+/*   Updated: 2022/08/15 22:30:34 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@ typedef enum e_error_codes
 	ERR_FILE_TYPE,
 	ERR_OPEN,
 	ERR_CLOSE,
-	ERR_N_AMBIENT
+	ERR_N_AMBIENT,
+	ERR_AMBIENT_ARGS
 }	t_error_codes;
 
 /* ft_errors */

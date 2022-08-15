@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 22:12:37 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 13:15:33 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/15 22:22:43 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	ft_parser(int fd, t_elem *elements)
 t_elem	ft_element_init(void)
 {
 	t_elem	elements;
-	
+
 	elements.has_ambient = 0;
 	elements.has_camera = 0;
 	elements.has_light = 0;

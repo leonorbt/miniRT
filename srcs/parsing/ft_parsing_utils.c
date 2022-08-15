@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 13:49:11 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 18:54:28 by aazevedo         ###   ########.fr       */
+/*   Updated: 2022/08/15 22:37:54 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ float	ft_parse_float(char	*str)
 	parts = ft_split(str, '.');
 	right_len = ft_strlen(parts[1]);
 	left = ft_parse_int(parts[0]);
-	right = (float) ft_parse_int(parts[1]);
+	if (parts[1] == NULL)
+		right = 0.0;
+	else
+		right = (float) ft_parse_int(parts[1]);
 	while (right_len-- > 0)
 		right /= 10;
 	return (left + right);
@@ -66,9 +69,16 @@ int	ft_parse_3int(char	*str, int pos)
 {
 	char	**parts;
 	int		part;
+	int		size;
 
 	parts = ft_split(str, ',');
-	part = ft_parse_int(parts[pos]);
+	size = 0;
+	while (parts[size] != NULL)
+		size++;
+	if (pos > size || parts[pos] == NULL)
+		part = -5;
+	else
+		part = ft_parse_int(parts[pos]);
 	ft_free_arrays(parts);
 	return (part);
 }

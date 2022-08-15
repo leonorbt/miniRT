@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_elements.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:49:21 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 18:40:38 by aazevedo         ###   ########.fr       */
+/*   Updated: 2022/08/15 22:40:51 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
+
+int	ft_validate_ambient(t_a ambient_light)
+{
+	if (ambient_light.ratio < 0.0 || ambient_light.ratio > 1.0)
+		return (1);
+	if (ambient_light.color[0] < 0 || ambient_light.color[0] > 255)
+		return (1);
+	if (ambient_light.color[1] < 0 || ambient_light.color[1] > 255)
+		return (1);
+	if (ambient_light.color[2] < 0 || ambient_light.color[2] > 255)
+		return (1);
+	return (0);
+}
 
 /* do ft_split and then treat each element */
 int	ft_parse_ambient(char *line, t_elem *elements)
@@ -36,13 +49,11 @@ int	ft_parse_ambient(char *line, t_elem *elements)
 			ambient_light.color[1] = ft_parse_3int(line_in_pieces[i], 1);
 			ambient_light.color[2] = ft_parse_3int(line_in_pieces[i], 2);
 		}
-		if (i > 2)
-			printf("There is an error to be handled\n");
 		i++;
 	}
 	ft_free_arrays(line_in_pieces);
-	printf("ratio: %f\n", ambient_light.ratio);
-	printf("color: %d, %d, %d\n", ambient_light.color[0], ambient_light.color[1], ambient_light.color[2]);
-	printf("Need to validate that the values are allowed\n");
+	if (i > 3 || ft_validate_ambient(ambient_light) == 1)
+		return (ft_errors(ERR_AMBIENT_ARGS));
+	elements->ambient_light = ambient_light;
 	return (1);
 }
