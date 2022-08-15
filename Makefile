@@ -6,12 +6,13 @@
 #    By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/14 23:55:45 by lbraz-te          #+#    #+#              #
-#    Updated: 2022/08/14 23:34:20 by lbraz-te         ###   ########.fr        #
+#    Updated: 2022/08/15 13:16:12 by lbraz-te         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	= $(wildcard srcs/*.c) # \
-			# $(wildcard srcs/parsing/*.c)
+SRCS	= $(wildcard srcs/*.c) \
+			$(wildcard srcs/parsing/*.c) \
+			$(wildcard srcs/utils/*.c)
 
 OBJS	= ${SRCS:.c=.o}
 

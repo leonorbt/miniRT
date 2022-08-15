@@ -6,12 +6,11 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 22:12:37 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 12:48:38 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/15 13:15:33 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "../includes/miniRT.h"
+#include "../../includes/miniRT.h"
 
 static int	ft_file_type(char *str)
 {
@@ -40,16 +39,14 @@ static int	ft_file_type(char *str)
 int	ft_parse_line(char *line, t_elem *elements)
 {
 	int	i;
-	int	size;
 	int	f_error;
 
 	i = 0;
 	f_error = 1;
-	size = ft_strlen(line);
 	while (line[i] == ' ')
 		i++;
-	if (line[i] == 'A' && line[i + 1] == ' ')
-		f_error = ft_parse_ambient(line, elements, i + 1);
+	if (line[i] == 'A')
+		f_error = ft_parse_ambient(line, elements);
 	return (f_error);
 }
 
@@ -79,14 +76,10 @@ int	ft_parser(int fd, t_elem *elements)
 t_elem	ft_element_init(void)
 {
 	t_elem	elements;
-	t_a		ambient_light;
-	t_c		camera;
-
+	
 	elements.has_ambient = 0;
-	elements.ambient_light = ambient_light;
-	elements.camera = camera;
-	elements.n_light = 0;
-	elements.lights = NULL;
+	elements.has_camera = 0;
+	elements.has_light = 0;
 	elements.n_plane = 0;
 	elements.planes = NULL;
 	elements.n_sphere = 0;

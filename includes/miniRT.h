@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 12:27:10 by aazevedo         ###   ########.fr       */
+/*   Updated: 2022/08/15 13:48:44 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,71 +25,45 @@
 typedef struct s_a
 {
 	float	ratio;
-	int		red;
-	int		green;
-	int		blue;
+	int		color[3];
 }	t_a;
 
 typedef struct s_c
 {
-	float		view_x;
-	float		view_y;
-	float		view_z;
-	int			vector_x;
-	int			vector_y;
-	int			vector_z;
-	int			FOV;
-	struct s_c	*next;
+	float	view[3];
+	int		vector[3];
+	int		FOV;
 }	t_c;
 
 typedef struct s_l
 {
-	float		view_x;
-	float		view_y;
-	float		view_z;
-	int			brightness;
-	struct s_l	*next;
+	float	view[3];
+	int		brightness;
 }	t_l;
 
 typedef struct s_pl
 {
-	float		view_x;
-	float		view_y;
-	float		view_z;
-	int			vector_x;
-	int			vector_y;
-	int			vector_z;
-	int			red;
-	int			green;
-	int			blue;
+	float		view[3];
+	int			vector[3];
+	int			color[3];
 	struct s_pl	*next;
 }	t_pl;
 
 typedef struct s_sp
 {
-	float		center_x;
-	float		center_y;
-	float		center_z;
+	float		center[3];
 	float		diameter;
-	int			red;
-	int			green;
-	int			blue;
+	int			color[3];
 	struct s_sp	*next;
 }	t_sp;
 
 typedef struct s_cy
 {
-	float		view_x;
-	float		view_y;
-	float		view_z;
-	int			vector_x;
-	int			vector_y;
-	int			vector_z;
+	float		view[3];
+	int			vector[3];
 	float		diameter;
 	float		height;
-	int			red;
-	int			green;
-	int			blue;
+	int			color[3];
 	struct s_cy	*next;
 }	t_cy;
 
@@ -97,9 +71,10 @@ typedef struct s_elem
 {
 	int		has_ambient;
 	t_a		ambient_light;
+	int		has_camera;
 	t_c		camera;
-	int		n_light;
-	t_l		*lights;
+	int		has_light;
+	t_l		light;
 	int		n_plane;
 	t_pl	*planes;
 	int		n_sphere;
@@ -117,6 +92,10 @@ typedef enum e_error_codes
 	ERR_N_AMBIENT
 }	t_error_codes;
 
+/* ft_errors */
+int		ft_errors(int error_code);
+
+/* ------------- utils ------------- */
 /* ft_gnl */
 char	*ft_strjoin(char *str1, char *str2);
 char	*ft_strdup(char *str, char c);
@@ -128,10 +107,12 @@ int		get_next_line(int fd, char **line);
 int		ft_check_line(char *str);
 void	ft_putstr_fd(char *s, int fd);
 int		ft_strlen(const char *str);
+void	ft_free_arrays(char **array);
 
-/* ft_errors */
-int		ft_errors(int error_code);
-
+/* ft_split */
+//static int ft_words(char const *str, char del)
+//static char *ft_strdpl(char const *str, char del, char *res, int *counter)
+char	**ft_split(char const *s, char c);
 
 /* --------- parsing folder ---------- */
 /* ft_parse_elements */

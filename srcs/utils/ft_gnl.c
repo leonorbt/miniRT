@@ -6,11 +6,11 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:18:06 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 11:22:04 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/15 13:08:15 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/miniRT.h"
+#include "../../includes/miniRT.h"
 
 char	*ft_strjoin(char *str1, char *str2)
 {

@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_elements.c                                :+:      :+:    :+:   */
+/*   ft_parsing_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/15 11:49:21 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 12:19:35 by lbraz-te         ###   ########.fr       */
+/*   Created: 2022/08/15 13:49:11 by lbraz-te          #+#    #+#             */
+/*   Updated: 2022/08/15 13:50:59 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/miniRT.h"
+#include "../../includes/miniRT.h"
 
-int	ft_parse_ambient(char *line, t_elem *elements, int pos)
-{
-	t_a	ambient_light;
-	
-	if (elements->has_ambient > 0)
-		return (ft_errors(ERR_N_AMBIENT));
-	elements->has_ambient += 1;
-	while (line[i] == ' ')
-		i++;
-}
+int		ft_parse_int(char	*str);
+float	ft_parse_float(char	*str);
+int		ft_parse_3int(char	*str, int pos);
+float	ft_parse_3float(char	*str, int pos);

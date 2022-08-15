@@ -6,11 +6,11 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 00:08:15 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 11:22:25 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/15 13:51:07 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/miniRT.h"
+#include "../../includes/miniRT.h"
 
 int	ft_strlen(const char *str)
 {
@@ -50,4 +50,17 @@ int	ft_check_line(char *str)
 	if (str[i] == '\n')
 		return (0);
 	return (1);
+}
+
+void	ft_free_arrays(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i] != NULL)
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
 }
