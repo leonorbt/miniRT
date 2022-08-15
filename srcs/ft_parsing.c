@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 22:12:37 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 12:10:39 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/15 12:34:36 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,35 +72,23 @@ int	ft_parser(int fd, t_elem *elements)
 		return (0);
 }
 
-// Antonio can you do this in the right way please? I was looping
 t_elem	ft_element_init(void)
 {
 	t_elem	elements;
-	t_a		*ambient_light;
-	t_c		*camera;
-	t_l		*light;
-	t_pl	*plane;
-	t_sp	*sphere;
-	t_cy	*cylinder;
+	t_a		ambient_light;
+	t_c		camera;
 
-	ambient_light = NULL;
-	camera = NULL;
-	light = NULL;
-	plane = NULL;
-	sphere = NULL;
-	cylinder = NULL;
 	elements.has_ambient = 0;
-	elements.ambient_light = *ambient_light;
-	elements.n_camera = 0;
-	elements.camera = *camera;
+	elements.ambient_light = ambient_light;
+	elements.camera = camera;
 	elements.n_light = 0;
-	elements.light = *light;
+	elements.lights = NULL;
 	elements.n_plane = 0;
-	elements.plane = *plane;
+	elements.planes = NULL;
 	elements.n_sphere = 0;
-	elements.sphere = *sphere;
+	elements.spheres = NULL;
 	elements.n_cylinder = 0;
-	elements.cylinder = *cylinder;
+	elements.cylinders = NULL;
 	return (elements);
 }
 
