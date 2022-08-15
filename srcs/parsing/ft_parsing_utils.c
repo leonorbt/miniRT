@@ -6,36 +6,80 @@
 /*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 13:49:11 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 18:02:10 by aazevedo         ###   ########.fr       */
+/*   Updated: 2022/08/15 18:54:28 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
-int	ft_parse_int(char	*str)
+static int	ft_isdigit(int c)
 {
-	(void)str;
+	if (c >= '0' && c <= '9')
+		return (1);
 	return (0);
+}
+
+int	ft_parse_int(char *str)
+{
+	long	nbr;
+	int		sign;
+
+	nbr = 0;
+	sign = 1;
+	if (*str == '-' || *str == '+')
+	{
+		if (*str == '-')
+			sign = -1;
+		str++;
+	}
+	while (ft_isdigit(*str))
+	{
+		if (nbr >= LONG_MAX / 10)
+		{
+			if (sign == -1)
+				return (0);
+			else
+				return (-1);
+		}
+		nbr = (nbr * 10) + (*str++ - '0');
+	}
+	return (nbr * sign);
 }
 
 float	ft_parse_float(char	*str)
 {
-	(void) str;
-	return (0);
+	char	**parts;
+	int		left;
+	float	right;
+	int		right_len;
+
+	parts = ft_split(str, '.');
+	right_len = ft_strlen(parts[1]);
+	left = ft_parse_int(parts[0]);
+	right = (float) ft_parse_int(parts[1]);
+	while (right_len-- > 0)
+		right /= 10;
+	return (left + right);
 }
 
 int	ft_parse_3int(char	*str, int pos)
 {
-	printf("ft_parse_3int()\n");
-	(void) str;
-	(void)pos;
-	return (0);
+	char	**parts;
+	int		part;
+
+	parts = ft_split(str, ',');
+	part = ft_parse_int(parts[pos]);
+	ft_free_arrays(parts);
+	return (part);
 }
 
-float	ft_parse_3float(char	*str, int pos)
+float	ft_parse_3float(char *str, int pos)
 {
-	printf("ft_parse_3float()\n");
-	(void)str;
-	(void)pos;
-	return (0);
+	char	**parts;
+	float	part;
+
+	parts = ft_split(str, ',');
+	part = ft_parse_float(parts[pos]);
+	ft_free_arrays(parts);
+	return (part);
 }

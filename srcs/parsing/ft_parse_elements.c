@@ -6,7 +6,7 @@
 /*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:49:21 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 18:02:32 by aazevedo         ###   ########.fr       */
+/*   Updated: 2022/08/15 18:40:38 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	ft_parse_ambient(char *line, t_elem *elements)
 		i++;
 	}
 	ft_free_arrays(line_in_pieces);
+	printf("ratio: %f\n", ambient_light.ratio);
+	printf("color: %d, %d, %d\n", ambient_light.color[0], ambient_light.color[1], ambient_light.color[2]);
 	printf("Need to validate that the values are allowed\n");
 	return (1);
 }
