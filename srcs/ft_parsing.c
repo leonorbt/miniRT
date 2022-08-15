@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 22:12:37 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 12:34:36 by aazevedo         ###   ########.fr       */
+/*   Updated: 2022/08/15 12:48:38 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../includes/miniRT.h"
 
@@ -29,6 +30,7 @@ static int	ft_file_type(char *str)
 }
 
 // !! test for empty lines. are they size 0?
+//what is the minimum length of the line?
 /*
  We are going to skip the spaces and then check the identifier
  we try to store the element according to the identifier and
@@ -38,14 +40,16 @@ static int	ft_file_type(char *str)
 int	ft_parse_line(char *line, t_elem *elements)
 {
 	int	i;
+	int	size;
 	int	f_error;
 
 	i = 0;
 	f_error = 1;
+	size = ft_strlen(line);
 	while (line[i] == ' ')
 		i++;
-	if (line[i] == 'A')
-		f_error = ft_parse_ambient(line, elements);
+	if (line[i] == 'A' && line[i + 1] == ' ')
+		f_error = ft_parse_ambient(line, elements, i + 1);
 	return (f_error);
 }
 
