@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_elements.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:49:21 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 13:52:22 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/15 18:02:32 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_parse_ambient(char *line, t_elem *elements)
 	while (line_in_pieces[i] != NULL)
 	{
 		if (i == 0 && ft_strcmp(line_in_pieces[i], "A") != 0)
-			break;
+			break ;
 		if (i == 1)
 			ambient_light.ratio = ft_parse_float(line_in_pieces[i]);
 		if (i == 2)
@@ -44,4 +44,3 @@ int	ft_parse_ambient(char *line, t_elem *elements)
 	printf("Need to validate that the values are allowed\n");
 	return (1);
 }
-

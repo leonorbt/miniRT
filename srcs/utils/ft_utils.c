@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 00:08:15 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 13:51:07 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/15 18:02:41 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,18 @@ void	ft_free_arrays(char **array)
 		i++;
 	}
 	free(array);
+}
+
+int	ft_strcmp(char *s1, char *s2)
+{
+	while (*s1 != '\0' || *s2 != '\0')
+	{
+		if (*s1 != *s2)
+			return (*s1 - *s2);
+		if (*s1 != '\0')
+			s1++;
+		if (*s2 != '\0')
+			s2++;
+	}
+	return (0);
 }

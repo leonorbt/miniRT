@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 13:48:44 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/15 17:56:30 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,10 +108,11 @@ int		ft_check_line(char *str);
 void	ft_putstr_fd(char *s, int fd);
 int		ft_strlen(const char *str);
 void	ft_free_arrays(char **array);
+int		ft_strcmp(char *s1, char *s2);
 
 /* ft_split */
-//static int ft_words(char const *str, char del)
-//static char *ft_strdpl(char const *str, char del, char *res, int *counter)
+// static int ft_words(char const *str, char del)
+// static char *ft_strdpl(char const *str, char del, char *res, int *counter)
 char	**ft_split(char const *s, char c);
 
 /* --------- parsing folder ---------- */
@@ -120,5 +121,11 @@ int		ft_parse_ambient(char *line, t_elem *elements);
 
 /* ft_parsing */
 int		ft_start_parsing(char *scene_file);
+
+/* ft_parsing_utils */
+int		ft_parse_int(char *str);
+float	ft_parse_float(char *str);
+int		ft_parse_3int(char *str, int pos);
+float	ft_parse_3float(char *str, int pos);
 
 #endif
