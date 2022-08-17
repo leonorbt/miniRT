@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 00:12:58 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/17 23:48:28 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/17 23:53:16 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,22 @@ int	ft_validate_plane(t_pl plane)
 	return (0);
 }
 
-/* !!! need to do the linked lists pars */
+static void	ft_lstadd_back_plane(t_pl **lst, t_pl *new)
+{
+	t_pl	*element;
+
+	if (!*lst)
+	{
+		*lst = new;
+		return ;
+	}
+	element = *lst;
+	while (element->next)
+		element = element->next;
+	element->next = new;
+}
+
+/* !!! need to do the linked lists part */
 int	ft_parse_plane(char *line, t_elem *elements)
 {
 	int		i;
@@ -59,10 +74,7 @@ int	ft_parse_plane(char *line, t_elem *elements)
 	ft_free_arrays(line_in_pieces);
 	if (i > 3 || ft_validate_plane(plane) == 1)
 		return (ft_errors(ERR_LIGHT_ARGS));
-	if (elements->n_plane == 0)
-		elements->planes = &plane;
-	//else
-	//	ft_lst_add;
+	ft_lstadd_back_plane(&elements->planes, &plane);
 	elements->n_plane += 1;
 	return (0);
 }
