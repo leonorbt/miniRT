@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 23:46:02 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 23:32:37 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/18 00:07:16 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	ft_errors(int error_code)
 	else if (error_code == ERR_N_LIGHT)
 		ft_putstr_fd("Error\nThere is more than 1 camera\n", 2);
 	else if (error_code == ERR_LIGHT_ARGS)
-		ft_putstr_fd("Error\nThe camera is ill formated\n", 2);
+		ft_putstr_fd("Error\nThe light is ill formated\n", 2);
+	else if (error_code == ERR_PLANE_ARGS)
+		ft_putstr_fd("Error\nThe plane is ill formated\n", 2);
 	return (1);
 }

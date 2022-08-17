@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 22:12:37 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/16 00:15:20 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/18 00:36:32 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int	ft_parse_line(char *line, t_elem *elements)
 	// !!! doesnt this risk a segfault like redirs?
 	else if (line[i] == 'p' && line[i + 1] == 'l')
 		f_error = ft_parse_plane(line, elements);
+	else if (ft_strlen(line) == i)
+		f_error = 0;
 	return (f_error);
 }
 
@@ -119,9 +121,20 @@ int	ft_start_parsing(char *scene_file)
 		return (ft_errors(ERR_OPEN));
 	elements = ft_element_init();
 	if (ft_parser(fd, &elements) == 1)
+	{
+		printf("end in parsing\n");
 		return (1);
+	}
 	if (close(fd) == -1)
 		return (ft_errors(ERR_CLOSE));
+	fd = 0;
+	while (elements.planes->next != NULL && fd < elements.n_plane)
+	{
+		printf("The plan %d has colors %d,%d,%d\n", fd, elements.planes->color.elem1,
+		elements.planes->color.elem2, elements.planes->color.elem3);
+		elements.planes = elements.planes->next;
+		fd++;
+	}
 	//miniRT stuff
 	return (0);
 }

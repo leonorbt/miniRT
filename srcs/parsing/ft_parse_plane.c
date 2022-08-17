@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 00:12:58 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/17 23:53:16 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/18 00:35:26 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,10 @@ int	ft_parse_plane(char *line, t_elem *elements)
 			plane.color = ft_parse_3int(line_in_pieces[i]);
 		i++;
 	}
+	plane.next = NULL;
 	ft_free_arrays(line_in_pieces);
-	if (i > 3 || ft_validate_plane(plane) == 1)
-		return (ft_errors(ERR_LIGHT_ARGS));
+	if (i > 4 || ft_validate_plane(plane) == 1)
+		return (ft_errors(ERR_PLANE_ARGS));
 	ft_lstadd_back_plane(&elements->planes, &plane);
 	elements->n_plane += 1;
 	return (0);

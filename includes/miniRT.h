@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/16 00:20:22 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/18 00:07:23 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,8 @@ typedef enum e_error_codes
 	ERR_N_CAMERA,
 	ERR_CAMERA_ARGS,
 	ERR_N_LIGHT,
-	ERR_LIGHT_ARGS
+	ERR_LIGHT_ARGS,
+	ERR_PLANE_ARGS
 }	t_error_codes;
 
 /* ft_errors */

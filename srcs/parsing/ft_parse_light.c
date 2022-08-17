@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:49:21 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/16 00:08:02 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/18 00:29:19 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_parse_light(char *line, t_elem *elements)
 	line_in_pieces = ft_split(line, ' ');
 	while (line_in_pieces[i] != NULL)
 	{
-		if (i == 0 && ft_strcmp(line_in_pieces[i], "C") != 0)
+		if (i == 0 && ft_strcmp(line_in_pieces[i], "L") != 0)
 			break ;
 		if (i == 1)
 			light.view = ft_parse_3float(line_in_pieces[i]);
