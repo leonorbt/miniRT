@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 22:12:37 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/18 00:36:32 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/18 20:33:13 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,8 @@ int	ft_start_parsing(char *scene_file)
 	if (close(fd) == -1)
 		return (ft_errors(ERR_CLOSE));
 	fd = 0;
-	while (elements.planes->next != NULL && fd < elements.n_plane)
+	// while (fd < elements.n_plane)
+	while (elements.planes != NULL)
 	{
 		printf("The plan %d has colors %d,%d,%d\n", fd, elements.planes->color.elem1,
 		elements.planes->color.elem2, elements.planes->color.elem3);
@@ -136,5 +137,6 @@ int	ft_start_parsing(char *scene_file)
 		fd++;
 	}
 	//miniRT stuff
+	// todo: free each plane
 	return (0);
 }
