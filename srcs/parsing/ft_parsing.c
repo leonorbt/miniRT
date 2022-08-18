@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 22:12:37 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/18 20:33:13 by aazevedo         ###   ########.fr       */
+/*   Updated: 2022/08/19 00:35:40 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ int	ft_parse_line(char *line, t_elem *elements)
 	// !!! doesnt this risk a segfault like redirs?
 	else if (line[i] == 'p' && line[i + 1] == 'l')
 		f_error = ft_parse_plane(line, elements);
+	else if (line[i] == 's' && line[i + 1] == 'p')
+		f_error = ft_parse_sphere(line, elements);
+	else if (line[i] == 'c' && line[i + 1] == 'y')
+		f_error = ft_parse_cylinder(line, elements);
 	else if (ft_strlen(line) == i)
 		f_error = 0;
 	return (f_error);
@@ -107,8 +111,6 @@ t_elem	ft_element_init(void)
 4. Parse the scene
 5. Close the file
  */
-// !!! validate that there is at least 1 camera!
-// !!! Should I validate ambient light and light?
 int	ft_start_parsing(char *scene_file)
 {
 	int		fd;
@@ -127,16 +129,13 @@ int	ft_start_parsing(char *scene_file)
 	}
 	if (close(fd) == -1)
 		return (ft_errors(ERR_CLOSE));
-	fd = 0;
-	// while (fd < elements.n_plane)
 	while (elements.planes != NULL)
 	{
 		printf("The plan %d has colors %d,%d,%d\n", fd, elements.planes->color.elem1,
 		elements.planes->color.elem2, elements.planes->color.elem3);
 		elements.planes = elements.planes->next;
-		fd++;
 	}
 	//miniRT stuff
-	// todo: free each plane
+	// !! todo: free each plane, sphere and cylinder
 	return (0);
 }

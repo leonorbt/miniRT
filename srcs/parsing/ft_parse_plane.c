@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_plane.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 00:12:58 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/18 20:30:43 by aazevedo         ###   ########.fr       */
+/*   Updated: 2022/08/19 00:21:02 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ static void	ft_lstadd_back_plane(t_pl **lst, t_pl **new)
 	element->next = *new;
 }
 
-/* !!! need to do the linked lists part */
 int	ft_parse_plane(char *line, t_elem *elements)
 {
 	int		i;

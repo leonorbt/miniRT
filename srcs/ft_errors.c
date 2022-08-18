@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 23:46:02 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/18 00:07:16 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/19 00:29:19 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,9 @@ int	ft_errors(int error_code)
 		ft_putstr_fd("Error\nThe light is ill formated\n", 2);
 	else if (error_code == ERR_PLANE_ARGS)
 		ft_putstr_fd("Error\nThe plane is ill formated\n", 2);
+	else if (error_code == ERR_SPHERE_ARGS)
+		ft_putstr_fd("Error\nThe sphere is ill formated\n", 2);
+	else if (error_code == ERR_CYLINDER_ARGS)
+		ft_putstr_fd("Error\nThe cylinder is ill formated\n", 2);
 	return (1);
 }

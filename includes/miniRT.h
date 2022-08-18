@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/18 00:07:23 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/19 00:28:57 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,9 @@ typedef enum e_error_codes
 	ERR_CAMERA_ARGS,
 	ERR_N_LIGHT,
 	ERR_LIGHT_ARGS,
-	ERR_PLANE_ARGS
+	ERR_PLANE_ARGS,
+	ERR_SPHERE_ARGS,
+	ERR_CYLINDER_ARGS
 }	t_error_codes;
 
 /* ft_errors */
@@ -145,6 +147,8 @@ int				ft_parse_ambient(char *line, t_elem *elements);
 int				ft_parse_camera(char *line, t_elem *elements);
 int				ft_parse_light(char *line, t_elem *elements);
 int				ft_parse_plane(char *line, t_elem *elements);
+int				ft_parse_sphere(char *line, t_elem *elements);
+int				ft_parse_cylinder(char *line, t_elem *elements);
 
 /* ft_parsing */
 int				ft_start_parsing(char *scene_file);
