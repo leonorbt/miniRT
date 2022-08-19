@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 00:18:25 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/19 00:39:04 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/19 23:24:08 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	ft_parse_cylinder(char *line, t_elem *elements)
 	}
 	cylinder->next = NULL;
 	ft_free_arrays(line_in_pieces);
-	if (i > 4 || ft_validate_cylinder(*cylinder) == 1)
+	if (i > 6 || ft_validate_cylinder(*cylinder) == 1)
 		return (ft_errors(ERR_CYLINDER_ARGS));
 	ft_lstadd_back_cylinder(&elements->cylinders, &cylinder);
 	elements->n_cylinder += 1;

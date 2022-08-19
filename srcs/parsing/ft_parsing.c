@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 22:12:37 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/19 00:35:40 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/19 23:19:53 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,11 @@ int	ft_parse_line(char *line, t_elem *elements)
 		f_error = ft_parse_camera(line, elements);
 	else if (line[i] == 'L')
 		f_error = ft_parse_light(line, elements);
-	// !!! doesnt this risk a segfault like redirs?
-	else if (line[i] == 'p' && line[i + 1] == 'l')
+	else if (line[i] == 'p' && ft_strlen(line) > i + 1 && line[i + 1] == 'l')
 		f_error = ft_parse_plane(line, elements);
-	else if (line[i] == 's' && line[i + 1] == 'p')
+	else if (line[i] == 's' && ft_strlen(line) > i + 1 && line[i + 1] == 'p')
 		f_error = ft_parse_sphere(line, elements);
-	else if (line[i] == 'c' && line[i + 1] == 'y')
+	else if (line[i] == 'c' && ft_strlen(line) > i + 1 && line[i + 1] == 'y')
 		f_error = ft_parse_cylinder(line, elements);
 	else if (ft_strlen(line) == i)
 		f_error = 0;
@@ -129,12 +128,6 @@ int	ft_start_parsing(char *scene_file)
 	}
 	if (close(fd) == -1)
 		return (ft_errors(ERR_CLOSE));
-	while (elements.planes != NULL)
-	{
-		printf("The plan %d has colors %d,%d,%d\n", fd, elements.planes->color.elem1,
-		elements.planes->color.elem2, elements.planes->color.elem3);
-		elements.planes = elements.planes->next;
-	}
 	//miniRT stuff
 	// !! todo: free each plane, sphere and cylinder
 	return (0);

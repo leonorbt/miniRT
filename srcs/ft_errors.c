@@ -6,23 +6,15 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 23:46:02 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/19 00:29:19 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/19 23:22:32 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-int	ft_errors(int error_code)
+static void	ft_error_elements(int error_code)
 {
-	if (error_code == ERR_N_ARGS)
-		ft_putstr_fd("Error\nThis program takes 1 argument, the .rt scene\n", 2);
-	else if (error_code == ERR_FILE_TYPE)
-		ft_putstr_fd("Error\nThe scene file must be .rt\n", 2);
-	else if (error_code == ERR_OPEN)
-		ft_putstr_fd("Error\nCouldn't open scene file\n", 2);
-	else if (error_code == ERR_CLOSE)
-		ft_putstr_fd("Error\nCouldn't close scene file\n", 2);
-	else if (error_code == ERR_ALPHA)
+	if (error_code == ERR_ALPHA)
 		ft_putstr_fd("Error\nThe only chars supported are identifiers\n", 2);
 	else if (error_code == ERR_N_AMBIENT)
 		ft_putstr_fd("Error\nThere is more than 1 ambient light\n", 2);
@@ -42,5 +34,19 @@ int	ft_errors(int error_code)
 		ft_putstr_fd("Error\nThe sphere is ill formated\n", 2);
 	else if (error_code == ERR_CYLINDER_ARGS)
 		ft_putstr_fd("Error\nThe cylinder is ill formated\n", 2);
+}
+
+int	ft_errors(int error_code)
+{
+	if (error_code == ERR_N_ARGS)
+		ft_putstr_fd("Error\nThis program takes 1 argument, the .rt scene\n", 2);
+	else if (error_code == ERR_FILE_TYPE)
+		ft_putstr_fd("Error\nThe scene file must be .rt\n", 2);
+	else if (error_code == ERR_OPEN)
+		ft_putstr_fd("Error\nCouldn't open scene file\n", 2);
+	else if (error_code == ERR_CLOSE)
+		ft_putstr_fd("Error\nCouldn't close scene file\n", 2);
+	else
+		ft_error_elements(error_code);
 	return (1);
 }
