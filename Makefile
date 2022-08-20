@@ -52,4 +52,8 @@ fclean: clean
 
 re:	fclean all
 
+norm:
+	norminette ${SRCS}
+	norminette includes/miniRT.h
+
 .PHONY:			all clean fclean re

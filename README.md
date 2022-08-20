@@ -41,7 +41,7 @@ View point coordinates (x,y,z)
 
 3d normalized orientation vector for each x,y,z axis, ranging between -1 and 1
 
-FOV (horizontal field of view) in degrees, ranging from 0 to 180
+fov (horizontal field of view) in degrees, ranging from 0 to 180
 
 - There can be more than one camera, the same image can be viewed from multiple points of view
 

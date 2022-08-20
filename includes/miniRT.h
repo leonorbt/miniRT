@@ -36,12 +36,6 @@
 # include <limits.h>
 # include "mlx.h"
 
-typedef struct s_mlx_data
-{
-    void *mlx;
-    void *mlx_win;
-}   t_mlx_data;
-
 typedef struct s_array_int
 {
 	int	f_error;
@@ -68,7 +62,7 @@ typedef struct s_c
 {
 	t_array_float	view;
 	t_array_int		vector;
-	int				FOV;
+	int				fov;
 }	t_c;
 
 typedef struct s_l
@@ -137,6 +131,21 @@ typedef enum e_error_codes
 	ERR_CYLINDER_ARGS
 }	t_error_codes;
 
+typedef struct s_window
+{
+	void	*mlx;
+	void	*mlx_win;
+	t_elem	*elements;
+}	t_window;
+
+typedef struct s_mlx_img {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_mlx_img;
+
 /* ft_errors */
 int				ft_errors(int error_code);
 
@@ -178,5 +187,8 @@ float			ft_parse_float(char *str);
 t_array_int		ft_parse_3int(char *str);
 t_array_float	ft_parse_3float(char *str);
 int				ft_line_has_alpha(char *str);
+
+/* draw */
+void			draw(t_window *mlx_data);
 
 #endif

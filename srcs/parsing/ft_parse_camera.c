@@ -25,7 +25,7 @@ int	ft_validate_camera(t_c camera)
 		return (1);
 	if (camera.vector.elem3 < -1 || camera.vector.elem3 > 1)
 		return (1);
-	if (camera.FOV < 0 || camera.FOV > 180)
+	if (camera.fov < 0 || camera.fov > 180)
 		return (1);
 	return (0);
 }
@@ -51,7 +51,7 @@ int	ft_parse_camera(char *line, t_elem *elements)
 		if (i == 2)
 			camera.vector = ft_parse_3int(line_in_pieces[i]);
 		if (i == 3)
-			camera.FOV = ft_parse_int(line_in_pieces[i]);
+			camera.fov = ft_parse_int(line_in_pieces[i]);
 	}
 	ft_free_arrays(line_in_pieces);
 	if (i > 4 || ft_validate_camera(camera) == 1)
