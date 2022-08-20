@@ -57,3 +57,4 @@ dkms.conf
 .idea
 
 miniRT
+includes/mlx.h

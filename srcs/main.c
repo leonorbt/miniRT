@@ -72,6 +72,6 @@ int	main (int argc, char **argv)
     elements = ft_element_init();
 	if (ft_start_parsing(argv[1], elements) == 1)
 		return (1);
-    mlx_data = init_mlx();
+    mlx_data = init_mlx();  
     return (0);
 }
