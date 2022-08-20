@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/19 00:28:57 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/20 23:18:36 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,7 @@ int				ft_parse_sphere(char *line, t_elem *elements);
 int				ft_parse_cylinder(char *line, t_elem *elements);
 
 /* ft_parsing */
-int				ft_start_parsing(char *scene_file, t_elem elements);
+int				ft_start_parsing(char *scene_file, t_elem *elements);
 
 /* ft_parsing_utils */
 int				ft_parse_int(char *str);

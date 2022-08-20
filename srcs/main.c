@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:23:52 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/15 11:11:33 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/20 23:19:22 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (ft_errors(ERR_N_ARGS));
 	elements = ft_element_init();
-	if (ft_start_parsing(argv[1], elements) == 1)
+	if (ft_start_parsing(argv[1], &elements) == 1)
 		return (1);
 	window = init_window(&elements, &draw);
 	return (0);

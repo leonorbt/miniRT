@@ -6,7 +6,7 @@
 /*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 22:12:37 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/20 13:53:41 by aazevedo         ###   ########.fr       */
+/*   Updated: 2022/08/20 23:19:19 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	ft_parser(int fd, t_elem *elements)
 4. Parse the scene
 5. Close the file
  */
-int	ft_start_parsing(char *scene_file, t_elem elements)
+int	ft_start_parsing(char *scene_file, t_elem *elements)
 {
 	int		fd;
 
@@ -103,14 +103,14 @@ int	ft_start_parsing(char *scene_file, t_elem elements)
 	fd = open(scene_file, O_RDONLY);
 	if (fd == -1)
 		return (ft_errors(ERR_OPEN));
-	if (ft_parser(fd, &elements) == 1)
+	if (ft_parser(fd, elements) == 1)
 	{
 		printf("end in parsing\n");
 		return (1);
 	}
 	if (close(fd) == -1)
 		return (ft_errors(ERR_CLOSE));
-	//midraniRT stuff
-	// !! todo: free each plane, sphere and cylinder
+	// midraniRT stuff
+	//  !! todo: free each plane, sphere and cylinder
 	return (0);
 }
