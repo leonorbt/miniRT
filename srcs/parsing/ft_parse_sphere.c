@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 00:18:25 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/19 00:38:43 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/20 22:50:46 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,26 @@ static void	ft_lstadd_back_sphere(t_sp **lst, t_sp **new)
 	element->next = *new;
 }
 
+static void sphere_core(char **line_in_pieces, t_sp **sphere)
+{
+	int	i;
+
+	i = 0;
+	while (line_in_pieces[i] != NULL)
+	{
+		if (i == 0 && ft_strcmp(line_in_pieces[i], "sp") != 0)
+			break ;
+		if (i == 1)
+			(*sphere)->center = ft_parse_3float(line_in_pieces[i]);
+		if (i == 2)
+			(*sphere)->diameter = ft_parse_float(line_in_pieces[i]);
+		if (i == 3)
+			(*sphere)->color = ft_parse_3int(line_in_pieces[i]);
+		i++;
+	}
+	(*sphere)->next = NULL;
+}
+
 int	ft_parse_sphere(char *line, t_elem *elements)
 {
 	int		i;
@@ -53,19 +73,7 @@ int	ft_parse_sphere(char *line, t_elem *elements)
 	i = 0;
 	line_in_pieces = ft_split(line, ' ');
 	sphere = (t_sp *) malloc(sizeof(t_sp));
-	while (line_in_pieces[i] != NULL)
-	{
-		if (i == 0 && ft_strcmp(line_in_pieces[i], "sp") != 0)
-			break ;
-		if (i == 1)
-			sphere->center = ft_parse_3float(line_in_pieces[i]);
-		if (i == 2)
-			sphere->diameter = ft_parse_float(line_in_pieces[i]);
-		if (i == 3)
-			sphere->color = ft_parse_3int(line_in_pieces[i]);
-		i++;
-	}
-	sphere->next = NULL;
+	sphere_core(line_in_pieces, &sphere);
 	ft_free_arrays(line_in_pieces);
 	if (i > 4 || ft_validate_sphere(*sphere) == 1)
 		return (ft_errors(ERR_SPHERE_ARGS));

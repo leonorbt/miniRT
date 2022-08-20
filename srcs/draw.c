@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 13:53:47 by aazevedo          #+#    #+#             */
-/*   Updated: 2022/08/20 13:53:48 by aazevedo         ###   ########.fr       */
+/*   Updated: 2022/08/20 22:48:07 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,5 @@ void	draw(t_window *window)
 	my_mlx_pixel_put(&img, 504, 200, 0xFFFFFF);
 	my_mlx_pixel_put(&img, 505, 200, 0xFFFFFF);
 	mlx_put_image_to_window(window->mlx, window->mlx_win, img.img, 0, 0);
-
 	// window->elements
 }

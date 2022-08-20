@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+         #
+#    By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/14 23:55:45 by lbraz-te          #+#    #+#              #
-#    Updated: 2022/08/15 22:00:13 by lbraz-te         ###   ########.fr        #
+#    Updated: 2022/08/20 23:23:34 by aazevedo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,9 @@ all:	${NAME} ${OBJS}
 
 ${NAME}: libmlx.dylib ${OBJS}
 	${CC} ${CFLAGS} ${OBJS} ${MINILIBX_FLAGS} -o ${NAME} ${LFLAGS}
+
+# ${NAME}: ${OBJS}
+# ${CC} ${CFLAGS} ${OBJS} -o ${NAME} ${LFLAGS}
 
 .c.o:
 	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}

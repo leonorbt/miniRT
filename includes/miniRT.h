@@ -6,7 +6,7 @@
 /*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/20 23:18:36 by aazevedo         ###   ########.fr       */
+/*   Updated: 2022/08/20 23:24:16 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,8 +146,14 @@ typedef struct s_mlx_img {
 	int		endian;
 }	t_mlx_img;
 
+/* debug */
+void			debug_print(t_elem *elements);
+
 /* ft_errors */
 int				ft_errors(int error_code);
+
+/* draw */
+void			draw(t_window *mlx_data);
 
 /* ------------- utils ------------- */
 /* ft_gnl */
@@ -187,8 +193,5 @@ float			ft_parse_float(char *str);
 t_array_int		ft_parse_3int(char *str);
 t_array_float	ft_parse_3float(char *str);
 int				ft_line_has_alpha(char *str);
-
-/* draw */
-void			draw(t_window *mlx_data);
 
 #endif

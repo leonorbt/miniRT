@@ -6,12 +6,12 @@
 /*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:23:52 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/20 23:19:22 by aazevedo         ###   ########.fr       */
+/*   Updated: 2022/08/20 23:20:15 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
-
+/*
 int	on_window_destroy(t_window *data)
 {
 	// TODO! free program data
@@ -46,7 +46,7 @@ t_window	*init_window(t_elem *elements, void (*before_loop)(t_window *data))
 	before_loop(data);
 	mlx_loop(data->mlx);
 	return (data);
-}
+} */
 
 t_elem	ft_element_init(void)
 {
@@ -67,13 +67,15 @@ t_elem	ft_element_init(void)
 int	main(int argc, char **argv)
 {
 	t_elem		elements;
-	t_window	*window;
+	//t_window	*window;
 
 	if (argc != 2)
 		return (ft_errors(ERR_N_ARGS));
 	elements = ft_element_init();
 	if (ft_start_parsing(argv[1], &elements) == 1)
 		return (1);
-	window = init_window(&elements, &draw);
+	printf("In main %d\n", elements.has_ambient);
+	debug_print(&elements);
+	//window = init_window(&elements, &draw);
 	return (0);
 }
