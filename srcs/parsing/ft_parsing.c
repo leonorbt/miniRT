@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 22:12:37 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/20 23:09:33 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/20 23:16:32 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ int	ft_start_parsing(char *scene_file, t_elem elements)
 		printf("end in parsing\n");
 		return (1);
 	}
+	printf("In parse %d\n", elements.has_ambient);
 	if (close(fd) == -1)
 		return (ft_errors(ERR_CLOSE));
 	//midraniRT stuff
