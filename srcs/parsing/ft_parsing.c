@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 22:12:37 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/19 23:19:53 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/20 12:17:50 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,22 +87,6 @@ int	ft_parser(int fd, t_elem *elements)
 		return (0);
 }
 
-t_elem	ft_element_init(void)
-{
-	t_elem	elements;
-
-	elements.has_ambient = 0;
-	elements.has_camera = 0;
-	elements.has_light = 0;
-	elements.n_plane = 0;
-	elements.planes = NULL;
-	elements.n_sphere = 0;
-	elements.spheres = NULL;
-	elements.n_cylinder = 0;
-	elements.cylinders = NULL;
-	return (elements);
-}
-
 /*
 1. Check the file type
 2. Open the file
@@ -110,17 +94,15 @@ t_elem	ft_element_init(void)
 4. Parse the scene
 5. Close the file
  */
-int	ft_start_parsing(char *scene_file)
+int		ft_start_parsing(char *scene_file, t_elem elements)
 {
 	int		fd;
-	t_elem	elements;
 
 	if (ft_file_type(scene_file) == 1)
 		return (ft_errors(ERR_FILE_TYPE));
 	fd = open(scene_file, O_RDONLY);
 	if (fd == -1)
 		return (ft_errors(ERR_OPEN));
-	elements = ft_element_init();
 	if (ft_parser(fd, &elements) == 1)
 	{
 		printf("end in parsing\n");

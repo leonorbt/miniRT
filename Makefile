@@ -14,6 +14,9 @@ SRCS	= $(wildcard srcs/*.c) \
 			$(wildcard srcs/parsing/*.c) \
 			$(wildcard srcs/utils/*.c)
 
+MINILIBX_DIR = includes/minilibx_mms_20200219
+MINILIBX_FLAGS = -L${MINILIBX_DIR} -lmlx -framework OpenGL -framework AppKit
+
 OBJS	= ${SRCS:.c=.o}
 
 INCLUDES = -I.
@@ -25,18 +28,26 @@ MAKE	=	make
 
 NAME	=	miniRT
 
-.c.o:
-	${CC} ${CFLAGS} -c $< -o ${<:.c=.o} 
-
 all:	${NAME} ${OBJS}
 
-${NAME}:${OBJS}
-	${CC} ${CFLAGS} ${OBJS} -o ${NAME} ${LFLAGS}
+${NAME}: libmlx.dylib ${OBJS}
+	${CC} ${CFLAGS} ${OBJS} ${MINILIBX_FLAGS} -o ${NAME} ${LFLAGS}
+
+.c.o:
+	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+
+libmlx.dylib: ./${MINILIBX_DIR}
+	make -C ./${MINILIBX_DIR}
+	cp	./${MINILIBX_DIR}/libmlx.dylib libmlx.dylib
+	cp ./${MINILIBX_DIR}/mlx.h includes/mlx.h
 
 clean:
+	${RM} libmlx.dylib
+	${RM} includes/mlx.h
 	${RM} ${OBJS}
 
 fclean: clean
+	#make clean -C ./${MINILIBX_DIR}
 	${RM} ${NAME}
 
 re:	fclean all

@@ -17,11 +17,30 @@
 #  define BUFFER_SIZE 42
 # endif
 
+# ifndef WINDOW_WIDTH
+#  define WINDOW_WIDTH 1000
+# endif
+
+# ifndef WINDOW_HEIGHT
+#  define WINDOW_HEIGHT 500
+# endif
+
+# ifndef KEY_ESCAPE
+#  define KEY_ESCAPE 53
+# endif
+
 # include <stdio.h> //this is for debugging only so far
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
 # include <limits.h>
+# include "mlx.h"
+
+typedef struct s_mlx_data
+{
+    void *mlx;
+    void *mlx_win;
+}   t_mlx_data;
 
 typedef struct s_array_int
 {
@@ -151,7 +170,7 @@ int				ft_parse_sphere(char *line, t_elem *elements);
 int				ft_parse_cylinder(char *line, t_elem *elements);
 
 /* ft_parsing */
-int				ft_start_parsing(char *scene_file);
+int				ft_start_parsing(char *scene_file, t_elem elements);
 
 /* ft_parsing_utils */
 int				ft_parse_int(char *str);
