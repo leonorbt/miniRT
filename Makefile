@@ -6,7 +6,7 @@
 #    By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/14 23:55:45 by lbraz-te          #+#    #+#              #
-#    Updated: 2022/08/15 22:00:13 by lbraz-te         ###   ########.fr        #
+#    Updated: 2022/08/20 22:47:59 by lbraz-te         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,10 @@ NAME	=	miniRT
 
 all:	${NAME} ${OBJS}
 
-${NAME}: libmlx.dylib ${OBJS}
-	${CC} ${CFLAGS} ${OBJS} ${MINILIBX_FLAGS} -o ${NAME} ${LFLAGS}
+#${NAME}: libmlx.dylib ${OBJS}
+${NAME}: ${OBJS}
+	${CC} ${CFLAGS} ${OBJS} -o ${NAME} ${LFLAGS}
+# ${CC} ${CFLAGS} ${OBJS} ${MINILIBX_FLAGS} -o ${NAME} ${LFLAGS}
 
 .c.o:
 	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}

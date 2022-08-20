@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/19 00:28:57 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/20 23:06:19 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <limits.h>
-# include "mlx.h"
+//# include "mlx.h"
 
 typedef struct s_array_int
 {
@@ -146,8 +146,14 @@ typedef struct s_mlx_img {
 	int		endian;
 }	t_mlx_img;
 
+/* debug */
+void			debug_print(t_elem *elements);
+
 /* ft_errors */
 int				ft_errors(int error_code);
+
+/* draw */
+void			draw(t_window *mlx_data);
 
 /* ------------- utils ------------- */
 /* ft_gnl */
@@ -187,8 +193,5 @@ float			ft_parse_float(char *str);
 t_array_int		ft_parse_3int(char *str);
 t_array_float	ft_parse_3float(char *str);
 int				ft_line_has_alpha(char *str);
-
-/* draw */
-void			draw(t_window *mlx_data);
 
 #endif
