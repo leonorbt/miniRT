@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:23:52 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/20 23:20:15 by aazevedo         ###   ########.fr       */
+/*   Updated: 2022/08/20 23:34:09 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
-/*
+
 int	on_window_destroy(t_window *data)
 {
 	// TODO! free program data
@@ -46,7 +46,7 @@ t_window	*init_window(t_elem *elements, void (*before_loop)(t_window *data))
 	before_loop(data);
 	mlx_loop(data->mlx);
 	return (data);
-} */
+}
 
 t_elem	ft_element_init(void)
 {
@@ -77,5 +77,6 @@ int	main(int argc, char **argv)
 	printf("In main %d\n", elements.has_ambient);
 	debug_print(&elements);
 	//window = init_window(&elements, &draw);
+	init_window(&elements, &draw);
 	return (0);
 }
