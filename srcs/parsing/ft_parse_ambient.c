@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:49:21 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/20 23:07:58 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/21 22:44:49 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	ft_parse_ambient(char *line, t_elem *elements)
 	if (elements->has_ambient > 0)
 		return (ft_errors(ERR_N_AMBIENT));
 	elements->has_ambient += 1;
-	printf("parsed ambient %d\n", elements->has_ambient);
 	line_in_pieces = ft_split(line, ' ');
 	while (line_in_pieces[i] != NULL)
 	{
