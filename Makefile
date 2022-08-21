@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/14 23:55:45 by lbraz-te          #+#    #+#              #
-#    Updated: 2022/08/20 23:23:34 by aazevedo         ###   ########.fr        #
+#    Updated: 2022/08/21 17:25:24 by lbraz-te         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ OBJS	= ${SRCS:.c=.o}
 INCLUDES = -I.
 CC		= cc
 RM		= rm -f
-CFLAGS	= -Wall -Werror -Wextra -fsanitize=address -g
+#CFLAGS	= -Wall -Werror -Wextra -fsanitize=address -g
+CFLAGS	= -Wall -Wextra -fsanitize=address -g
 
 MAKE	=	make
 

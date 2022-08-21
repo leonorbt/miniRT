@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:23:52 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/21 15:28:08 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/21 19:39:18 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_elem	ft_element_init(void)
 int	main(int argc, char **argv)
 {
 	t_elem		elements;
-	//t_window	*window;
+	t_window	*window;
 
 	if (argc != 2)
 		return (ft_errors(ERR_N_ARGS));
@@ -75,7 +75,6 @@ int	main(int argc, char **argv)
 	if (ft_start_parsing(argv[1], &elements) == 1)
 		return (1);
 	debug_print(&elements);
-	//window = init_window(&elements, &draw);
-	init_window(&elements, &draw);
+	window = init_window(&elements, &draw);
 	return (0);
 }
