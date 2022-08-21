@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 00:18:25 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/20 22:50:46 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/21 17:12:57 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	ft_lstadd_back_sphere(t_sp **lst, t_sp **new)
 	element->next = *new;
 }
 
-static void sphere_core(char **line_in_pieces, t_sp **sphere)
+static int	sphere_core(char **line_in_pieces, t_sp **sphere)
 {
 	int	i;
 
@@ -62,20 +62,22 @@ static void sphere_core(char **line_in_pieces, t_sp **sphere)
 		i++;
 	}
 	(*sphere)->next = NULL;
+	if (i > 4)
+		return (1);
+	return (0);
 }
 
 int	ft_parse_sphere(char *line, t_elem *elements)
 {
-	int		i;
+	int		err;
 	t_sp	*sphere;
 	char	**line_in_pieces;
 
-	i = 0;
 	line_in_pieces = ft_split(line, ' ');
 	sphere = (t_sp *) malloc(sizeof(t_sp));
-	sphere_core(line_in_pieces, &sphere);
+	err = sphere_core(line_in_pieces, &sphere);
 	ft_free_arrays(line_in_pieces);
-	if (i > 4 || ft_validate_sphere(*sphere) == 1)
+	if (err == 1 || ft_validate_sphere(*sphere) == 1)
 		return (ft_errors(ERR_SPHERE_ARGS));
 	ft_lstadd_back_sphere(&elements->spheres, &sphere);
 	elements->n_sphere += 1;

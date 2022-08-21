@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:23:52 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/20 23:34:09 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/21 15:28:08 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ int	main(int argc, char **argv)
 	elements = ft_element_init();
 	if (ft_start_parsing(argv[1], &elements) == 1)
 		return (1);
-	printf("In main %d\n", elements.has_ambient);
 	debug_print(&elements);
 	//window = init_window(&elements, &draw);
 	init_window(&elements, &draw);
