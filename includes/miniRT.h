@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/22 22:42:32 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/22 22:52:24 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,9 @@ void			debug_print(t_elem *elements);
 int				ft_errors(int error_code);
 
 /* draw */
+//static int	rgb_to_color(t_array_int rgb)
+//void	my_mlx_pixel_put(t_mlx_img *img_data, int x, int y, t_array_int rgb)
+//static void	draw_core(int x, int y, t_mlx_img img, t_elem elements)
 void			draw(t_window *mlx_data);
 
 /* drawing_elements */

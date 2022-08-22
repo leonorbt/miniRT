@@ -6,7 +6,7 @@
 #    By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/14 23:55:45 by lbraz-te          #+#    #+#              #
-#    Updated: 2022/08/22 22:41:08 by lbraz-te         ###   ########.fr        #
+#    Updated: 2022/08/22 22:52:35 by lbraz-te         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,6 @@ fclean: clean
 re:	fclean all
 
 norm:
-	norminette ${SRCS}
-	norminette includes/miniRT.h
+	norminette includes/miniRT.h ${SRCS}
 
 .PHONY:			all clean fclean re
