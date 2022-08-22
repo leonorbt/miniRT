@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/21 22:27:11 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/22 22:42:32 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,9 @@ int				ft_errors(int error_code);
 
 /* draw */
 void			draw(t_window *mlx_data);
+
+/* drawing_elements */
+int				ft_in_circle(int x, int y, t_sp sphere);
 
 /* ------------- utils ------------- */
 /* ft_gnl */

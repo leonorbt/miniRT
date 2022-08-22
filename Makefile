@@ -6,12 +6,13 @@
 #    By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/14 23:55:45 by lbraz-te          #+#    #+#              #
-#    Updated: 2022/08/21 17:25:24 by lbraz-te         ###   ########.fr        #
+#    Updated: 2022/08/22 22:41:08 by lbraz-te         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	= $(wildcard srcs/*.c) \
 			$(wildcard srcs/parsing/*.c) \
+			$(wildcard srcs/drawing/*.c) \
 			$(wildcard srcs/utils/*.c)
 
 MINILIBX_DIR = includes/minilibx_mms_20200219
