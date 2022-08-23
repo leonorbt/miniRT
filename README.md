@@ -37,7 +37,7 @@ R,G,B colors, ranging from 0 to 255
 
 Identifier C
 
-View point coordinates (x,y,z)
+View point coordinates (x,y,z) --> should we transform this into (0,0,0)? or is it just an intro?
 
 3d normalized orientation vector for each x,y,z axis, ranging between -1 and 1
 
@@ -105,7 +105,7 @@ I think the formula is going to make it infinite, we need to truncate it on both
 
 
 ### Triangle (tr)
-Not sure how, but I was told if we do triangles, we are able to draw ALL images
+Characters are a bunch of 4 sided polygons, which can be split into triangles by drawing an edge that connects diagonal points.
 
 
 ## Resources:
