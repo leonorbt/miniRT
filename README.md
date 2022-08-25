@@ -37,7 +37,7 @@ R,G,B colors, ranging from 0 to 255
 
 Identifier C
 
-View point coordinates (x,y,z) --> should we transform this into (0,0,0)? or is it just an intro?
+View point coordinates (x,y,z) --> should we transform this into (0,0,0)? It seems like a valid approach
 
 3d normalized orientation vector for each x,y,z axis, ranging between -1 and 1
 
