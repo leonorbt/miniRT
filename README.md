@@ -3,6 +3,16 @@ Doing miniRT with António.
 
 If you are unsure between doing miniRT and cub3d, [this was the video](https://www.khanacademy.org/computing/pixar/rendering/rendering1/v/overview-rendering) that excited me about miniRT because it gave me a real world application of the project.
 
+## Tutorial
+Not sure how to tackle this? Well, neither am I, but this is what we have done so far:
+- Parsing - after Minishell no need for an explanation here
+- See pixar movies on ray tracing, which requires you to revise some concepts:
+	- Weighted average (this is what you did in school to compute your grade when projects, exams and behvaiour were worth different ammounts)
+	- Line equation (this is just the normal y = ax + b but putting everything to the side)
+	- Equation systems (that big { with as many lines as unknown variables)
+	- Equation of a plane
+- Ray Tracing in one weekend
+
 ## Window stuff (aka minilibX stuff)
 - Close the window with ESC
 - Quit cleanly in the red cross
