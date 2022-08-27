@@ -40,8 +40,6 @@ Ratio from 0.0 to 1.0
 
 R,G,B colors, ranging from 0 to 255
 
-- There can't be more than 1 ambient light as they don't even have positioning, right?
-
 ### Camera (C)
 ```C  -50.0,0,20  0,0,1  70```
 
