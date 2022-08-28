@@ -10,13 +10,20 @@
 #                                                                              #
 # **************************************************************************** #
 
+UNAME_S := $(shell uname -s)
+
 SRCS	= $(wildcard srcs/*.c) \
 			$(wildcard srcs/parsing/*.c) \
 			$(wildcard srcs/drawing/*.c) \
 			$(wildcard srcs/utils/*.c)
 
-MINILIBX_DIR = includes/minilibx_mms_20200219
-MINILIBX_FLAGS = -L${MINILIBX_DIR} -lmlx -framework OpenGL -framework AppKit
+ifeq ($(UNAME_S),Darwin)
+	MINILIBX_DIR = includes/minilibx_macos
+	MINILIBX_FLAGS = -L${MINILIBX_DIR} -lmlx -framework OpenGL -framework AppKit
+else
+	MINILIBX_DIR = includes/minilibx_linux
+	MINILIBX_FLAGS = -I /usr/X11/include -g -L${MINILIBX_DIR} -lmlx_Linux -L /usr/lib -Imlx_linux -lmlx -lXext -lX11 -lm
+endif
 
 OBJS	= ${SRCS:.c=.o}
 
@@ -32,11 +39,8 @@ NAME	=	miniRT
 
 all:	${NAME} ${OBJS}
 
-${NAME}: libmlx.dylib ${OBJS}
-	${CC} ${CFLAGS} ${OBJS} ${MINILIBX_FLAGS} -o ${NAME} ${LFLAGS}
-
-# ${NAME}: ${OBJS}
-# ${CC} ${CFLAGS} ${OBJS} -o ${NAME} ${LFLAGS}
+${NAME}: libmlx_Linux.a ${OBJS}
+	${CC} ${CFLAGS} ${OBJS} ${MINILIBX_FLAGS}  -o ${NAME} ${LFLAGS}
 
 .c.o:
 	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
@@ -46,8 +50,14 @@ libmlx.dylib: ./${MINILIBX_DIR}
 	cp	./${MINILIBX_DIR}/libmlx.dylib libmlx.dylib
 	cp ./${MINILIBX_DIR}/mlx.h includes/mlx.h
 
+libmlx_Linux.a: ./${MINILIBX_DIR}
+	make -C ./${MINILIBX_DIR}
+	cp	./${MINILIBX_DIR}/libmlx_Linux.a libmlx_Linux.a
+	cp ./${MINILIBX_DIR}/mlx.h includes/mlx.h
+
 clean:
 	${RM} libmlx.dylib
+	${RM} libmlx_Linux.a
 	${RM} includes/mlx.h
 	${RM} ${OBJS}
 
