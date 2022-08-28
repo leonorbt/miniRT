@@ -121,6 +121,7 @@ Characters are a bunch of 4 sided polygons, which can be split into triangles by
 - [Raul's Notion](https://wary-neem-854.notion.site/MiniRT-71995aae3aac48d58aaf75be4c3e9193)
 - [Physically Based Rendering](https://pbr-book.org/3ed-2018/contents)
 - [Pixar - Rendering 101](https://www.khanacademy.org/computing/pixar/rendering)
+- [What is the difference between ray tracing and ray casting?](https://stackoverflow.com/a/67354199)
 
 ## Repos
 - https://github.com/Knulpinette/42_04_minirt
