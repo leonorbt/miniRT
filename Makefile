@@ -20,9 +20,11 @@ SRCS	= $(wildcard srcs/*.c) \
 ifeq ($(UNAME_S),Darwin)
 	MINILIBX_DIR = includes/minilibx_macos
 	MINILIBX_FLAGS = -L${MINILIBX_DIR} -lmlx -framework OpenGL -framework AppKit
+	MINILIBX_LIB_FILE = libmlx.dylib
 else
 	MINILIBX_DIR = includes/minilibx_linux
 	MINILIBX_FLAGS = -I /usr/X11/include -g -L${MINILIBX_DIR} -lmlx_Linux -L /usr/lib -Imlx_linux -lmlx -lXext -lX11 -lm
+	MINILIBX_LIB_FILE = libmlx_Linux.a
 endif
 
 OBJS	= ${SRCS:.c=.o}
@@ -39,7 +41,7 @@ NAME	=	miniRT
 
 all:	${NAME} ${OBJS}
 
-${NAME}: libmlx_Linux.a ${OBJS}
+${NAME}: ${MINILIBX_LIB_FILE} ${OBJS}
 	${CC} ${CFLAGS} ${OBJS} ${MINILIBX_FLAGS}  -o ${NAME} ${LFLAGS}
 
 .c.o:
