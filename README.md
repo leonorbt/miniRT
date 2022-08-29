@@ -49,7 +49,7 @@ View point coordinates (x,y,z) --> should we transform this into (0,0,0)? It see
 
 3d normalized orientation vector for each x,y,z axis, ranging between -1 and 1 --> this gives us the direction where the camera is looking at
 
-fov (horizontal field of view) in degrees, ranging from 0 to 180 --> this gives us the angle of the camera (like fish-eye). If the angle is smaller (closer to 0), we are zooming in. If the angle is bigger (closer to 180), we are zooming out.s
+fov (horizontal field of view) in degrees, ranging from 0 to 180 --> this gives us the angle of the camera (like fish-eye). If the angle is smaller (closer to 0), we are zooming in. If the angle is bigger (closer to 180), we are zooming out.
 
 - There can be more than one camera, the same image can be viewed from multiple points of view
 
