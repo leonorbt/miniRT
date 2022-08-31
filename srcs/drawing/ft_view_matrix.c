@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 11:18:18 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/30 22:38:33 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/08/31 22:53:09 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@ there are infinite matrixes, as the rays cross infinite parallell plans
  */
 void	view_matrix(t_elem elements)
 {
-	t_c	camera;
-	int	matrix[x][y];
+	int	matrix_center_x;
+	int	matrix_center_y;
+	int	matrix_center_z;
 
-	camera = elements.camera;
-	camera.view * camera.vector;
+	matrix_center_x = elements.camera.view.elem1 + elements.camera.vector.elem1;
+	matrix_center_y = elements.camera.view.elem2 + elements.camera.vector.elem2;
+	matrix_center_z = elements.camera.view.elem3 + elements.camera.vector.elem3;
+	
 }
