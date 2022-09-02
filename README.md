@@ -11,6 +11,8 @@ Not sure how to tackle this? Well, neither am I, but this is what we have done s
 	- Line equation (this is just the normal y = ax + b but putting everything to the side)
 	- Equation systems (that big { with as many lines as unknown variables)
 	- Equation of a plane
+- [Law of cosines] (https://www.khanacademy.org/math/linear-algebra/vectors-and-spaces/dot-cross-products/v/defining-the-angle-between-vectors?modal=1)
+- Dot product of orthogonal vectors = 0. Maybe I can get the "extreme" vector, that is, the one on the most left and right and the plane will be the difference between those 2 vectors 
 - Try to build the matrix where the objects will be project. What is this matrix? We have a set of coordinates that tell us where the camera is, we then have a vector that tells us there the camera is directed and the FOV says how wide the lense is. Knowing where we are and where we are looking, we can draw a matrix that will have as many elements as pixels, adjusting the width with the FOV.
 	- I think there are infinite planes and the rays will cross them all, but for now I will imagine the plane to be 1 unit away from the camera as this helps me visualize
 	- Important note: the rays come from the light and then are reflected/refracted into the camera, but in the drawing phase it seems to be the opposite
