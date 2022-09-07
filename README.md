@@ -16,6 +16,11 @@ Not sure how to tackle this? Well, neither am I, but this is what we have done s
 - Try to build the matrix where the objects will be project. What is this matrix? We have a set of coordinates that tell us where the camera is, we then have a vector that tells us there the camera is directed and the FOV says how wide the lense is. Knowing where we are and where we are looking, we can draw a matrix that will have as many elements as pixels, adjusting the width with the FOV.
 	- I think there are infinite planes and the rays will cross them all, but for now I will imagine the plane to be 1 unit away from the camera as this helps me visualize
 	- Important note: the rays come from the light and then are reflected/refracted into the camera, but in the drawing phase it seems to be the opposite
+- I was having a hard time understanding how to transform 3D coordinates in 2D image plane and [this link helped me a] lot (https://www.scratchapixel.com/lessons/3d-basic-rendering/computing-pixel-coordinates-of-3d-point/mathematics-computing-2d-coordinates-of-3d-points)
+	- World space to camera space: word-to-local matrix, which converts any point from the world coordinate system into a local coordinate system
+	- Camera space to canvas: perspective projection, that is, dividing the x and y coordinates by the -z coordinate (must be negative, as the z-axis is going into the camera). We can now discard the z coordinate
+	- Canvas to NDC (Normalized Device Coordinate): the goal is to normalize the coordinates into [0,1] by summing to the x coordinate half the canvas width (moving the origin from the center to the left) and then dividing by the total width (so the max is 1) and to the y coordinate half the canvas height (moving the origin from the middle to the bottom) and then dividing by the total height (so the max is 1)
+	- NDC to raster: multiply the normalized x and 1-y coordinates by width and height in pixels and round to integer (it's 1-y because y pixel moves in opposite direction of y axis)
 
 ## Window stuff (aka minilibX stuff)
 - Close the window with ESC
