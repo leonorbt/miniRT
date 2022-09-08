@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 19:47:29 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/08 19:35:42 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/08 20:27:23 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,23 @@ t_array_float	ft_raster_ndc(int pixel_x, int pixel_y)
 	(or height, if y) to shift the origin to 0 and dividing by the canvas width (or height, if y),
 	to make the max at 1. Following that, we can transform in canvas with angle * (2x - 1),
 	being that angle is half of the canvas width.
- * camera coordinates (x: -1 -> 1, y: -1 -> 1). The camera coordinates correspond to the 2d plane
- * which is drawn and has the camera in the center (no z coordinate)
+	- This should make the coordinates vary between -1 and 1
+ * The logic is right, but I think the math is wrong. Unclear where
  */
 
-int	ft_pixel_to_canvas(int pixel_x, int pixel_y, t_elem *elements)
+t_array_float	ft_pixel_to_canvas(int pixel_x, int pixel_y, t_elem *elements)
 {
 	t_array_float	ndc;
 	float			angle;
 	float			aspect_ratio;
-	int	canvas_x;
-	int	canvas_y;
+	t_array_float	canvas;
 
 	ndc = ft_raster_ndc(pixel_x, pixel_y);
 	angle = tan(elements->camera.fov/2 * M_PI/180);
-	canvas_x = angle * (ndc.elem1 * 2 - 1);
+	canvas.elem1 = angle * (ndc.elem1 * 2 - 1);
 	aspect_ratio = WINDOW_HEIGHT / WINDOW_WIDTH;
-	canvas_y = angle * aspect_ratio * (ndc.elem2 * 2 - 1);
+	canvas.elem2 = angle * aspect_ratio * (ndc.elem2 * 2 - 1);
+	canvas.elem3 = 1;
+	canvas.f_error = 0;
+	return (canvas);
 }
