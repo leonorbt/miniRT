@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 19:47:29 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/08 20:27:23 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/11 18:37:14 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@
  * The goal here is to transform the pixel coordinates
  * (x: 0 -> width, y: 0 -> height) into a Normalized Device Coordinate
  * ranging from 0 to 1.
+ * We are summing 0.5 both to the pixel_x and pixel_y because we want the
+ * center of the pixel
  */
 t_array_float	ft_raster_ndc(int pixel_x, int pixel_y)
 {
-	t_array_float ndc;
+	t_array_float	ndc;
 
-	ndc.elem1 = pixel_x / WINDOW_WIDTH;
-	ndc.elem2 = 1 - (pixel_y / WINDOW_HEIGHT);
+	ndc.elem1 = (pixel_x + 0.5) / WINDOW_WIDTH;
+	ndc.elem2 = 1 - ((pixel_y + 0.5) / WINDOW_HEIGHT);
 	ndc.elem3 = 0;
 	ndc.f_error = 0;
 	return (ndc);
@@ -43,12 +45,11 @@ t_array_float	ft_raster_ndc(int pixel_x, int pixel_y)
 	half of the width of the canvas. So 2 * Angle = canvas width
 	- We can get the height of the canvas using the width and the aspect ratio of
 	the window in pixels
-	- We know that we can transform the canvas into NDC by adding half the canvas width
-	(or height, if y) to shift the origin to 0 and dividing by the canvas width (or height, if y),
-	to make the max at 1. Following that, we can transform in canvas with angle * (2x - 1),
-	being that angle is half of the canvas width.
+	- We know that we can transform the canvas into NDC by adding half the canvas
+	width (or height, if y) to shift the origin to 0 and dividing by the canvas
+	width (or height, if y), to make the max at 1. Following that, we can transform
+	in canvas with angle * (2x - 1), being that angle is half of the canvas width.
 	- This should make the coordinates vary between -1 and 1
- * The logic is right, but I think the math is wrong. Unclear where
  */
 
 t_array_float	ft_pixel_to_canvas(int pixel_x, int pixel_y, t_elem *elements)
@@ -59,7 +60,7 @@ t_array_float	ft_pixel_to_canvas(int pixel_x, int pixel_y, t_elem *elements)
 	t_array_float	canvas;
 
 	ndc = ft_raster_ndc(pixel_x, pixel_y);
-	angle = tan(elements->camera.fov/2 * M_PI/180);
+	angle = tan((elements->camera.fov / 2) * M_PI / 180);
 	canvas.elem1 = angle * (ndc.elem1 * 2 - 1);
 	aspect_ratio = WINDOW_HEIGHT / WINDOW_WIDTH;
 	canvas.elem2 = angle * aspect_ratio * (ndc.elem2 * 2 - 1);
