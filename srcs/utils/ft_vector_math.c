@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 00:52:21 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/12 01:04:45 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/12 20:39:21 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,17 @@ t_array_float	v_subtract(t_array_float v1, t_array_float v2)
 	result.elem1 = v1.elem1 - v2.elem1;
 	result.elem2 = v1.elem2 - v2.elem2;
 	result.elem3 = v1.elem3 - v2.elem3;
+	result.f_error = 0;
+	return (result);
+}
+
+t_array_float	v_cross_product(t_array_float v1, t_array_float v2)
+{
+	t_array_float	result;
+
+	result.elem1 = v1.elem2 * v2.elem3 - v1.elem3 * v2.elem2;
+	result.elem2 = v1.elem3 * v2.elem1 - v1.elem1 * v2.elem3;
+	result.elem3 = v1.elem1 * v2.elem2 - v1.elem2 * v2.elem1;
 	result.f_error = 0;
 	return (result);
 }

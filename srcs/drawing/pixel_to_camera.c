@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 19:47:29 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/12 01:06:55 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/12 20:46:10 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,30 @@ t_array_float	ft_pixel_to_canvas(int pixel_x, int pixel_y, t_elem *elements)
 	return (canvas);
 }
 
+t_array_float	get_right(t_array_float forward)
+{
+	t_array_float	temp;
+	t_array_float	right;
+
+	temp.f_error = 0;
+	if (forward.elem1 == 0
+		&& (forward.elem2 == 1 || forward.elem2 == -1)
+		&& forward.elem3 == 0)
+	{
+		temp.elem1 = 1;
+		temp.elem2 = 0;
+		temp.elem3 = 0;
+	}
+	else
+	{
+		temp.elem1 = 0;
+		temp.elem2 = 1;
+		temp.elem3 = 0;
+	}
+	right = v_cross_product(temp, forward);
+	return (right);
+}
+
 /*
  * The look_at function creates the matrix that converts world coordinates
  * into camera coordinates. This is a 4x4 matrix because we need an extra
@@ -86,10 +110,43 @@ t_array_float	ft_pixel_to_canvas(int pixel_x, int pixel_y, t_elem *elements)
  * Being that this is going from the camera back, we can use the direction
  * of the vector that goes in the opposite direction of cam_dir and passes 
  * through the origin. So, camera direction - camera origin.
+ * 
+ * How to compute the right axis?
+ * We already have the forward axis and we know that the cross product of
+ * 2 vectors gives us a 3rd vector which is perpendicular to both of them.
+ * By convention, we use the (0,1,0) vector for that. However, there is
+ * one case where this creates a problem: if the forward is (0,1,0) or
+ * (0, -1, 0). In that case, we will make the temp vector to be (1,0,0).
+ * 
+ * How to compute the up axis?
+ * Just do the cross product of the 2 known axis to get a 3rd vector that
+ * will be perpendicular to both forward and right.
  */
-matrix	look_at(t_array_float cam_origin, t_array_float cam_dir)
+float	*look_at(t_array_float cam_origin, t_array_float cam_dir)
 {
-	t_array_float forward;
-	
+	t_array_float	forward;
+	t_array_float	right;
+	t_array_float	up;
+	float			matrix[4][4];
+
 	forward = v_normalize(v_subtract(cam_origin, cam_dir));
+	right = v_normalize(get_right(forward));
+	up = v_normalize(v_cross_product(forward, right));
+	matrix[0][0] = right.elem1;
+	matrix[0][1] = right.elem2;
+	matrix[0][2] = right.elem3;
+	matrix[0][3] = 0;
+	matrix[1][0] = forward.elem1;
+	matrix[1][1] = forward.elem2;
+	matrix[1][2] = forward.elem3;
+	matrix[1][3] = 0;
+	matrix[2][0] = up.elem1;
+	matrix[2][1] = up.elem2;
+	matrix[2][2] = up.elem3;
+	matrix[2][3] = 0;
+	matrix[3][0] = cam_origin.elem1;
+	matrix[3][1] = cam_origin.elem2;
+	matrix[3][2] = cam_origin.elem3;
+	matrix[3][3] = 1;
+	return (matrix);
 }
