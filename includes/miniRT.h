@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/12 20:39:30 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/12 23:54:20 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,7 @@ int				ft_strcmp(char *s1, char *s2);
 t_array_float	v_normalize(t_array_float vector);
 t_array_float	v_subtract(t_array_float v1, t_array_float v2);
 t_array_float	v_cross_product(t_array_float v1, t_array_float v2);
+t_array_float	m_multiply(t_array_float vector, float **matrix);
 
 /* ft_split */
 // static int ft_words(char const *str, char del)

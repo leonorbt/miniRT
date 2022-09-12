@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pixel_to_camera.c                                  :+:      :+:    :+:   */
+/*   ray_dir.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 19:47:29 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/12 20:46:10 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/12 23:51:06 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  * We are summing 0.5 both to the pixel_x and pixel_y because we want the
  * center of the pixel
  */
-t_array_float	ft_raster_ndc(int pixel_x, int pixel_y)
+static t_array_float	ft_raster_ndc(int pixel_x, int pixel_y)
 {
 	t_array_float	ndc;
 
@@ -52,7 +52,7 @@ t_array_float	ft_raster_ndc(int pixel_x, int pixel_y)
 	- This should make the coordinates vary between -1 and 1
  */
 
-t_array_float	ft_pixel_to_canvas(int pixel_x, int pixel_y, t_elem *elements)
+static t_array_float	ft_pixel_to_canvas(int pixel_x, int pixel_y, t_elem *elements)
 {
 	t_array_float	ndc;
 	float			angle;
@@ -64,12 +64,12 @@ t_array_float	ft_pixel_to_canvas(int pixel_x, int pixel_y, t_elem *elements)
 	canvas.elem1 = angle * (ndc.elem1 * 2 - 1);
 	aspect_ratio = WINDOW_HEIGHT / WINDOW_WIDTH;
 	canvas.elem2 = angle * aspect_ratio * (ndc.elem2 * 2 - 1);
-	canvas.elem3 = 1;
+	canvas.elem3 = -1;
 	canvas.f_error = 0;
 	return (canvas);
 }
 
-t_array_float	get_right(t_array_float forward)
+static t_array_float	get_right(t_array_float forward)
 {
 	t_array_float	temp;
 	t_array_float	right;
@@ -122,7 +122,7 @@ t_array_float	get_right(t_array_float forward)
  * Just do the cross product of the 2 known axis to get a 3rd vector that
  * will be perpendicular to both forward and right.
  */
-float	*look_at(t_array_float cam_origin, t_array_float cam_dir)
+static float	**look_at(t_array_float cam_origin, t_array_float cam_dir)
 {
 	t_array_float	forward;
 	t_array_float	right;
@@ -149,4 +149,30 @@ float	*look_at(t_array_float cam_origin, t_array_float cam_dir)
 	matrix[3][2] = cam_origin.elem3;
 	matrix[3][3] = 1;
 	return (matrix);
+}
+
+/*
+ * This is the function that gets the 3D ray direction from the 2D pixels
+ * 1. From the pixels, get the canvas/image plane
+ * 2. Compute a ray for the current pixel. For that, we need an origin and
+ * a direction. 
+ * 		- The origin is the camera (we also can transform the world
+ * origin (0,0,0) into the camera origin using our matrix). 
+ * 		- The direction we get by multiplying our canvas/image plane vector with 
+ * the matrix (drawing the pixel in the world) and then subtracting the origin
+ * of the ray
+ */
+t_array_float	get_ray_dir(int pixel_x, int pixel_y, t_elem *elements)
+{
+	t_array_float	canvas;
+	t_array_float	ray_origin;
+	t_array_float	ray_dir;
+	float			**cam_to_world_matrix;
+
+	canvas = ft_pixel_to_canvas(pixel_x, pixel_y, elements);
+	ray_origin = elements->camera.view;
+	cam_to_world_matrix = look_at(elements->camera.view, elements->camera.vector);
+	ray_dir = v_subtract(m_multiply(canvas, cam_to_world_matrix), ray_origin);
+	ray_dir = v_normalize(ray_dir);
+	return (ray_dir);
 }
