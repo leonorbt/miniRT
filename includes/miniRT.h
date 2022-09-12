@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/12 00:58:49 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/12 20:15:52 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct s_a
 typedef struct s_c
 {
 	t_array_float	view;
-	t_array_int		vector;
+	t_array_float		vector;
 	int				fov;
 }	t_c;
 
@@ -75,7 +75,7 @@ typedef struct s_l
 typedef struct s_pl
 {
 	t_array_float	view;
-	t_array_int		vector;
+	t_array_float	vector;
 	t_array_int		color;
 	struct s_pl		*next;
 }	t_pl;
@@ -91,7 +91,7 @@ typedef struct s_sp
 typedef struct s_cy
 {
 	t_array_float	view;
-	t_array_int		vector;
+	t_array_float	vector;
 	float			diameter;
 	float			height;
 	t_array_int		color;

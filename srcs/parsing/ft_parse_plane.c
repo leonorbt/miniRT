@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 00:12:58 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/21 17:12:54 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/12 20:17:24 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	plane_core(char **line_in_pieces, t_pl **plane)
 		if (i == 1)
 			(*plane)->view = ft_parse_3float(line_in_pieces[i]);
 		if (i == 2)
-			(*plane)->vector = ft_parse_3int(line_in_pieces[i]);
+			(*plane)->vector = ft_parse_3float(line_in_pieces[i]);
 		if (i == 3)
 			(*plane)->color = ft_parse_3int(line_in_pieces[i]);
 		i++;

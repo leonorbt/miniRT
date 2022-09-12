@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:49:21 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/16 00:07:08 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/12 20:17:06 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	ft_parse_camera(char *line, t_elem *elements)
 		if (i == 1)
 			camera.view = ft_parse_3float(line_in_pieces[i]);
 		if (i == 2)
-			camera.vector = ft_parse_3int(line_in_pieces[i]);
+			camera.vector = ft_parse_3float(line_in_pieces[i]);
 		if (i == 3)
 			camera.fov = ft_parse_int(line_in_pieces[i]);
 	}

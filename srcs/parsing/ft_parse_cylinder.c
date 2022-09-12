@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 00:18:25 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/21 17:12:34 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/12 20:17:39 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	cylinder_core(char **line_in_pieces, t_cy **cylinder)
 		if (i == 1)
 			(*cylinder)->view = ft_parse_3float(line_in_pieces[i]);
 		if (i == 2)
-			(*cylinder)->vector = ft_parse_3int(line_in_pieces[i]);
+			(*cylinder)->vector = ft_parse_3float(line_in_pieces[i]);
 		if (i == 3)
 			(*cylinder)->diameter = ft_parse_float(line_in_pieces[i]);
 		if (i == 4)
