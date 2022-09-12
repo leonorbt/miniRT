@@ -126,6 +126,7 @@ Characters are a bunch of 4 sided polygons, which can be split into triangles by
 
 
 ## Resources:
+- The holy grail is [Scratch a pixel](https://www.scratchapixel.com/index.php). It is the best documentation for this project, explaining everything behind in several ways and with source code in C++. I'm not sure if it is even possible to do this project without that.
 - https://www.notion.so/miniRT-5f6fcdf6d05e4742b6c38f0588f12436
 - [Raul's Notion](https://wary-neem-854.notion.site/MiniRT-71995aae3aac48d58aaf75be4c3e9193)
 - [Physically Based Rendering](https://pbr-book.org/3ed-2018/contents)
