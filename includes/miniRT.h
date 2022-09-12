@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/12 23:54:20 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/12 23:59:05 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,14 @@ void			debug_print(t_elem *elements);
 
 /* ft_errors */
 int				ft_errors(int error_code);
+
+/* --------- drawing folder ---------- */
+/* ray_dir */
+//static t_array_float	ft_raster_ndc(int pixel_x, int pixel_y)
+//static t_array_float	ft_pixel_to_canvas(int pixel_x, int pixel_y, t_elem *elements)
+//static t_array_float	get_right(t_array_float forward)
+//static float	**look_at(t_array_float cam_origin, t_array_float cam_dir)
+t_array_float	get_ray_dir(int pixel_x, int pixel_y, t_elem *elements);
 
 /* draw */
 //static int	rgb_to_color(t_array_int rgb)

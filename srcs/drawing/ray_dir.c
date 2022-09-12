@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 19:47:29 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/12 23:51:06 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/13 00:08:13 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,12 +122,11 @@ static t_array_float	get_right(t_array_float forward)
  * Just do the cross product of the 2 known axis to get a 3rd vector that
  * will be perpendicular to both forward and right.
  */
-static float	**look_at(t_array_float cam_origin, t_array_float cam_dir)
+static float	**look_at(t_array_float cam_origin, t_array_float cam_dir, float **matrix)
 {
 	t_array_float	forward;
 	t_array_float	right;
 	t_array_float	up;
-	float			matrix[4][4];
 
 	forward = v_normalize(v_subtract(cam_origin, cam_dir));
 	right = v_normalize(get_right(forward));
@@ -167,12 +166,12 @@ t_array_float	get_ray_dir(int pixel_x, int pixel_y, t_elem *elements)
 	t_array_float	canvas;
 	t_array_float	ray_origin;
 	t_array_float	ray_dir;
-	float			**cam_to_world_matrix;
+	float			cam_to_world_matrix[4][4];
 
 	canvas = ft_pixel_to_canvas(pixel_x, pixel_y, elements);
 	ray_origin = elements->camera.view;
-	cam_to_world_matrix = look_at(elements->camera.view, elements->camera.vector);
-	ray_dir = v_subtract(m_multiply(canvas, cam_to_world_matrix), ray_origin);
+	look_at(elements->camera.view, elements->camera.vector, &cam_to_world_matrix);
+	ray_dir = v_subtract(m_multiply(canvas, &cam_to_world_matrix), ray_origin);
 	ray_dir = v_normalize(ray_dir);
 	return (ray_dir);
 }
