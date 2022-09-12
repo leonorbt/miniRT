@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 19:47:29 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/11 18:37:14 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/12 01:06:55 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,29 @@ t_array_float	ft_pixel_to_canvas(int pixel_x, int pixel_y, t_elem *elements)
 	canvas.elem3 = 1;
 	canvas.f_error = 0;
 	return (canvas);
+}
+
+/*
+ * The look_at function creates the matrix that converts world coordinates
+ * into camera coordinates. This is a 4x4 matrix because we need an extra
+ * row with the translation values (the 3x3 part is the rotation) and we
+ * add one last column to facilitate matrix multiplication (checking if the
+ * last element is 1 is a good strategy to make sure it's normalized).
+ * The matrix:
+ * - Row 1: right axis, which would be the x-axis from the camera (x, y, z, 0)
+ * - Row 2: up axis, which would be the y-axis from the camera (x, y, z, 0)
+ * - Row 3: forward axis, which would be the z-axis from the camera and
+ * should be pointing into the camera (x, y, z, 0)
+ * - Row 4: camera origin, which is the translation values
+ * 
+ * How to compute the forward axis?
+ * Being that this is going from the camera back, we can use the direction
+ * of the vector that goes in the opposite direction of cam_dir and passes 
+ * through the origin. So, camera direction - camera origin.
+ */
+matrix	look_at(t_array_float cam_origin, t_array_float cam_dir)
+{
+	t_array_float forward;
+	
+	forward = v_normalize(v_subtract(cam_origin, cam_dir));
 }

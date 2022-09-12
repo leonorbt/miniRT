@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/22 22:52:24 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/12 00:58:49 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,10 @@ void			ft_putstr_fd(char *s, int fd);
 int				ft_strlen(const char *str);
 void			ft_free_arrays(char **array);
 int				ft_strcmp(char *s1, char *s2);
+
+/* ft_vector_math */
+t_array_float	v_normalize(t_array_float vector);
+t_array_float	v_subtract(t_array_float v1, t_array_float v2);
 
 /* ft_split */
 // static int ft_words(char const *str, char del)
