@@ -6,28 +6,36 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:59:33 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/13 23:07:43 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/13 23:41:07 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
+/* My issue is here. Not sure why multiplying by 4 is fucking this up
+ */
 void	quadratic_function(t_array_float params, float *t0, float *t1)
 {
 	float	discriminant;
 
-	*t0 = -1.0;
-	*t1 = -1.0;
-	discriminant = pow(params.elem2, 2) - (params.elem1 * params.elem3);
+	discriminant = pow(params.elem2, 2) - 4 * (params.elem1 * params.elem3);
 	//printf("The discriminant is %f\n", discriminant);
 	if (discriminant < 0)
-		;
+	{
+		*t0 = -1.0;
+		*t1 = -1.0;
+	}
 	else if (discriminant == 0)
-		*t0 = - params.elem2 / (params.elem1);
+	{
+		*t0 = - params.elem2 / (2 * params.elem1);
+		printf("The discriminant is %f | t0 is %f\n", discriminant, *t0);
+		*t1 = -1.0;
+	}
 	else
 	{
-		*t0 = (-params.elem2 - sqrt(discriminant)) / (params.elem1);
-		*t1 = (-params.elem2 + sqrt(discriminant)) / (params.elem1);
+		*t0 = (- params.elem2 - sqrt(discriminant)) / (2 * params.elem1);
+		*t1 = (- params.elem2 + sqrt(discriminant)) / (2 * params.elem1);
+		printf("The discriminant is %f | t0 is %f | t1 is %f\n", discriminant, *t0, *t1);
 	}
 }
 
@@ -56,9 +64,15 @@ float	sphere(t_array_float ray_orig, t_array_float ray_dir, t_elem *elements)
 
 	temp = v_subtract(ray_orig, elements->spheres->center);
 	quadratic_params.elem1 = v_length(ray_dir);
+	printf("Checking a (ray dir): length %f | dot product %f\n", v_length(ray_dir),
+		v_dot_product(ray_dir, ray_dir));
 	quadratic_params.elem2 = 2 * v_dot_product(temp, ray_dir);
+	printf("Checking b: dot product %f\n", 2 * v_dot_product(temp, ray_dir));
 	quadratic_params.elem3 = v_length(temp)
 		- pow(elements->spheres->diameter / 2, 2);
+	printf("Checking c: temp length %f | dot product %f\n radius %f | squared radius %f\n",
+		v_length(temp), v_dot_product(temp, temp), elements->spheres->diameter / 2,
+		pow(elements->spheres->diameter / 2, 2));
 	quadratic_params.f_error = 0;
 	quadratic_function(quadratic_params, &t0, &t1);
 	if (t0 > -1.0 || t1 > -1.0)
