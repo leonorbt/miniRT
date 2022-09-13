@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/12 23:59:05 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/13 16:02:21 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,9 @@ typedef struct s_a
 typedef struct s_c
 {
 	t_array_float	view;
-	t_array_float		vector;
+	t_array_float	vector;
 	int				fov;
+	float			cam_to_world[4][4];
 }	t_c;
 
 typedef struct s_l
@@ -157,8 +158,6 @@ int				ft_errors(int error_code);
 /* ray_dir */
 //static t_array_float	ft_raster_ndc(int pixel_x, int pixel_y)
 //static t_array_float	ft_pixel_to_canvas(int pixel_x, int pixel_y, t_elem *elements)
-//static t_array_float	get_right(t_array_float forward)
-//static float	**look_at(t_array_float cam_origin, t_array_float cam_dir)
 t_array_float	get_ray_dir(int pixel_x, int pixel_y, t_elem *elements);
 
 /* draw */
@@ -189,7 +188,7 @@ int				ft_strcmp(char *s1, char *s2);
 t_array_float	v_normalize(t_array_float vector);
 t_array_float	v_subtract(t_array_float v1, t_array_float v2);
 t_array_float	v_cross_product(t_array_float v1, t_array_float v2);
-t_array_float	m_multiply(t_array_float vector, float **matrix);
+t_array_float	m_multiply(t_array_float vector, t_c camera);
 
 /* ft_split */
 // static int ft_words(char const *str, char del)
