@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/13 18:03:39 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/13 22:53:55 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,10 @@ void			draw(t_window *mlx_data);
 /* drawing_elements --> likely trash */
 int				ft_in_circle(int x, int y, t_sp sphere);
 
+/* ray_casting */
+float			sphere(t_array_float ray_orig, t_array_float ray_dir,
+					t_elem *elements);
+
 /* ------------- utils ------------- */
 /* ft_gnl */
 char			*ft_strjoin(char *str1, char *str2);
@@ -185,10 +189,12 @@ void			ft_free_arrays(char **array);
 int				ft_strcmp(char *s1, char *s2);
 
 /* ft_vector_math */
+float			v_length(t_array_float vector);
 t_array_float	v_normalize(t_array_float vector);
 t_array_float	v_subtract(t_array_float v1, t_array_float v2);
 t_array_float	v_cross_product(t_array_float v1, t_array_float v2);
 t_array_float	m_multiply(t_array_float vector, t_c cam);
+float			v_dot_product(t_array_float v1, t_array_float v2);
 
 /* ft_split */
 // static int ft_words(char const *str, char del)

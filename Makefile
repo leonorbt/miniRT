@@ -6,7 +6,7 @@
 #    By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/14 23:55:45 by lbraz-te          #+#    #+#              #
-#    Updated: 2022/08/22 22:52:35 by lbraz-te         ###   ########.fr        #
+#    Updated: 2022/09/13 22:55:05 by lbraz-te         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ UNAME_S := $(shell uname -s)
 
 SRCS	= $(wildcard srcs/*.c) \
 			$(wildcard srcs/parsing/*.c) \
-			$(wildcard srcs/drawing/*.c) \
+			$(wildcard srcs/rendering/*.c) \
 			$(wildcard srcs/utils/*.c)
 
 ifeq ($(UNAME_S),Darwin)
