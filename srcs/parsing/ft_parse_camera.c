@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:49:21 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/13 15:59:20 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/13 18:04:34 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static t_array_float	get_right(t_array_float forward)
  * Just do the cross product of the 2 known axis to get a 3rd vector that
  * will be perpendicular to both forward and right.
  */
-static void look_at(t_c *camera)
+static void	look_at(t_c *camera)
 {
 	t_array_float	forward;
 	t_array_float	right;

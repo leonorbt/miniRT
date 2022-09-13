@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 00:52:21 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/13 16:03:43 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/13 18:07:09 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,17 @@ t_array_float	m_multiply(t_array_float vector, t_c cam)
 	t_array_float	result;
 
 	result.elem1 = vector.elem1 * cam.cam_to_world[0][0]
-					+ vector.elem2 * cam.cam_to_world[1][0]
-					+ vector.elem3 * cam.cam_to_world[2][0]
-					+ cam.cam_to_world[3][0];
+		+ vector.elem2 * cam.cam_to_world[1][0]
+		+ vector.elem3 * cam.cam_to_world[2][0]
+		+ cam.cam_to_world[3][0];
 	result.elem2 = vector.elem1 * cam.cam_to_world[0][1]
-					+ vector.elem2 * cam.cam_to_world[1][1]
-					+ vector.elem3 * cam.cam_to_world[2][1]
-					+ cam.cam_to_world[3][1];
+		+ vector.elem2 * cam.cam_to_world[1][1]
+		+ vector.elem3 * cam.cam_to_world[2][1]
+		+ cam.cam_to_world[3][1];
 	result.elem3 = vector.elem1 * cam.cam_to_world[0][2]
-					+ vector.elem2 * cam.cam_to_world[1][2]
-					+ vector.elem3 * cam.cam_to_world[2][2]
-					+ cam.cam_to_world[3][2];
+		+ vector.elem2 * cam.cam_to_world[1][2]
+		+ vector.elem3 * cam.cam_to_world[2][2]
+		+ cam.cam_to_world[3][2];
 	result.f_error = 0;
 	return (result);
 }

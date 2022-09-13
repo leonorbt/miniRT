@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/13 16:02:21 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/13 18:03:39 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,10 +154,10 @@ void			debug_print(t_elem *elements);
 /* ft_errors */
 int				ft_errors(int error_code);
 
-/* --------- drawing folder ---------- */
+/* --------- rendering folder ---------- */
 /* ray_dir */
-//static t_array_float	ft_raster_ndc(int pixel_x, int pixel_y)
-//static t_array_float	ft_pixel_to_canvas(int pixel_x, int pixel_y, t_elem *elements)
+//t_array_float	ft_raster_ndc(int pixel_x, int pixel_y)
+//t_array_float	ft_pixel_to_canvas(int pixel_x, int pixel_y, t_elem *elements)
 t_array_float	get_ray_dir(int pixel_x, int pixel_y, t_elem *elements);
 
 /* draw */
@@ -166,7 +166,7 @@ t_array_float	get_ray_dir(int pixel_x, int pixel_y, t_elem *elements);
 //static void	draw_core(int x, int y, t_mlx_img img, t_elem elements)
 void			draw(t_window *mlx_data);
 
-/* drawing_elements */
+/* drawing_elements --> likely trash */
 int				ft_in_circle(int x, int y, t_sp sphere);
 
 /* ------------- utils ------------- */
@@ -188,7 +188,7 @@ int				ft_strcmp(char *s1, char *s2);
 t_array_float	v_normalize(t_array_float vector);
 t_array_float	v_subtract(t_array_float v1, t_array_float v2);
 t_array_float	v_cross_product(t_array_float v1, t_array_float v2);
-t_array_float	m_multiply(t_array_float vector, t_c camera);
+t_array_float	m_multiply(t_array_float vector, t_c cam);
 
 /* ft_split */
 // static int ft_words(char const *str, char del)

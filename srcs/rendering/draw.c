@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 13:53:47 by aazevedo          #+#    #+#             */
-/*   Updated: 2022/09/13 00:00:24 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/13 17:49:43 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ static void	draw_core(int x, int y, t_mlx_img img, t_elem elements)
 		my_mlx_pixel_put(&img, x, y, elements.spheres->color);
 }
 
-void	create_img(int x, int y, t_mlx_img img, t_elem *elements)
+void	create_img(int x, int y, t_mlx_img img, t_elem elements)
 {
 	t_array_float	ray_dir;
 	(void) img;
 
-	ray_dir = get_ray_dir(x, y, elements);
+	ray_dir = get_ray_dir(x, y, &elements);
 }
 
 void	draw(t_window *window)
