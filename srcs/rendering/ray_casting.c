@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:59:33 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/13 22:52:24 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/13 23:07:43 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,16 @@ void	quadratic_function(t_array_float params, float *t0, float *t1)
 
 	*t0 = -1.0;
 	*t1 = -1.0;
-	discriminant = pow(params.elem2, 2) - 4 * (params.elem1 * params.elem3);
+	discriminant = pow(params.elem2, 2) - (params.elem1 * params.elem3);
+	//printf("The discriminant is %f\n", discriminant);
 	if (discriminant < 0)
 		;
 	else if (discriminant == 0)
-		*t0 = - params.elem2 / (2 * params.elem1);
+		*t0 = - params.elem2 / (params.elem1);
 	else
 	{
-		*t0 = (-params.elem2 - sqrt(discriminant)) / (2 * params.elem1);
-		*t1 = (-params.elem2 + sqrt(discriminant)) / (2 * params.elem1);
+		*t0 = (-params.elem2 - sqrt(discriminant)) / (params.elem1);
+		*t1 = (-params.elem2 + sqrt(discriminant)) / (params.elem1);
 	}
 }
 
@@ -60,6 +61,8 @@ float	sphere(t_array_float ray_orig, t_array_float ray_dir, t_elem *elements)
 		- pow(elements->spheres->diameter / 2, 2);
 	quadratic_params.f_error = 0;
 	quadratic_function(quadratic_params, &t0, &t1);
+	if (t0 > -1.0 || t1 > -1.0)
+		printf("The t0 is %f and t1 is %f\n", t0, t1);
 	if (t0 > 0 && t0 < t1)
 		return (t0);
 	if (t1 > 0)
