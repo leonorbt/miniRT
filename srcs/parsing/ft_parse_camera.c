@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:49:21 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/13 18:04:34 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/14 16:34:17 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,13 @@ static void	look_at(t_c *camera)
 	camera->cam_to_world[0][1] = right.elem2;
 	camera->cam_to_world[0][2] = right.elem3;
 	camera->cam_to_world[0][3] = 0;
-	camera->cam_to_world[1][0] = forward.elem1;
-	camera->cam_to_world[1][1] = forward.elem2;
-	camera->cam_to_world[1][2] = forward.elem3;
+	camera->cam_to_world[1][0] = up.elem1;
+	camera->cam_to_world[1][1] = up.elem2;
+	camera->cam_to_world[1][2] = up.elem3;
 	camera->cam_to_world[1][3] = 0;
-	camera->cam_to_world[2][0] = up.elem1;
-	camera->cam_to_world[2][1] = up.elem2;
-	camera->cam_to_world[2][2] = up.elem3;
+	camera->cam_to_world[2][0] = forward.elem1;
+	camera->cam_to_world[2][1] = forward.elem2;
+	camera->cam_to_world[2][2] = forward.elem3;
 	camera->cam_to_world[2][3] = 0;
 	camera->cam_to_world[3][0] = camera->view.elem1;
 	camera->cam_to_world[3][1] = camera->view.elem2;

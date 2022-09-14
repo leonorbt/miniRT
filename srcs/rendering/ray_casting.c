@@ -6,22 +6,19 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:59:33 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/14 13:57:43 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/14 16:36:13 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
-/* My issue is here. Not sure why multiplying by 4 is fucking this up and the minus
- */
 void	quadratic_function(t_array_float params, float *t0, float *t1)
 {
 	float	discriminant;
 
-	discriminant = pow(params.elem2, 2) - 1 * params.elem1 * params.elem3;
-	*t0 = (- params.elem2 - sqrt(discriminant)) / (2 * params.elem1);
-	*t1 = (- params.elem2 + sqrt(discriminant)) / (2 * params.elem1);
-	//printf("The discriminant is %f | t0 is %f | t1 is %f\n", discriminant, *t0, *t1);
+	discriminant = pow(params.elem2, 2) - 4 * params.elem1 * params.elem3;
+	*t0 = (-params.elem2 - sqrt(discriminant)) / (2 * params.elem1);
+	*t1 = (-params.elem2 + sqrt(discriminant)) / (2 * params.elem1);
 }
 
 /* !!! Test if the camera is within a sphere (should only see the sphere)

@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 00:52:21 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/14 12:39:07 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/14 16:34:32 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ float	v_length(t_array_float vector)
 	float			length;
 
 	length = sqrt(pow(vector.elem1, 2) + pow(vector.elem2, 2)
-		+ pow(vector.elem3, 2));
+			+ pow(vector.elem3, 2));
 	return (length);
 }
 

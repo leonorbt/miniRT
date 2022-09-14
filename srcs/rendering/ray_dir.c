@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 19:47:29 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/14 13:58:30 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/14 16:35:18 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ static t_array_float	ft_raster_ndc(int pixel_x, int pixel_y)
 	- This should make the coordinates vary between -1 and 1
  */
 
-static t_array_float	ft_pixel_to_canvas(int pixel_x, int pixel_y, t_elem *elements)
+static t_array_float	ft_pixel_to_canvas(int pixel_x, int pixel_y,
+	t_elem *elements)
 {
 	t_array_float	ndc;
 	float			angle;
