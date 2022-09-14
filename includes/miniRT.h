@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/14 13:06:40 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/14 22:18:56 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,9 @@ int				ft_in_circle(int x, int y, t_sp sphere);
 /* ray_casting */
 float			sphere(t_array_float ray_orig, t_array_float ray_dir,
 					t_elem *elements);
+
+/* colors */
+t_array_int		color_ratio(t_array_int color, float ratio);
 
 /* ------------- utils ------------- */
 /* ft_gnl */
