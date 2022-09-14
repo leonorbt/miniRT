@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:59:33 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/14 13:31:25 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/14 13:57:43 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,25 +52,7 @@ float	sphere(t_array_float ray_orig, t_array_float ray_dir, t_elem *elements)
 	quadratic_params.elem2 = 2 * v_dot_product(temp, ray_dir);
 	quadratic_params.elem3 = pow(v_length(temp), 2)
 		- pow(elements->spheres->diameter / 2, 2);
-	/*printf("Checking c: temp length %f | dot product %f\n radius %f | squared radius %f\n",
-		v_length(temp), v_dot_product(temp, temp), elements->spheres->diameter / 2,
-		pow(elements->spheres->diameter / 2, 2)); */
 	quadratic_params.f_error = 0;
-	/* if (quadratic_params.elem2 != 0)
-	{
-		printf("The ray and the temp are not orthogonal\n");
-		if (quadratic_params.elem3 < 0)
-			printf("This point is inside the sphere\n");
-		else if (quadratic_params.elem3 > 0)
-			printf("Outside the sphere\n");
-		else
-			printf("Touching the sphere\n");
-		quadratic_function(quadratic_params, &t0, &t1);
-		if (t0 > 0 && t0 < t1)
-			return (t0);
-		if (t1 > 0)
-			return (t1);
-	} */
 	quadratic_function(quadratic_params, &t0, &t1);
 	if (t0 > 0 && t0 < t1)
 		return (t0);
