@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 13:53:47 by aazevedo          #+#    #+#             */
-/*   Updated: 2022/09/13 23:03:44 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/14 13:06:39 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	create_img(int x, int y, t_mlx_img img, t_elem elements)
 	t_array_float	ray_dir;
 
 	ray_dir = get_ray_dir(x, y, &elements);
+	printf("IMG: The ray direction: %f | %f | %f\n", ray_dir.elem1, ray_dir.elem2, ray_dir.elem3);
 	//cast_ray(elements.camera.view, ray_dir, elements, img);
 	if (sphere(elements.camera.view, ray_dir, &elements) > 0)
 	{

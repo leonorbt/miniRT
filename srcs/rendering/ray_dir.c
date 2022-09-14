@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 19:47:29 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/13 16:00:28 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/14 12:22:10 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static t_array_float	ft_pixel_to_canvas(int pixel_x, int pixel_y, t_elem *elemen
 	canvas.elem1 = angle * (ndc.elem1 * 2 - 1);
 	aspect_ratio = WINDOW_HEIGHT / WINDOW_WIDTH;
 	canvas.elem2 = angle * aspect_ratio * (ndc.elem2 * 2 - 1);
-	canvas.elem3 = -1;
+	canvas.elem3 = 1;
 	canvas.f_error = 0;
 	return (canvas);
 }
@@ -84,11 +84,13 @@ t_array_float	get_ray_dir(int pixel_x, int pixel_y, t_elem *elements)
 {
 	t_array_float	canvas;
 	t_array_float	ray_origin;
+	t_array_float	canvas_in_world;
 	t_array_float	ray_dir;
 
 	canvas = ft_pixel_to_canvas(pixel_x, pixel_y, elements);
 	ray_origin = elements->camera.view;
-	ray_dir = v_subtract(m_multiply(canvas, elements->camera), ray_origin);
+	canvas_in_world = m_multiply(canvas, elements->camera);
+	ray_dir = v_subtract(canvas_in_world, ray_origin);
 	ray_dir = v_normalize(ray_dir);
 	return (ray_dir);
 }

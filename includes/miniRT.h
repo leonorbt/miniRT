@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/13 22:53:55 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/14 13:06:40 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 # endif
 
 # ifndef WINDOW_WIDTH
-#  define WINDOW_WIDTH 1000
+#  define WINDOW_WIDTH 800
 # endif
 
 # ifndef WINDOW_HEIGHT
-#  define WINDOW_HEIGHT 500
+#  define WINDOW_HEIGHT 600
 # endif
 
 # ifndef KEY_ESCAPE
