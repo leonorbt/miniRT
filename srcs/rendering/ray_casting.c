@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:59:33 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/14 13:07:59 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/14 13:31:25 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	quadratic_function(t_array_float params, float *t0, float *t1)
 {
 	float	discriminant;
 
-	discriminant = pow(params.elem2, 2) - 4 * params.elem1 * params.elem3;
+	discriminant = pow(params.elem2, 2) - 1 * params.elem1 * params.elem3;
 	*t0 = (- params.elem2 - sqrt(discriminant)) / (2 * params.elem1);
 	*t1 = (- params.elem2 + sqrt(discriminant)) / (2 * params.elem1);
-	printf("The discriminant is %f | t0 is %f | t1 is %f\n", discriminant, *t0, *t1);
+	//printf("The discriminant is %f | t0 is %f | t1 is %f\n", discriminant, *t0, *t1);
 }
 
 /* !!! Test if the camera is within a sphere (should only see the sphere)
@@ -56,7 +56,7 @@ float	sphere(t_array_float ray_orig, t_array_float ray_dir, t_elem *elements)
 		v_length(temp), v_dot_product(temp, temp), elements->spheres->diameter / 2,
 		pow(elements->spheres->diameter / 2, 2)); */
 	quadratic_params.f_error = 0;
-	if (quadratic_params.elem2 != 0)
+	/* if (quadratic_params.elem2 != 0)
 	{
 		printf("The ray and the temp are not orthogonal\n");
 		if (quadratic_params.elem3 < 0)
@@ -70,7 +70,12 @@ float	sphere(t_array_float ray_orig, t_array_float ray_dir, t_elem *elements)
 			return (t0);
 		if (t1 > 0)
 			return (t1);
-	}
+	} */
+	quadratic_function(quadratic_params, &t0, &t1);
+	if (t0 > 0 && t0 < t1)
+		return (t0);
+	if (t1 > 0)
+		return (t1);
 	return (-1.0);
 }
 

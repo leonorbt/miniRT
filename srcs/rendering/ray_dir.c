@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 19:47:29 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/14 12:22:10 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/14 13:26:28 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ static t_array_float	ft_pixel_to_canvas(int pixel_x, int pixel_y, t_elem *elemen
 	ndc = ft_raster_ndc(pixel_x, pixel_y);
 	angle = tan((elements->camera.fov / 2) * M_PI / 180);
 	canvas.elem1 = angle * (ndc.elem1 * 2 - 1);
-	aspect_ratio = WINDOW_HEIGHT / WINDOW_WIDTH;
+	aspect_ratio = (float) WINDOW_HEIGHT / (float) WINDOW_WIDTH;
 	canvas.elem2 = angle * aspect_ratio * (ndc.elem2 * 2 - 1);
-	canvas.elem3 = 1;
+	canvas.elem3 = -1;
 	canvas.f_error = 0;
 	return (canvas);
 }
