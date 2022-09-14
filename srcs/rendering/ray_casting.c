@@ -6,13 +6,13 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:59:33 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/13 23:41:07 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/14 00:13:33 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
-/* My issue is here. Not sure why multiplying by 4 is fucking this up
+/* My issue is here. Not sure why multiplying by 4 is fucking this up and the minus
  */
 void	quadratic_function(t_array_float params, float *t0, float *t1)
 {
@@ -62,17 +62,17 @@ float	sphere(t_array_float ray_orig, t_array_float ray_dir, t_elem *elements)
 	float			t0;
 	float			t1;
 
-	temp = v_subtract(ray_orig, elements->spheres->center);
+	temp = v_normalize(v_subtract(ray_orig, elements->spheres->center));
 	quadratic_params.elem1 = v_length(ray_dir);
-	printf("Checking a (ray dir): length %f | dot product %f\n", v_length(ray_dir),
-		v_dot_product(ray_dir, ray_dir));
+	//printf("Checking a (ray dir): length %f | dot product %f\n", v_length(ray_dir),
+	//	v_dot_product(ray_dir, ray_dir));
 	quadratic_params.elem2 = 2 * v_dot_product(temp, ray_dir);
-	printf("Checking b: dot product %f\n", 2 * v_dot_product(temp, ray_dir));
+	//printf("Checking b: dot product %f\n", 2 * v_dot_product(temp, ray_dir));
 	quadratic_params.elem3 = v_length(temp)
 		- pow(elements->spheres->diameter / 2, 2);
-	printf("Checking c: temp length %f | dot product %f\n radius %f | squared radius %f\n",
+	/*printf("Checking c: temp length %f | dot product %f\n radius %f | squared radius %f\n",
 		v_length(temp), v_dot_product(temp, temp), elements->spheres->diameter / 2,
-		pow(elements->spheres->diameter / 2, 2));
+		pow(elements->spheres->diameter / 2, 2)); */
 	quadratic_params.f_error = 0;
 	quadratic_function(quadratic_params, &t0, &t1);
 	if (t0 > -1.0 || t1 > -1.0)
