@@ -6,19 +6,30 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:59:33 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/14 16:37:37 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:21:31 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
-void	quadratic_function(t_array_float params, float *t0, float *t1)
+static void	quadratic_function(t_array_float params, float *t0, float *t1)
 {
 	float	discriminant;
 
 	discriminant = pow(params.elem2, 2) - 4 * params.elem1 * params.elem3;
 	*t0 = (-params.elem2 - sqrt(discriminant)) / (2 * params.elem1);
 	*t1 = (-params.elem2 + sqrt(discriminant)) / (2 * params.elem1);
+}
+
+static t_array_float	get_intersection(t_array_float ray_orig, t_ray ray)
+{
+	t_array_float result;
+
+	result.elem1 = ray_orig.elem1 + ray.direction.elem1 * ray.t;
+	result.elem2 = ray_orig.elem2 + ray.direction.elem2 * ray.t;
+	result.elem3 = ray_orig.elem3 + ray.direction.elem3 * ray.t;
+	result.f_error = 0;
+	return (result);
 }
 
 /* !!! Test if the camera is within a sphere (should only see the sphere)
@@ -37,7 +48,7 @@ void	quadratic_function(t_array_float params, float *t0, float *t1)
  * 		c = |O - C|^2 - r^2 
  * (to avoid using O and C, we created a temp that is O - C)
  */
-float	sphere(t_array_float ray_orig, t_array_float ray_dir, t_elem *elements)
+void	sphere(t_array_float ray_orig, t_ray *ray, t_elem *elements)
 {
 	t_array_float	temp;
 	t_array_float	quadratic_params;
@@ -45,17 +56,22 @@ float	sphere(t_array_float ray_orig, t_array_float ray_dir, t_elem *elements)
 	float			t1;
 
 	temp = v_subtract(ray_orig, elements->spheres->center);
-	quadratic_params.elem1 = pow(v_length(ray_dir), 2);
-	quadratic_params.elem2 = 2 * v_dot_product(temp, ray_dir);
+	quadratic_params.elem1 = pow(v_length(ray->direction), 2);
+	quadratic_params.elem2 = 2 * v_dot_product(temp, ray->direction);
 	quadratic_params.elem3 = pow(v_length(temp), 2)
 		- pow(elements->spheres->diameter / 2, 2);
 	quadratic_params.f_error = 0;
 	quadratic_function(quadratic_params, &t0, &t1);
 	if (t0 > 0 && t0 < t1)
-		return (t0);
-	if (t1 > 0)
-		return (t1);
-	return (-1.0);
+		ray->t = t0;
+	else if (t1 > 0)
+		ray->t = t1;
+	else
+		ray->t = 0;
+	ray->intersection = get_intersection(ray_orig, *ray);
+	ray->normal = v_normalize(v_subtract(ray->intersection,
+		elements->spheres->center));
+	ray->obj_color = elements->spheres->color;
 }
 
 /* Parametric function: Ray_Origin + t * Ray_Direction

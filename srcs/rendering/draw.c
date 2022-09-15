@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 13:53:47 by aazevedo          #+#    #+#             */
-/*   Updated: 2022/09/14 22:19:28 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/15 19:10:36 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,45 @@ static void	draw_core(int x, int y, t_mlx_img img, t_elem elements)
 		my_mlx_pixel_put(&img, x, y, elements.spheres->color);
 }
 
+t_array_int	get_color(t_ray *ray, t_array_int back_light, t_elem elements)
+{
+	t_array_int		result;
+	t_array_float	light_dir;
+	float			light_dispersion_num;
+	float			adj_brightness;
+
+	result = color_add(ray->obj_color, back_light);
+	light_dir = v_subtract(elements.light.view, ray->intersection);
+	light_dispersion_num = v_dot_product(ray->normal, v_normalize(light_dir));
+	if (light_dispersion_num > 0)
+	{
+		adj_brightness = (elements.light.brightness * light_dispersion_num)
+			/ (M_PI * pow(v_length(light_dir), 2));
+		result = color_add(result, color_ratio(elements.light.color, adj_brightness));
+	}
+	return (result);
+}
+
 void	create_img(int x, int y, t_mlx_img img, t_elem elements)
 {
-	t_array_float	ray_dir;
+	t_ray			*ray;
+	t_array_int		back_light;
 	t_array_int		color;
 
-	ray_dir = get_ray_dir(x, y, &elements);
+	ray = (t_ray *) malloc(sizeof(t_ray));
+	ray->direction = get_ray_dir(x, y, &elements);
+	back_light = color_ratio(elements.ambient_light.color,
+		elements.ambient_light.ratio);
 	//cast_ray(elements.camera.view, ray_dir, elements, img);
-	if (sphere(elements.camera.view, ray_dir, &elements) > 0)
+	sphere(elements.camera.view, ray, &elements);
+	if (ray->t > 0)
 	{
-		color = elements.spheres->color;
+		color = get_color(ray, back_light, elements);
 	}
-	else
-		color = color_ratio(elements.ambient_light.color,
-			elements.ambient_light.ratio);
+	else //doesn't hit anything or max depth (# secondary rays)
+		color = back_light;
 	my_mlx_pixel_put(&img, x, y, color);
+	free(ray);
 }
 
 void	draw(t_window *window)

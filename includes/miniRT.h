@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/14 22:18:56 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/15 19:08:33 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_l
 {
 	t_array_float	view;
 	int				brightness;
+	t_array_int		color;
 }	t_l;
 
 typedef struct s_pl
@@ -114,6 +115,16 @@ typedef struct s_elem
 	int		n_cylinder;
 	t_cy	*cylinders;
 }	t_elem;
+
+typedef struct s_ray
+{
+	t_array_float	direction;
+	float			t;
+	t_array_float	intersection;
+	t_array_float	normal;
+	t_array_int		obj_color;
+}	t_ray;
+
 
 typedef enum e_error_codes
 {
@@ -170,11 +181,12 @@ void			draw(t_window *mlx_data);
 int				ft_in_circle(int x, int y, t_sp sphere);
 
 /* ray_casting */
-float			sphere(t_array_float ray_orig, t_array_float ray_dir,
+void			sphere(t_array_float ray_orig, t_ray *ray,
 					t_elem *elements);
 
 /* colors */
 t_array_int		color_ratio(t_array_int color, float ratio);
+t_array_int		color_add(t_array_int color, t_array_int color2);
 
 /* ------------- utils ------------- */
 /* ft_gnl */
