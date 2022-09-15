@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/15 20:45:54 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/15 21:17:14 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct s_c
 typedef struct s_l
 {
 	t_array_float	view;
-	float				brightness;
+	float			brightness;
 	t_array_int		color;
 }	t_l;
 

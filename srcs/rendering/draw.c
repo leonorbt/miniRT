@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 13:53:47 by aazevedo          #+#    #+#             */
-/*   Updated: 2022/09/15 20:50:36 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/15 21:20:02 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	rgb_to_color(t_array_int rgb)
 {
-	return (0 << 24 | rgb.elem1 << 16 | rgb.elem2 << 8 | rgb.elem3);
+	return (rgb.elem1 << 16 | rgb.elem2 << 8 | rgb.elem3);
 }
 
 static void	my_mlx_pixel_put(t_mlx_img *img_data, int x, int y, t_array_int rgb)
