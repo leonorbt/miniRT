@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:49:21 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/15 19:12:03 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/15 20:46:03 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_parse_light(char *line, t_elem *elements)
 		if (i == 1)
 			light.view = ft_parse_3float(line_in_pieces[i]);
 		if (i == 2)
-			light.brightness = ft_parse_int(line_in_pieces[i]);
+			light.brightness = ft_parse_float(line_in_pieces[i]);
 		if (i == 3)
 			light.color = ft_parse_3int(line_in_pieces[i]);
 		i++;

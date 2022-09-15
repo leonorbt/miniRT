@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 13:53:47 by aazevedo          #+#    #+#             */
-/*   Updated: 2022/09/15 19:10:36 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/15 20:50:36 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,6 @@ static void	my_mlx_pixel_put(t_mlx_img *img_data, int x, int y, t_array_int rgb)
 	*(unsigned int *) dst = rgb_to_color(rgb);
 }
 
-static void	draw_core(int x, int y, t_mlx_img img, t_elem elements)
-{
-	if (ft_in_circle(x, y, *elements.spheres) == 1)
-		my_mlx_pixel_put(&img, x, y, elements.spheres->color);
-}
-
 t_array_int	get_color(t_ray *ray, t_array_int back_light, t_elem elements)
 {
 	t_array_int		result;
@@ -41,11 +35,18 @@ t_array_int	get_color(t_ray *ray, t_array_int back_light, t_elem elements)
 
 	result = color_add(ray->obj_color, back_light);
 	light_dir = v_subtract(elements.light.view, ray->intersection);
+	/*printf("The light dir is %f | %f | %f\n", light_dir.elem1, light_dir.elem2,
+		light_dir.elem3);
+	printf("The normal is %f | %f | %f\n", ray->normal.elem1, ray->normal.elem2,
+		ray->normal.elem3);*/
 	light_dispersion_num = v_dot_product(ray->normal, v_normalize(light_dir));
-	if (light_dispersion_num > 0)
+	printf("The num is %f\n", light_dispersion_num);
+	if (light_dispersion_num > 0) //missing the check for shadow
 	{
-		adj_brightness = (elements.light.brightness * light_dispersion_num)
+		adj_brightness = (elements.light.brightness * light_dispersion_num * 1000)
 			/ (M_PI * pow(v_length(light_dir), 2));
+		printf("The adjusted brightness is %f | light_brightness %f\n",
+			adj_brightness, elements.light.brightness);
 		result = color_add(result, color_ratio(elements.light.color, adj_brightness));
 	}
 	return (result);
@@ -61,13 +62,13 @@ void	create_img(int x, int y, t_mlx_img img, t_elem elements)
 	ray->direction = get_ray_dir(x, y, &elements);
 	back_light = color_ratio(elements.ambient_light.color,
 		elements.ambient_light.ratio);
-	//cast_ray(elements.camera.view, ray_dir, elements, img);
 	sphere(elements.camera.view, ray, &elements);
 	if (ray->t > 0)
 	{
+		printf("Checking pixel %d | %d\n", x, y);
 		color = get_color(ray, back_light, elements);
 	}
-	else //doesn't hit anything or max depth (# secondary rays)
+	else
 		color = back_light;
 	my_mlx_pixel_put(&img, x, y, color);
 	free(ray);
@@ -88,7 +89,6 @@ void	draw(t_window *window)
 		y = 0;
 		while (y < WINDOW_HEIGHT)
 		{
-			//draw_core(x, y, img, *window->elements);
 			create_img(x, y, img, *window->elements);
 			y++;
 		}
