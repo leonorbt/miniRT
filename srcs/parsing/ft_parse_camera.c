@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:49:21 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/16 17:21:21 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/16 19:43:34 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,15 @@ static t_array_float	get_right(t_array_float forward)
  */
 static void	look_at(t_c *camera)
 {
+	t_array_float	temp;
 	t_array_float	forward;
 	t_array_float	right;
 	t_array_float	up;
 
-	forward = v_normalize(v_subtract(camera->view, camera->vector));
+	temp.elem1 = 0;
+	temp.elem2 = 0;
+	temp.elem3 = 0;
+	forward = v_normalize(v_subtract(temp, camera->vector));
 	right = v_normalize(get_right(forward));
 	up = v_normalize(v_cross_product(forward, right));
 	camera->cam_to_world[0][0] = right.elem1;
