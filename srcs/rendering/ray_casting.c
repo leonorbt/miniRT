@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:59:33 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/16 14:34:27 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/16 15:53:28 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,28 +48,43 @@ static t_array_float	get_intersection(t_array_float ray_orig, t_ray ray)
  * 		c = |O - C|^2 - r^2 
  * (to avoid using O and C, we created a temp that is O - C)
  */
-void	sphere(t_array_float ray_orig, t_ray *ray, t_elem *elements)
+void	sphere(t_array_float ray_orig, t_ray *ray, t_sp *sphere)
 {
 	t_array_float	temp;
 	t_array_float	quadratic_params;
 	float			t0;
 	float			t1;
 
-	temp = v_subtract(ray_orig, elements->spheres->center);
+	temp = v_subtract(ray_orig, sphere->center);
 	quadratic_params.elem1 = pow(v_length(ray->direction), 2);
 	quadratic_params.elem2 = 2 * v_dot_product(temp, ray->direction);
 	quadratic_params.elem3 = pow(v_length(temp), 2)
-		- pow(elements->spheres->diameter / 2, 2);
+		- pow(sphere->diameter / 2, 2);
 	quadratic_params.f_error = 0;
 	quadratic_function(quadratic_params, &t0, &t1);
-	if (t0 > 0 && t0 < t1)
+	if (t0 > 0 && t0 < t1 && t0 <= ray->t)
 		ray->t = t0;
-	else if (t1 > 0)
+	else if (t1 > 0 && t1 <= ray->t)
 		ray->t = t1;
 	else
-		ray->t = 0;
+		return ;
 	ray->intersection = get_intersection(ray_orig, *ray);
 	ray->normal = v_normalize(v_subtract(ray->intersection,
-		elements->spheres->center));
-	ray->obj_color = elements->spheres->color;
+		sphere->center));
+	ray->color = sphere->color;
+}
+
+void	cast_ray(t_array_float ray_orig, t_ray *ray, t_elem *elements)
+{
+	int	i;
+	t_sp	*spheres;
+
+	i = 0;
+	spheres = elements->spheres;
+	while (i < elements->n_sphere)
+	{
+		sphere(ray_orig, ray, spheres);
+		spheres = spheres->next;
+		i++;
+	}
 }

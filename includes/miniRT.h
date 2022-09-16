@@ -6,7 +6,7 @@
 /*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/16 16:05:57 by aazevedo         ###   ########.fr       */
+/*   Updated: 2022/09/16 16:07:47 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ typedef struct s_ray
 	float			t;
 	t_array_float	intersection;
 	t_array_float	normal;
-	t_array_int		obj_color;
+	t_array_int		color;
 }	t_ray;
 
 
@@ -185,8 +185,8 @@ void			draw(t_window *mlx_data);
 int				ft_in_circle(int x, int y, t_sp sphere);
 
 /* ray_casting */
-void			sphere(t_array_float ray_orig, t_ray *ray,
-					t_elem *elements);
+void			sphere(t_array_float ray_orig, t_ray *ray, t_sp *sphere);
+void			cast_ray(t_array_float ray_orig, t_ray *ray, t_elem *elements);
 
 /* colors */
 t_array_int		color_ratio(t_array_int color, float ratio);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 13:53:47 by aazevedo          #+#    #+#             */
-/*   Updated: 2022/09/16 14:59:04 by aazevedo         ###   ########.fr       */
+/*   Updated: 2022/09/16 15:55:48 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,24 @@ static void	my_mlx_pixel_put(t_mlx_img *img_data, int x, int y, t_array_int rgb)
 
 t_array_int	get_color(t_ray *ray, t_array_int back_light, t_elem elements)
 {
-	t_array_int		brightness;
-	t_array_int		temp;
-	t_array_int		result;
-	t_array_float	light_dir;
-	float			light_dispersion_num;
+	t_ray			shadow_ray;
+	float			light_dispersion;
 	float			adj_brightness;
 	t_l				*light;
 
 	light = elements.lights;
-	brightness = back_light;
-	light_dir = v_subtract(light->view, ray->intersection);
-	light_dispersion_num = v_dot_product(ray->normal, v_normalize(light_dir));
-	if (light_dispersion_num > 0) //missing the check for shadow
+	shadow_ray.color = back_light;
+	shadow_ray.direction = v_subtract(light->view, ray->intersection);
+	light_dispersion = v_dot_product(ray->normal, 
+		v_normalize(shadow_ray.direction));
+	if (light_dispersion > 0) //missing the check for shadow
 	{
-		adj_brightness = (light->brightness * light_dispersion_num * 100)
-			/ (M_PI * pow(v_length(light_dir), 2));
-		temp = color_ratio(light->color, adj_brightness);
-		brightness = color_add(brightness, temp);
+		adj_brightness = (light->brightness * light_dispersion * 100)
+			/ (M_PI * pow(v_length(shadow_ray.direction), 2));
+		shadow_ray.color = color_add(shadow_ray.color, 
+			color_ratio(light->color, adj_brightness));
 	}
-	result = color_multiply(ray->obj_color, brightness);
-	return (result);
+	return (color_multiply(ray->color, shadow_ray.color));
 }
 
 void	create_img(int x, int y, t_mlx_img img, t_elem elements)
@@ -65,10 +62,11 @@ void	create_img(int x, int y, t_mlx_img img, t_elem elements)
 
 	ray = (t_ray *) malloc(sizeof(t_ray));
 	ray->direction = get_ray_dir(x, y, &elements);
+	ray->t = INFINITY;
 	back_light = color_ratio(elements.ambient_light.color,
 		elements.ambient_light.ratio);
-	sphere(elements.camera.view, ray, &elements);
-	if (ray->t > 0)
+	cast_ray(elements.camera.view, ray, &elements);
+	if (ray->t > 0 && ray->t != INFINITY)
 		color = get_color(ray, back_light, elements);
 	else
 		color = color_ratio(back_light, 0);
