@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:59:33 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/15 18:21:31 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/16 14:34:27 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,3 @@ void	sphere(t_array_float ray_orig, t_ray *ray, t_elem *elements)
 		elements->spheres->center));
 	ray->obj_color = elements->spheres->color;
 }
-
-/* Parametric function: Ray_Origin + t * Ray_Direction
- *
- * For now, let's just do 1 sphere. Baby steps
- * We are casting a ray and we want the first intersection between the ray and
- * the sphere surface, which corresponds to the smallest positive t.
- * 
- *
-void	cast_ray(t_array_float ray_orig, t_array_float ray_dir,
-	t_elem *elements, t_mlx_img img)
-{
-	if (sphere(ray_orig, ray_dir, elements) > 0)
-		my_mlx_pixel_put(&img, x, y, elements.spheres->color);
-} */
