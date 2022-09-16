@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/15 21:17:14 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/16 12:43:22 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,7 @@ void			sphere(t_array_float ray_orig, t_ray *ray,
 /* colors */
 t_array_int		color_ratio(t_array_int color, float ratio);
 t_array_int		color_add(t_array_int color, t_array_int color2);
+t_array_int		color_multiply(t_array_int color1, t_array_int color2);
 
 /* ------------- utils ------------- */
 /* ft_gnl */

@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 13:53:47 by aazevedo          #+#    #+#             */
-/*   Updated: 2022/09/15 21:20:02 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/16 13:11:07 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 static int	rgb_to_color(t_array_int rgb)
 {
+	if (rgb.elem1 > 255)
+		rgb.elem1 = 255;
+	if (rgb.elem2 > 255)
+		rgb.elem2 = 255;
+	if (rgb.elem3 > 255)
+		rgb.elem3 = 255;
 	return (rgb.elem1 << 16 | rgb.elem2 << 8 | rgb.elem3);
 }
 
@@ -28,27 +34,24 @@ static void	my_mlx_pixel_put(t_mlx_img *img_data, int x, int y, t_array_int rgb)
 
 t_array_int	get_color(t_ray *ray, t_array_int back_light, t_elem elements)
 {
+	t_array_int		brightness;
+	t_array_int		temp;
 	t_array_int		result;
 	t_array_float	light_dir;
 	float			light_dispersion_num;
 	float			adj_brightness;
 
-	result = color_add(ray->obj_color, back_light);
+	brightness = back_light;
 	light_dir = v_subtract(elements.light.view, ray->intersection);
-	/*printf("The light dir is %f | %f | %f\n", light_dir.elem1, light_dir.elem2,
-		light_dir.elem3);
-	printf("The normal is %f | %f | %f\n", ray->normal.elem1, ray->normal.elem2,
-		ray->normal.elem3);*/
 	light_dispersion_num = v_dot_product(ray->normal, v_normalize(light_dir));
-	printf("The num is %f\n", light_dispersion_num);
 	if (light_dispersion_num > 0) //missing the check for shadow
 	{
-		adj_brightness = (elements.light.brightness * light_dispersion_num * 1000)
+		adj_brightness = (elements.light.brightness * light_dispersion_num * 100)
 			/ (M_PI * pow(v_length(light_dir), 2));
-		printf("The adjusted brightness is %f | light_brightness %f\n",
-			adj_brightness, elements.light.brightness);
-		result = color_add(result, color_ratio(elements.light.color, adj_brightness));
+		temp = color_ratio(elements.light.color, adj_brightness);
+		brightness = color_add(brightness, temp);
 	}
+	result = color_multiply(ray->obj_color, brightness);
 	return (result);
 }
 
@@ -65,7 +68,6 @@ void	create_img(int x, int y, t_mlx_img img, t_elem elements)
 	sphere(elements.camera.view, ray, &elements);
 	if (ray->t > 0)
 	{
-		printf("Checking pixel %d | %d\n", x, y);
 		color = get_color(ray, back_light, elements);
 	}
 	else

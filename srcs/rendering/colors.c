@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 22:15:17 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/15 18:55:55 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/16 13:07:23 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,24 @@ t_array_int	color_ratio(t_array_int color, float ratio)
 	result.elem2 = color.elem2 * ratio;
 	result.elem3 = color.elem3 * ratio;
 	result.f_error = color.f_error;
+	return (result);
+}
+
+t_array_int	color_multiply(t_array_int color1, t_array_int color2)
+{
+	t_array_int	result;
+	float		a;
+	float		b;
+
+	a = (float) color1.elem1 / 255;
+	b = (float) color2.elem1 / 255;
+	result.elem1 = a * b * 255;
+	a = (float) color1.elem2 / 255;
+	b = (float) color2.elem2 / 255;
+	result.elem2 = a * b * 255;
+	a = (float) color1.elem3 / 255;
+	b = (float) color2.elem3 / 255;
+	result.elem3 = a * b * 255;
 	return (result);
 }
 
