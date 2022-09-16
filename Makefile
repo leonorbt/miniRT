@@ -6,7 +6,7 @@
 #    By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/14 23:55:45 by lbraz-te          #+#    #+#              #
-#    Updated: 2022/09/16 16:04:44 by aazevedo         ###   ########.fr        #
+#    Updated: 2022/09/16 16:08:34 by aazevedo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,11 +58,11 @@ ${MINILIBX_LIB_FILE}: ./${MINILIBX_DIR}
 
 clean:
 	${RM} ${MINILIBX_LIB_FILE}:
-	${RM} includes/mlx.h
+	#${RM} includes/mlx.h
 	${RM} ${OBJS}
 
 fclean: clean
-	make clean -C ./${MINILIBX_DIR}
+	#make clean -C ./${MINILIBX_DIR}
 	${RM} ${NAME}
 
 re:	fclean all
