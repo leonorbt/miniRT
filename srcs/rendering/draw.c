@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 13:53:47 by aazevedo          #+#    #+#             */
-/*   Updated: 2022/09/16 19:11:59 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/16 20:13:28 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,11 @@ t_array_int	get_color(t_ray *ray, t_array_int back_light, t_elem elements)
 	light = elements.lights;
 	shadow_ray.color = back_light;
 	shadow_ray.direction = v_subtract(light->view, ray->intersection);
-	shadow_ray.t = INFINITY;
-	shadow_ray.isShadow = true;
 	light_dispersion = v_dot_product(ray->normal, 
 		v_normalize(shadow_ray.direction));
-	if (light_dispersion > 0) //&& !ray_intersect(light->view, &shadow_ray, &elements))
+	if (light_dispersion > 0 && !in_shadow(light->view, &shadow_ray, &elements))
 	{
-		adj_brightness = (light->brightness * light_dispersion * 1000.0)
+		adj_brightness = (light->brightness * light_dispersion * 500.0)
 			/ (M_PI * pow(v_length(shadow_ray.direction), 2));
 		shadow_ray.color = color_add(shadow_ray.color, 
 			color_ratio(light->color, adj_brightness));

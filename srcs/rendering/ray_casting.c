@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:59:33 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/16 18:23:10 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/16 20:28:08 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,33 @@ void	sphere(t_array_float ray_orig, t_ray *ray, t_sp *sphere)
 	else
 		return ;
 	ray->intersection = get_intersection(ray_orig, *ray);
+	ray->length = v_length(v_subtract(ray_orig, ray->intersection));
 	ray->normal = v_normalize(v_subtract(ray->intersection,
 		sphere->center));
 	ray->color = sphere->color;
+}
+
+bool	in_shadow(t_array_float ray_orig, t_ray *ray, t_elem *elements)
+{
+	float	dist;
+	int		i;
+	t_sp	*spheres;
+
+	i = 0;
+	ray->direction = v_subtract(ray->intersection, ray_orig);
+	dist = v_length(ray->direction);
+	spheres = elements->spheres;
+	while (i < elements->n_sphere)
+	{
+		sphere(ray_orig, ray, spheres);
+		spheres = spheres->next;
+		i++;
+	}
+	if (ray->length < dist)
+		return (false);
+	printf("Distance between light and sphere %f | other dist %f\n", dist,
+		v_length(v_subtract(ray_orig, ray->intersection)));
+	return (true);
 }
 
 bool	ray_intersect(t_array_float ray_orig, t_ray *ray, t_elem *elements)
@@ -92,7 +116,5 @@ bool	ray_intersect(t_array_float ray_orig, t_ray *ray, t_elem *elements)
 		temp = true;
 	else
 		temp = false;
-	/*if (ray->isShadow == true)
-		printf("ray intersect for light returning %d\n", temp);*/
 	return (temp);
 }

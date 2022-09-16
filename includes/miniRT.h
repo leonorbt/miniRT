@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/16 18:13:56 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/16 20:26:48 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,10 +123,10 @@ typedef struct s_ray
 {
 	t_array_float	direction;
 	float			t;
+	float			length;
 	t_array_float	intersection;
 	t_array_float	normal;
 	t_array_int		color;
-	bool			isShadow;
 }	t_ray;
 
 
@@ -186,6 +186,7 @@ int				ft_in_circle(int x, int y, t_sp sphere);
 
 /* ray_casting */
 void			sphere(t_array_float ray_orig, t_ray *ray, t_sp *sphere);
+bool			in_shadow(t_array_float ray_orig, t_ray *ray, t_elem *elements);
 bool			ray_intersect(t_array_float ray_orig, t_ray *ray, t_elem *elements);
 
 /* colors */
