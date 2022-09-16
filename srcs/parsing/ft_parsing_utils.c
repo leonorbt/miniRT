@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 13:49:11 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/16 00:09:14 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/16 19:23:45 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ float	ft_parse_float(char	*str)
 		right = (float) ft_parse_int(parts[1]);
 	while (right_len-- > 0)
 		right /= 10;
+	if (left == 0 && str[0] == '-')
+		return (left + right) * -1;
 	return (left + right);
 }
 
