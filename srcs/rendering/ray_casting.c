@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:59:33 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/16 15:53:28 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/16 16:12:46 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	sphere(t_array_float ray_orig, t_ray *ray, t_sp *sphere)
 	ray->color = sphere->color;
 }
 
-void	cast_ray(t_array_float ray_orig, t_ray *ray, t_elem *elements)
+bool	ray_intersect(t_array_float ray_orig, t_ray *ray, t_elem *elements)
 {
 	int	i;
 	t_sp	*spheres;
@@ -87,4 +87,8 @@ void	cast_ray(t_array_float ray_orig, t_ray *ray, t_elem *elements)
 		spheres = spheres->next;
 		i++;
 	}
+	if (ray->t > 0 && ray->t != INFINITY)
+		return (true);
+	else
+		return (false);
 }

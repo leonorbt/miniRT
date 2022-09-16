@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/16 15:52:18 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/16 16:06:10 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <math.h>
+# include <stdbool.h>
 # include "mlx.h"
 
 typedef struct s_array_int
@@ -184,7 +185,7 @@ int				ft_in_circle(int x, int y, t_sp sphere);
 
 /* ray_casting */
 void			sphere(t_array_float ray_orig, t_ray *ray, t_sp *sphere);
-void			cast_ray(t_array_float ray_orig, t_ray *ray, t_elem *elements);
+bool			ray_intersect(t_array_float ray_orig, t_ray *ray, t_elem *elements);
 
 /* colors */
 t_array_int		color_ratio(t_array_int color, float ratio);
