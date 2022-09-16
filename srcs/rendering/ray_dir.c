@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 19:47:29 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/14 16:35:18 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:57:23 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ t_array_float	get_ray_dir(int pixel_x, int pixel_y, t_elem *elements)
 
 	canvas = ft_pixel_to_canvas(pixel_x, pixel_y, elements);
 	ray_origin = elements->camera.view;
+	printf("The cam dir %f | %f | %f\n", elements->camera.vector.elem1,
+		elements->camera.vector.elem2, elements->camera.vector.elem3);
 	canvas_in_world = m_multiply(canvas, elements->camera);
 	ray_dir = v_subtract(canvas_in_world, ray_origin);
 	ray_dir = v_normalize(ray_dir);

@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:59:33 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/16 16:12:46 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:23:10 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ bool	ray_intersect(t_array_float ray_orig, t_ray *ray, t_elem *elements)
 {
 	int	i;
 	t_sp	*spheres;
+	bool	temp;
 
 	i = 0;
 	spheres = elements->spheres;
@@ -88,7 +89,10 @@ bool	ray_intersect(t_array_float ray_orig, t_ray *ray, t_elem *elements)
 		i++;
 	}
 	if (ray->t > 0 && ray->t != INFINITY)
-		return (true);
+		temp = true;
 	else
-		return (false);
+		temp = false;
+	/*if (ray->isShadow == true)
+		printf("ray intersect for light returning %d\n", temp);*/
+	return (temp);
 }

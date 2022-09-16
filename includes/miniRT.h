@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/16 16:21:40 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:13:56 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ typedef struct s_ray
 	t_array_float	intersection;
 	t_array_float	normal;
 	t_array_int		color;
+	bool			isShadow;
 }	t_ray;
 
 
