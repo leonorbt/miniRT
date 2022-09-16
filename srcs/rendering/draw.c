@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 13:53:47 by aazevedo          #+#    #+#             */
-/*   Updated: 2022/09/16 13:11:07 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/16 14:36:40 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,9 @@ void	create_img(int x, int y, t_mlx_img img, t_elem elements)
 		elements.ambient_light.ratio);
 	sphere(elements.camera.view, ray, &elements);
 	if (ray->t > 0)
-	{
 		color = get_color(ray, back_light, elements);
-	}
 	else
-		color = back_light;
+		color = color_ratio(back_light, 0);
 	my_mlx_pixel_put(&img, x, y, color);
 	free(ray);
 }
