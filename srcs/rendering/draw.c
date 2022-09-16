@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 13:53:47 by aazevedo          #+#    #+#             */
-/*   Updated: 2022/09/16 14:36:40 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/16 14:59:04 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,17 @@ t_array_int	get_color(t_ray *ray, t_array_int back_light, t_elem elements)
 	t_array_float	light_dir;
 	float			light_dispersion_num;
 	float			adj_brightness;
+	t_l				*light;
 
+	light = elements.lights;
 	brightness = back_light;
-	light_dir = v_subtract(elements.light.view, ray->intersection);
+	light_dir = v_subtract(light->view, ray->intersection);
 	light_dispersion_num = v_dot_product(ray->normal, v_normalize(light_dir));
 	if (light_dispersion_num > 0) //missing the check for shadow
 	{
-		adj_brightness = (elements.light.brightness * light_dispersion_num * 100)
+		adj_brightness = (light->brightness * light_dispersion_num * 100)
 			/ (M_PI * pow(v_length(light_dir), 2));
-		temp = color_ratio(elements.light.color, adj_brightness);
+		temp = color_ratio(light->color, adj_brightness);
 		brightness = color_add(brightness, temp);
 	}
 	result = color_multiply(ray->obj_color, brightness);
