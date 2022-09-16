@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/16 16:07:47 by aazevedo         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:13:56 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
-
-# include <stdbool.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
@@ -37,6 +35,7 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <math.h>
+# include <stdbool.h>
 # include "mlx.h"
 
 typedef struct s_array_int
@@ -127,6 +126,7 @@ typedef struct s_ray
 	t_array_float	intersection;
 	t_array_float	normal;
 	t_array_int		color;
+	bool			isShadow;
 }	t_ray;
 
 
@@ -186,7 +186,7 @@ int				ft_in_circle(int x, int y, t_sp sphere);
 
 /* ray_casting */
 void			sphere(t_array_float ray_orig, t_ray *ray, t_sp *sphere);
-void			cast_ray(t_array_float ray_orig, t_ray *ray, t_elem *elements);
+bool			ray_intersect(t_array_float ray_orig, t_ray *ray, t_elem *elements);
 
 /* colors */
 t_array_int		color_ratio(t_array_int color, float ratio);

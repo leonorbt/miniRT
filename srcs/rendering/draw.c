@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 13:53:47 by aazevedo          #+#    #+#             */
-/*   Updated: 2022/09/16 15:55:48 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/16 19:11:59 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,13 @@ t_array_int	get_color(t_ray *ray, t_array_int back_light, t_elem elements)
 	light = elements.lights;
 	shadow_ray.color = back_light;
 	shadow_ray.direction = v_subtract(light->view, ray->intersection);
+	shadow_ray.t = INFINITY;
+	shadow_ray.isShadow = true;
 	light_dispersion = v_dot_product(ray->normal, 
 		v_normalize(shadow_ray.direction));
-	if (light_dispersion > 0) //missing the check for shadow
+	if (light_dispersion > 0) //&& !ray_intersect(light->view, &shadow_ray, &elements))
 	{
-		adj_brightness = (light->brightness * light_dispersion * 100)
+		adj_brightness = (light->brightness * light_dispersion * 1000.0)
 			/ (M_PI * pow(v_length(shadow_ray.direction), 2));
 		shadow_ray.color = color_add(shadow_ray.color, 
 			color_ratio(light->color, adj_brightness));
@@ -62,11 +64,14 @@ void	create_img(int x, int y, t_mlx_img img, t_elem elements)
 
 	ray = (t_ray *) malloc(sizeof(t_ray));
 	ray->direction = get_ray_dir(x, y, &elements);
+	// printf("For pixel %d | %d, ray goes from %f | %f | %f to %f | %f | %f\n",
+	// 	x, y, elements.camera.view.elem1, elements.camera.view.elem2,
+	// 	elements.camera.view.elem3, ray->direction.elem1, 
+	// 	ray->direction.elem2, ray->direction.elem3);
 	ray->t = INFINITY;
 	back_light = color_ratio(elements.ambient_light.color,
 		elements.ambient_light.ratio);
-	cast_ray(elements.camera.view, ray, &elements);
-	if (ray->t > 0 && ray->t != INFINITY)
+	if (ray_intersect(elements.camera.view, ray, &elements))
 		color = get_color(ray, back_light, elements);
 	else
 		color = color_ratio(back_light, 0);
