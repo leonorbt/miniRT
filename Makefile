@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+         #
+#    By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/14 23:55:45 by lbraz-te          #+#    #+#              #
-#    Updated: 2022/09/13 22:55:05 by lbraz-te         ###   ########.fr        #
+#    Updated: 2022/09/16 16:04:44 by aazevedo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,11 @@ SRCS	= $(wildcard srcs/*.c) \
 			$(wildcard srcs/rendering/*.c) \
 			$(wildcard srcs/utils/*.c)
 
-ifeq ($(UNAME_S),Darwin)
+ifeq ($(USER),tony)
+	MINILIBX_DIR = includes/minilibx_opengl_20191021
+	MINILIBX_FLAGS = -L${MINILIBX_DIR} -lmlx -framework OpenGL -framework AppKit
+	MINILIBX_LIB_FILE = libmlx.a
+else ifeq ($(UNAME_S),Darwin)
 	MINILIBX_DIR = includes/minilibx_macos
 	MINILIBX_FLAGS = -L${MINILIBX_DIR} -lmlx -framework OpenGL -framework AppKit
 	MINILIBX_LIB_FILE = libmlx.dylib
@@ -47,24 +51,18 @@ ${NAME}: ${MINILIBX_LIB_FILE} ${OBJS}
 .c.o:
 	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
-libmlx.dylib: ./${MINILIBX_DIR}
+${MINILIBX_LIB_FILE}: ./${MINILIBX_DIR}
 	make -C ./${MINILIBX_DIR}
-	cp	./${MINILIBX_DIR}/libmlx.dylib libmlx.dylib
-	cp ./${MINILIBX_DIR}/mlx.h includes/mlx.h
-
-libmlx_Linux.a: ./${MINILIBX_DIR}
-	make -C ./${MINILIBX_DIR}
-	cp	./${MINILIBX_DIR}/libmlx_Linux.a libmlx_Linux.a
+	cp	./${MINILIBX_DIR}/${MINILIBX_LIB_FILE} ${MINILIBX_LIB_FILE}
 	cp ./${MINILIBX_DIR}/mlx.h includes/mlx.h
 
 clean:
-	${RM} libmlx.dylib
-	${RM} libmlx_Linux.a
+	${RM} ${MINILIBX_LIB_FILE}:
 	${RM} includes/mlx.h
 	${RM} ${OBJS}
 
 fclean: clean
-	#make clean -C ./${MINILIBX_DIR}
+	make clean -C ./${MINILIBX_DIR}
 	${RM} ${NAME}
 
 re:	fclean all
