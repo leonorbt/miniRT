@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/16 12:43:22 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/16 14:43:37 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_l
 	t_array_float	view;
 	float			brightness;
 	t_array_int		color;
+	struct s_l *next;
 }	t_l;
 
 typedef struct s_pl
@@ -106,8 +107,9 @@ typedef struct s_elem
 	t_a		ambient_light;
 	int		has_camera;
 	t_c		camera;
-	int		has_light;
-	t_l		light;
+	int		n_lights;
+	t_l		light; // temp
+	t_l		*lights;
 	int		n_plane;
 	t_pl	*planes;
 	int		n_sphere;

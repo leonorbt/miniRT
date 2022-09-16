@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_errors.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 23:46:02 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/19 23:22:32 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/16 14:16:05 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	ft_error_elements(int error_code)
 	else if (error_code == ERR_CAMERA_ARGS)
 		ft_putstr_fd("Error\nThe camera is ill formated\n", 2);
 	else if (error_code == ERR_N_LIGHT)
-		ft_putstr_fd("Error\nThere is more than 1 camera\n", 2);
+		ft_putstr_fd("Error\nThere is more than 1 light\n", 2);
 	else if (error_code == ERR_LIGHT_ARGS)
 		ft_putstr_fd("Error\nThe light is ill formated\n", 2);
 	else if (error_code == ERR_PLANE_ARGS)

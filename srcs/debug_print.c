@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug_print.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 22:54:28 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/21 17:01:37 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/16 14:30:35 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,22 @@ static void	print_elements(t_elem elements)
 		elements.cylinders = elements.cylinders->next;
 		i++;
 	}
+	i = 0;
+	printf("There are %d lights\n", elements.n_lights);
+	while (i < elements.n_lights)
+	{
+		printf("\t %d lights: view %f | %f | %f, brightness %f, color %d | %d | %d \n",
+			   i + 1,
+			   elements.lights->view.elem1,
+			   elements.lights->view.elem2,
+			   elements.lights->view.elem3,
+			   elements.lights->brightness,
+			   elements.lights->color.elem1,
+			   elements.lights->color.elem2,
+			   elements.lights->color.elem3);
+		elements.lights = elements.lights->next;
+		i++;
+	}
 	printf("End of printing\n");
 }
 
@@ -82,7 +98,7 @@ void	debug_print(t_elem *elements)
 			elements->ambient_light.color.elem2,
 			elements->ambient_light.color.elem3);
 	if (elements->has_camera > 0)
-		printf("Has camera: view %f | %f | %f, vector %d | %d | %d, fov %d\n",
+		printf("Has camera: view %f | %f | %f, vector %f | %f | %f, fov %d\n",
 			elements->camera.view.elem1,
 			elements->camera.view.elem2,
 			elements->camera.view.elem3,
@@ -90,11 +106,5 @@ void	debug_print(t_elem *elements)
 			elements->camera.vector.elem2,
 			elements->camera.vector.elem3,
 			elements->camera.fov);
-	if (elements->has_light > 0)
-		printf("Has light: view %f | %f | %f, brightness %d\n",
-			elements->light.view.elem1,
-			elements->light.view.elem2,
-			elements->light.view.elem3,
-			elements->light.brightness);
 	print_elements(*elements);
 }

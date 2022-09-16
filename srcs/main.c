@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:23:52 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/21 22:45:22 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/16 14:22:22 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ t_elem	ft_element_init(void)
 
 	elements.has_ambient = 0;
 	elements.has_camera = 0;
-	elements.has_light = 0;
+	elements.n_lights = 0;
+	elements.lights = NULL;
 	elements.n_plane = 0;
 	elements.planes = NULL;
 	elements.n_sphere = 0;
@@ -74,7 +75,7 @@ int	main(int argc, char **argv)
 	elements = ft_element_init();
 	if (ft_start_parsing(argv[1], &elements) == 1)
 		return (1);
-	// debug_print(&elements);
-	window = init_window(&elements, &draw);
+	debug_print(&elements);
+	//window = init_window(&elements, &draw);
 	return (0);
 }
