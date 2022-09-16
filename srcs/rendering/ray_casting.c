@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:59:33 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/16 20:28:08 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/17 00:27:10 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	quadratic_function(t_array_float params, float *t0, float *t1)
 
 static t_array_float	get_intersection(t_array_float ray_orig, t_ray ray)
 {
-	t_array_float result;
+	t_array_float	result;
 
 	result.elem1 = ray_orig.elem1 + ray.direction.elem1 * ray.t;
 	result.elem2 = ray_orig.elem2 + ray.direction.elem2 * ray.t;
@@ -69,38 +69,42 @@ void	sphere(t_array_float ray_orig, t_ray *ray, t_sp *sphere)
 	else
 		return ;
 	ray->intersection = get_intersection(ray_orig, *ray);
-	ray->length = v_length(v_subtract(ray_orig, ray->intersection));
 	ray->normal = v_normalize(v_subtract(ray->intersection,
-		sphere->center));
+				sphere->center));
 	ray->color = sphere->color;
 }
 
+/*
+ * This is considering that the first sphere is in shadow because it is
+ * using as an intersection point the "bottom" of the sphere and then
+ * finding the "top" of the sphere has an object that creates the shadow
+ */
 bool	in_shadow(t_array_float ray_orig, t_ray *ray, t_elem *elements)
 {
 	float	dist;
+	float	dist2;
 	int		i;
 	t_sp	*spheres;
 
 	i = 0;
-	ray->direction = v_subtract(ray->intersection, ray_orig);
-	dist = v_length(ray->direction);
+	dist = (v_length(ray->direction) * 1);
 	spheres = elements->spheres;
+	ray->direction = v_subtract(ray->intersection, ray_orig);
 	while (i < elements->n_sphere)
 	{
 		sphere(ray_orig, ray, spheres);
 		spheres = spheres->next;
 		i++;
 	}
-	if (ray->length < dist)
-		return (false);
-	printf("Distance between light and sphere %f | other dist %f\n", dist,
-		v_length(v_subtract(ray_orig, ray->intersection)));
-	return (true);
+	dist2 = (v_length(v_subtract(ray_orig, ray->intersection)) * 1);
+	if (dist > dist2 && pow(dist - dist2, 2) > 0.0001)
+		return (true);
+	return (false);
 }
 
 bool	ray_intersect(t_array_float ray_orig, t_ray *ray, t_elem *elements)
 {
-	int	i;
+	int		i;
 	t_sp	*spheres;
 	bool	temp;
 

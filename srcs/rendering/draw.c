@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 13:53:47 by aazevedo          #+#    #+#             */
-/*   Updated: 2022/09/16 20:13:28 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/17 00:30:14 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,26 @@ static void	my_mlx_pixel_put(t_mlx_img *img_data, int x, int y, t_array_int rgb)
 t_array_int	get_color(t_ray *ray, t_array_int back_light, t_elem elements)
 {
 	t_ray			shadow_ray;
-	float			light_dispersion;
+	float			light_disp;
 	float			adj_brightness;
 	t_l				*light;
 
 	light = elements.lights;
 	shadow_ray.color = back_light;
-	shadow_ray.direction = v_subtract(light->view, ray->intersection);
-	light_dispersion = v_dot_product(ray->normal, 
-		v_normalize(shadow_ray.direction));
-	if (light_dispersion > 0 && !in_shadow(light->view, &shadow_ray, &elements))
+	while (light->next != NULL)
 	{
-		adj_brightness = (light->brightness * light_dispersion * 500.0)
-			/ (M_PI * pow(v_length(shadow_ray.direction), 2));
-		shadow_ray.color = color_add(shadow_ray.color, 
-			color_ratio(light->color, adj_brightness));
+		shadow_ray.direction = v_subtract(light->view, ray->intersection);
+		shadow_ray.intersection = ray->intersection;
+		shadow_ray.t = INFINITY;
+		light_disp = v_dot_product(ray->normal, v_normalize(shadow_ray.direction));
+		if (light_disp > 0 && !in_shadow(light->view, &shadow_ray, &elements))
+		{
+			adj_brightness = (light->brightness * light_disp * 100.0)
+				/ (M_PI * pow(v_length(shadow_ray.direction), 2));
+			shadow_ray.color = color_add(shadow_ray.color,
+					color_ratio(light->color, adj_brightness));
+		}
+		light = light->next;
 	}
 	return (color_multiply(ray->color, shadow_ray.color));
 }
@@ -62,15 +67,13 @@ void	create_img(int x, int y, t_mlx_img img, t_elem elements)
 
 	ray = (t_ray *) malloc(sizeof(t_ray));
 	ray->direction = get_ray_dir(x, y, &elements);
-	// printf("For pixel %d | %d, ray goes from %f | %f | %f to %f | %f | %f\n",
-	// 	x, y, elements.camera.view.elem1, elements.camera.view.elem2,
-	// 	elements.camera.view.elem3, ray->direction.elem1, 
-	// 	ray->direction.elem2, ray->direction.elem3);
 	ray->t = INFINITY;
 	back_light = color_ratio(elements.ambient_light.color,
-		elements.ambient_light.ratio);
+			elements.ambient_light.ratio);
 	if (ray_intersect(elements.camera.view, ray, &elements))
+	{
 		color = get_color(ray, back_light, elements);
+	}
 	else
 		color = color_ratio(back_light, 0);
 	my_mlx_pixel_put(&img, x, y, color);
