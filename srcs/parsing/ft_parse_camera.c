@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_camera.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:49:21 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/16 19:43:34 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/18 00:40:56 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,16 @@ static t_array_float	get_right(t_array_float forward)
 	return (right);
 }
 
+static t_array_float	origin_vector(void)
+{
+	t_array_float	arr;
+
+	arr.elem1 = 0;
+	arr.elem2 = 0;
+	arr.elem3 = 0;
+	return (arr);
+}
+
 /*
  * The look_at function creates the matrix that converts world coordinates
  * into camera coordinates. This is a 4x4 matrix because we need an extra
@@ -83,17 +93,13 @@ static t_array_float	get_right(t_array_float forward)
  * Just do the cross product of the 2 known axis to get a 3rd vector that
  * will be perpendicular to both forward and right.
  */
-static void	look_at(t_c *camera)
+static t_c	*look_at(t_c *camera)
 {
-	t_array_float	temp;
 	t_array_float	forward;
 	t_array_float	right;
 	t_array_float	up;
 
-	temp.elem1 = 0;
-	temp.elem2 = 0;
-	temp.elem3 = 0;
-	forward = v_normalize(v_subtract(temp, camera->vector));
+	forward = v_normalize(v_subtract(origin_vector(), camera->vector));
 	right = v_normalize(get_right(forward));
 	up = v_normalize(v_cross_product(forward, right));
 	camera->cam_to_world[0][0] = right.elem1;
@@ -112,6 +118,7 @@ static void	look_at(t_c *camera)
 	camera->cam_to_world[3][1] = camera->view.elem2;
 	camera->cam_to_world[3][2] = camera->view.elem3;
 	camera->cam_to_world[3][3] = 1;
+	return (camera);
 }
 
 /* do ft_split and then treat each element */
@@ -140,7 +147,6 @@ int	ft_parse_camera(char *line, t_elem *elements)
 	ft_free_arrays(line_in_pieces);
 	if (i > 4 || ft_validate_camera(camera) == 1)
 		return (ft_errors(ERR_CAMERA_ARGS));
-	look_at(&camera);
-	elements->camera = camera;
+	elements->camera = *look_at(&camera);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:49:21 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/16 14:49:10 by aazevedo         ###   ########.fr       */
+/*   Updated: 2022/09/18 00:51:04 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,14 @@ int	ft_parse_light(char *line, t_elem *elements)
 	i = 0;
 	line_in_pieces = ft_split(line, ' ');
 	light = (t_l *) malloc(sizeof(t_l));
-	while (line_in_pieces[i] != NULL)
+	if (line_in_pieces[0] != NULL && ft_strcmp(line_in_pieces[0], "L") == 0)
 	{
-		if (i == 0 && ft_strcmp(line_in_pieces[i], "L") != 0)
-			break ;
-		if (i == 1)
-			light->view = ft_parse_3float(line_in_pieces[i]);
-		if (i == 2)
-			light->brightness = ft_parse_float(line_in_pieces[i]);
-		if (i == 3)
-			light->color = ft_parse_3int(line_in_pieces[i]);
-		i++;
+		if (line_in_pieces[1] != NULL)
+			light->view = ft_parse_3float(line_in_pieces[1]);
+		if (line_in_pieces[2] != NULL)
+			light->brightness = ft_parse_float(line_in_pieces[2]);
+		if (line_in_pieces[3] != NULL)
+			light->color = ft_parse_3int(line_in_pieces[3]);
 	}
 	light->next = NULL;
 	ft_free_arrays(line_in_pieces);
