@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 13:53:47 by aazevedo          #+#    #+#             */
-/*   Updated: 2022/09/17 00:30:14 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/17 17:54:57 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ t_array_int	get_color(t_ray *ray, t_array_int back_light, t_elem elements)
 		light_disp = v_dot_product(ray->normal, v_normalize(shadow_ray.direction));
 		if (light_disp > 0 && !in_shadow(light->view, &shadow_ray, &elements))
 		{
-			adj_brightness = (light->brightness * light_disp * 100.0)
-				/ (M_PI * pow(v_length(shadow_ray.direction), 2));
+			adj_brightness = (light->brightness * light_disp * 1000.0)
+				/ (4 * M_PI * pow(v_length(shadow_ray.direction), 2));
 			shadow_ray.color = color_add(shadow_ray.color,
 					color_ratio(light->color, adj_brightness));
 		}

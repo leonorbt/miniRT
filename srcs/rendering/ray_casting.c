@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:59:33 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/17 00:27:10 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/17 17:36:34 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,43 @@ void	sphere(t_array_float ray_orig, t_ray *ray, t_sp *sphere)
 }
 
 /*
+ * A plane can be defined by a point and the normal.
+ * All vectors that lie on the plane are perpendicular to the normal, that is,
+ * their dot product with the normal is 0. As we can compute a vector as a
+ * difference between 2 points, we know that (P - Po) * n = 0 will describe
+ * all the points on the plane, being P any point, Po a point on the plane and
+ * n the normal.
+ * 
+ * If we replace P with the parametric function (P = O + tD), we can find all
+ * points on the plane that intersect with the ray.
+ * 
+ * Important: we can divide by 0 and when the ray is parallel to the plane the
+ * denominator will be 0, so we only calculate t if the denominator is bigger
+ * than 0
+ */
+void	plane(t_array_float ray_orig, t_ray *ray, t_pl *plane)
+{
+	t_array_float	temp;
+	float			num;
+	float			den;
+	float			t;
+
+	temp = v_subtract(plane->view, ray_orig);
+	num = v_dot_product(temp, plane->vector);
+	den = v_dot_product(ray->direction, plane->vector);
+	if (pow(den, 2) < 0.001)
+		return ;
+	t = num / den;
+	if (t > 0 && t <= ray->t)
+		ray->t = t;
+	else
+		return ;
+	ray->intersection = get_intersection(ray_orig, *ray);
+	ray->normal = v_normalize(plane->vector);
+	ray->color = plane->color;
+}
+
+/*
  * This is considering that the first sphere is in shadow because it is
  * using as an intersection point the "bottom" of the sphere and then
  * finding the "top" of the sphere has an object that creates the shadow
@@ -85,6 +122,7 @@ bool	in_shadow(t_array_float ray_orig, t_ray *ray, t_elem *elements)
 	float	dist2;
 	int		i;
 	t_sp	*spheres;
+	t_pl	*planes;
 
 	i = 0;
 	dist = (v_length(ray->direction) * 1);
@@ -94,6 +132,14 @@ bool	in_shadow(t_array_float ray_orig, t_ray *ray, t_elem *elements)
 	{
 		sphere(ray_orig, ray, spheres);
 		spheres = spheres->next;
+		i++;
+	}
+	i = 0;
+	planes = elements->planes;
+	while (i < elements->n_plane)
+	{
+		plane(ray_orig, ray, planes);
+		planes = planes->next;
 		i++;
 	}
 	dist2 = (v_length(v_subtract(ray_orig, ray->intersection)) * 1);
@@ -106,6 +152,7 @@ bool	ray_intersect(t_array_float ray_orig, t_ray *ray, t_elem *elements)
 {
 	int		i;
 	t_sp	*spheres;
+	t_pl	*planes;
 	bool	temp;
 
 	i = 0;
@@ -114,6 +161,14 @@ bool	ray_intersect(t_array_float ray_orig, t_ray *ray, t_elem *elements)
 	{
 		sphere(ray_orig, ray, spheres);
 		spheres = spheres->next;
+		i++;
+	}
+	i = 0;
+	planes = elements->planes;
+	while (i < elements->n_plane)
+	{
+		plane(ray_orig, ray, planes);
+		planes = planes->next;
 		i++;
 	}
 	if (ray->t > 0 && ray->t != INFINITY)
