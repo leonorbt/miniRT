@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/18 01:13:18 by aazevedo         ###   ########.fr       */
+/*   Updated: 2022/09/18 17:21:18 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,4 +239,5 @@ t_array_int		ft_parse_3int(char *str);
 t_array_float	ft_parse_3float(char *str);
 int				ft_line_has_alpha(char *str);
 
+void	quadratic_function(t_array_float params, float *t0, float *t1);
 #endif

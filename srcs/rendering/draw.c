@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 13:53:47 by aazevedo          #+#    #+#             */
-/*   Updated: 2022/09/17 20:57:33 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/17 21:45:48 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,29 +40,23 @@ t_array_int	get_color(t_ray *ray, t_array_int back_light, t_elem elements)
 	t_l				*light;
 	t_array_int		light_add;
 	t_array_int		base_light;
-	int				i;
-	int				j;
 
 	light = elements.lights;
 	base_light = color_ratio(light->color, 0);
-	i = 0;
 	while (light)
 	{
 		shadow_ray.direction = v_subtract(light->view, ray->intersection);
 		shadow_ray.intersection = ray->intersection;
 		shadow_ray.t = INFINITY;
-		j = 0;
 		light_disp = v_dot_product(ray->normal, v_normalize(shadow_ray.direction));
 		if (light_disp > 0 && !in_shadow(light->view, &shadow_ray, &elements))
 		{
-			j = 1;
 			adj_brightness = (light->brightness * light_disp * 1000.0)
 				/ (4 * M_PI * pow(v_length(shadow_ray.direction), 2));
 			light_add = color_multiply(light->color, color_ratio(ray->color, adj_brightness));
 			base_light = color_add(base_light, light_add);
 		}
 		light = light->next;
-		i++;
 	}
 	return (color_add(back_light, base_light));
 }

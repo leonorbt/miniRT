@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 01:10:23 by aazevedo          #+#    #+#             */
-/*   Updated: 2022/09/18 01:14:44 by aazevedo         ###   ########.fr       */
+/*   Updated: 2022/09/18 17:21:20 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
  * (to avoid using O and C, we created a temp that is O - C)
  */
 
-static void	quadratic_function(t_array_float params, float *t0, float *t1)
+void	quadratic_function(t_array_float params, float *t0, float *t1)
 {
 	float	discriminant;
 
