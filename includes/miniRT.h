@@ -6,7 +6,7 @@
 /*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/18 01:13:18 by aazevedo         ###   ########.fr       */
+/*   Updated: 2022/09/18 17:30:50 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,7 @@ void			plane(t_array_float ray_orig, t_ray *ray, t_pl *plane);
 t_array_int		color_ratio(t_array_int color, float ratio);
 t_array_int		color_add(t_array_int color, t_array_int color2);
 t_array_int		color_multiply(t_array_int color1, t_array_int color2);
+int				rgb_to_color(t_array_int rgb);
 
 /* ------------- utils ------------- */
 /* ft_gnl */
