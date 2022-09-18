@@ -6,7 +6,7 @@
 /*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:23:52 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/16 19:24:08 by aazevedo         ###   ########.fr       */
+/*   Updated: 2022/09/18 16:55:55 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ t_window	*init_window(t_elem *elements, void (*before_loop)(t_window *data))
 t_elem	ft_element_init(void)
 {
 	t_elem	elements;
+	t_obj	*list;
 
+	elements.obj_list = NULL;
 	elements.has_ambient = 0;
 	elements.has_camera = 0;
 	elements.n_lights = 0;
