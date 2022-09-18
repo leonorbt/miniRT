@@ -60,6 +60,7 @@ float	ft_parse_float(char	*str)
 		right = 0.0;
 	else
 		right = (float) ft_parse_int(parts[1]);
+	ft_free_arrays(parts);
 	while (right_len-- > 0)
 		right /= 10;
 	if (left == 0 && str[0] == '-')

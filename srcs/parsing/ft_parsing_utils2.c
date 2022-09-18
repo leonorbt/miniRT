@@ -12,6 +12,12 @@
 
 #include "../../includes/miniRT.h"
 
+static int	free_array_and_return(char **array, int ret)
+{
+	ft_free_arrays(array);
+	return (ret);
+}
+
 int	ft_line_has_alpha(char *str)
 {
 	int		i;
@@ -30,10 +36,10 @@ int	ft_line_has_alpha(char *str)
 			|| line_in_pieces[i][j] == ',' || line_in_pieces[i][j] == '.')
 				;
 			else
-				return (1);
+				return (free_array_and_return(line_in_pieces, 1));
 			j++;
 		}
 		i++;
 	}
-	return (0);
+	return (free_array_and_return(line_in_pieces, 0));
 }
