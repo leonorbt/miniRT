@@ -14,7 +14,7 @@
 
 float	v_length(t_array_float vector)
 {
-	float			length;
+	float	length;
 
 	length = sqrt(pow(vector.elem1, 2) + pow(vector.elem2, 2)
 			+ pow(vector.elem3, 2));
