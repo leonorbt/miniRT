@@ -6,7 +6,7 @@
 /*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 13:53:47 by aazevedo          #+#    #+#             */
-/*   Updated: 2022/09/18 17:41:29 by aazevedo         ###   ########.fr       */
+/*   Updated: 2022/09/18 17:44:31 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static t_array_int	get_base_light(t_array_int base_light, t_l *light,
 		adj_brightness = (light->brightness * light_disp * 1000.0)
 			/ (4 * M_PI * pow(v_length(shadow_ray.direction), 2));
 		light_add = color_multiply(light->color, color_ratio(ray->color,
-			adj_brightness));
+				adj_brightness));
 		base_light = color_add(base_light, light_add);
 	}
 	return (base_light);
