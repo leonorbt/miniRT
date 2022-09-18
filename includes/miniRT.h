@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/17 00:32:24 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/18 01:13:18 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,14 +179,13 @@ t_array_float	get_ray_dir(int pixel_x, int pixel_y, t_elem *elements);
 //static void	draw_core(int x, int y, t_mlx_img img, t_elem elements)
 void			draw(t_window *mlx_data);
 
-/* drawing_elements --> likely trash */
-int				ft_in_circle(int x, int y, t_sp sphere);
-
 /* ray_casting */
-void			sphere(t_array_float ray_orig, t_ray *ray, t_sp *sphere);
+t_array_float	get_intersection(t_array_float ray_orig, t_ray ray);
 bool			in_shadow(t_array_float ray_orig, t_ray *ray, t_elem *elements);
 bool			ray_intersect(t_array_float ray_orig, t_ray *ray,
 					t_elem *elements);
+void			sphere(t_array_float ray_orig, t_ray *ray, t_sp *sphere);
+void			plane(t_array_float ray_orig, t_ray *ray, t_pl *plane);
 
 /* colors */
 t_array_int		color_ratio(t_array_int color, float ratio);
