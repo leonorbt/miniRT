@@ -51,7 +51,6 @@ t_window	*init_window(t_elem *elements, void (*before_loop)(t_window *data))
 t_elem	ft_element_init(void)
 {
 	t_elem	elements;
-	t_obj	*list;
 
 	elements.obj_list = NULL;
 	elements.has_ambient = 0;

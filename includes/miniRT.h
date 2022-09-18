@@ -107,7 +107,7 @@ typedef struct s_obj
 	t_pl			*plane;
 	t_sp			*sphere;
 	t_cy			*cylinder;
-	struct t_obj	*next;
+	struct s_obj	*next;
 }	t_obj;
 
 typedef struct s_elem
