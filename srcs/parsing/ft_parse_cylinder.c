@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_cylinder.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 00:18:25 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/12 20:17:39 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/18 17:03:07 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int	ft_parse_cylinder(char *line, t_elem *elements)
 	if (err == 1 || ft_validate_cylinder(*cylinder) == 1)
 		return (ft_errors(ERR_CYLINDER_ARGS));
 	ft_lstadd_back_cylinder(&elements->cylinders, &cylinder);
+	ft_lstadd_back_obj_cylinder(&elements->obj_list, &cylinder);
 	elements->n_cylinder += 1;
 	return (0);
 }

@@ -102,6 +102,14 @@ typedef struct s_cy
 	struct s_cy		*next;
 }	t_cy;
 
+typedef struct s_obj
+{
+	t_pl			*plane;
+	t_sp			*sphere;
+	t_cy			*cylinder;
+	struct t_obj	*next;
+}	t_obj;
+
 typedef struct s_elem
 {
 	int		has_ambient;
@@ -117,6 +125,7 @@ typedef struct s_elem
 	t_sp	*spheres;
 	int		n_cylinder;
 	t_cy	*cylinders;
+	t_obj	*obj_list;
 }	t_elem;
 
 typedef struct s_ray
@@ -242,5 +251,11 @@ t_array_int		ft_parse_3int(char *str);
 t_array_float	ft_parse_3float(char *str);
 int				ft_line_has_alpha(char *str);
 
-void	quadratic_function(t_array_float params, float *t0, float *t1);
+/* ft_object_list */
+void			ft_lstadd_back_obj_plane(t_obj **lst, t_pl **plane);
+void			ft_lstadd_back_obj_sphere(t_obj **lst, t_sp **sphere);
+void			ft_lstadd_back_obj_cylinder(t_obj **lst, t_cy **cylinder)
+;
+
+void	        quadratic_function(t_array_float params, float *t0, float *t1);
 #endif

@@ -6,7 +6,7 @@
 /*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 00:12:58 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/16 14:31:28 by aazevedo         ###   ########.fr       */
+/*   Updated: 2022/09/18 17:03:40 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int	ft_parse_plane(char *line, t_elem *elements)
 	if (err == 1 || ft_validate_plane(*plane) == 1)
 		return (ft_errors(ERR_PLANE_ARGS));
 	ft_lstadd_back_plane(&elements->planes, &plane);
+	ft_lstadd_back_obj_plane(&elements->obj_list, &plane);
 	elements->n_plane += 1;
 	return (0);
 }

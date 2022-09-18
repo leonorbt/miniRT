@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_sphere.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 00:18:25 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/21 17:12:57 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/18 17:02:44 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int	ft_parse_sphere(char *line, t_elem *elements)
 	if (err == 1 || ft_validate_sphere(*sphere) == 1)
 		return (ft_errors(ERR_SPHERE_ARGS));
 	ft_lstadd_back_sphere(&elements->spheres, &sphere);
+	ft_lstadd_back_obj_sphere(&elements->obj_list, &sphere);
 	elements->n_sphere += 1;
 	return (0);
 }
