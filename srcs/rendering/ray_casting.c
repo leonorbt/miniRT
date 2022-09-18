@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:59:33 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/18 23:26:35 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/18 23:57:34 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ static void	ray_loop_objs(t_elem *elements, t_array_float ray_orig, t_ray *ray)
 			sphere(ray_orig, ray, obj->sphere);
 		else if (obj->plane != NULL)
 			plane(ray_orig, ray, obj->plane);
-        else if (obj->cylinder != NULL)
+		else if (obj->cylinder != NULL)
 		{
-            cylinder(ray_orig, ray, obj->cylinder);
-            bottom_cap(ray_orig, ray, obj->cylinder);
-            top_cap(ray_orig, ray, obj->cylinder);
+			cylinder(ray_orig, ray, obj->cylinder);
+			bottom_cap(ray_orig, ray, obj->cylinder);
+			top_cap(ray_orig, ray, obj->cylinder);
 		}
 		obj = obj->next;
 	}

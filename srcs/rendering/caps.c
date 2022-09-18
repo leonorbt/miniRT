@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 21:16:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/18 23:44:27 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/18 23:56:07 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	top_cap(t_array_float ray_orig, t_ray *ray, t_cy *cylinder)
 	float			num;
 	float			den;
 	float			t;
-	float			dist;
 
 	top = v_add(cylinder->view, v_scale(cylinder->vector, cylinder->height));
 	intersection = v_subtract(top, ray_orig);
@@ -56,8 +55,8 @@ void	top_cap(t_array_float ray_orig, t_ray *ray, t_cy *cylinder)
 		return ;
 	t = num / den;
 	intersection = v_add(ray_orig, v_scale(ray->direction, t));
-	dist = v_length(v_subtract(intersection, top));
-	if (t > 0 && t <= ray->t && dist < cylinder->diameter / 2)
+	num = v_length(v_subtract(intersection, top));
+	if (t > 0 && t <= ray->t && num < cylinder->diameter / 2)
 	{
 		ray->t = t;
 	}

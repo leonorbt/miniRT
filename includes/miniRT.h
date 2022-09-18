@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/18 23:26:43 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/18 23:53:08 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,7 @@ void			top_cap(t_array_float ray_orig, t_ray *ray, t_cy *cylinder);
 t_array_int		color_ratio(t_array_int color, float ratio);
 t_array_int		color_add(t_array_int color, t_array_int color2);
 t_array_int		color_multiply(t_array_int color1, t_array_int color2);
-int             rgb_to_color(t_array_int rgb);
+int				rgb_to_color(t_array_int rgb);
 
 /* ------------- utils ------------- */
 /* ft_gnl */
@@ -256,8 +256,8 @@ int				ft_line_has_alpha(char *str);
 /* ft_object_list */
 void			ft_lstadd_back_obj_plane(t_obj **lst, t_pl **plane);
 void			ft_lstadd_back_obj_sphere(t_obj **lst, t_sp **sphere);
-void			ft_lstadd_back_obj_cylinder(t_obj **lst, t_cy **cylinder)
-;
+void			ft_lstadd_back_obj_cylinder(t_obj **lst, t_cy **cylinder);
 
-void	        quadratic_function(t_array_float params, float *t0, float *t1);
+void			quadratic_function(t_array_float params, float *t0, float *t1);
+
 #endif
