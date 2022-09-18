@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/18 19:46:45 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/18 21:26:05 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,7 @@ bool			ray_intersect(t_array_float ray_orig, t_ray *ray,
 void			sphere(t_array_float ray_orig, t_ray *ray, t_sp *sphere);
 void			plane(t_array_float ray_orig, t_ray *ray, t_pl *plane);
 void			cylinder(t_array_float ray_orig, t_ray *ray, t_cy *cylinder);
+void			caps(t_array_float ray_orig, t_ray *ray, t_cy *cylinder);
 
 /* colors */
 t_array_int		color_ratio(t_array_int color, float ratio);

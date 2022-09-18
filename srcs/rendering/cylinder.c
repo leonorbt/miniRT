@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:59:33 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/18 19:54:16 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/18 21:13:57 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_array_float	get_cylinder_normal(t_array_float intersection, t_cy *cylinder)
  * For the intersection to be within the height, it must be bellow the top
  * cap (dot product of intersect to top and axis must be )
  */
-bool	within_height(float t, t_cy *cylinder, t_array_float ray_orig,
+bool	check_height(float t, t_cy *cylinder, t_array_float ray_orig,
 	t_array_float ray_dir)
 {
 	t_array_float	intersection;
@@ -45,6 +45,9 @@ bool	within_height(float t, t_cy *cylinder, t_array_float ray_orig,
 		return (false);
 }
 
+/*
+ * https://mrl.cs.nyu.edu/~dzorin/rend05/lecture2.pdf
+ */
 void	cylinder(t_array_float ray_orig, t_ray *ray, t_cy *cylinder)
 {
 	t_array_float	quadratic_params;
@@ -63,10 +66,9 @@ void	cylinder(t_array_float ray_orig, t_ray *ray, t_cy *cylinder)
 	quadratic_params.elem3 = pow(v_length(temp2), 2)
 		- pow(cylinder->diameter / 2, 2);
 	quadratic_function(quadratic_params, &t0, &t1);
-	//need to check if in caps
-	if (t0 > 0 && t0 < t1 && t0 <= ray->t && within_height(t0, cylinder, ray_orig, ray->direction))
+	if (t0 > 0 && t0 < t1 && t0 <= ray->t && check_height(t0, cylinder, ray_orig, ray->direction))
 		ray->t = t0;
-	else if (t1 > 0 && t1 <= ray->t && within_height(t1, cylinder, ray_orig, ray->direction))
+	else if (t1 > 0 && t1 <= ray->t && check_height(t1, cylinder, ray_orig, ray->direction))
 		ray->t = t1;
 	else
 		return ;
