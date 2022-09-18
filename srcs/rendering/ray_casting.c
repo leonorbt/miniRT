@@ -34,8 +34,8 @@ static void	ray_loop_objs(t_elem *elements, t_array_float ray_orig, t_ray *ray)
 			sphere(ray_orig, ray, obj->sphere);
 		else if (obj->plane != NULL)
 			plane(ray_orig, ray, obj->plane);
-		 else if (obj->cylinder != NULL)
-			 cylinder(ray_orig, ray, obj->cylinder);
+        else if (obj->cylinder != NULL)
+            cylinder(ray_orig, ray, obj->cylinder);
 		obj = obj->next;
 	}
 }

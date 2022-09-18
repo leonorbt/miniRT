@@ -3,25 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 13:53:47 by aazevedo          #+#    #+#             */
-/*   Updated: 2022/09/17 21:45:48 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/18 17:45:04 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
-
-static int	rgb_to_color(t_array_int rgb)
-{
-	if (rgb.elem1 > 255)
-		rgb.elem1 = 255;
-	if (rgb.elem2 > 255)
-		rgb.elem2 = 255;
-	if (rgb.elem3 > 255)
-		rgb.elem3 = 255;
-	return (rgb.elem1 << 16 | rgb.elem2 << 8 | rgb.elem3);
-}
 
 static void	my_mlx_pixel_put(t_mlx_img *img_data, int x, int y, t_array_int rgb)
 {
@@ -32,30 +21,39 @@ static void	my_mlx_pixel_put(t_mlx_img *img_data, int x, int y, t_array_int rgb)
 	*(unsigned int *) dst = rgb_to_color(rgb);
 }
 
-t_array_int	get_color(t_ray *ray, t_array_int back_light, t_elem elements)
+static t_array_int	get_base_light(t_array_int base_light, t_l *light,
+							t_ray *ray, t_elem elements)
 {
 	t_ray			shadow_ray;
-	float			light_disp;
 	float			adj_brightness;
-	t_l				*light;
+	float			light_disp;
 	t_array_int		light_add;
+
+	shadow_ray.direction = v_subtract(light->view, ray->intersection);
+	shadow_ray.intersection = ray->intersection;
+	shadow_ray.t = INFINITY;
+	light_disp = v_dot_product(ray->normal, v_normalize(shadow_ray.direction));
+	if (light_disp > 0 && !in_shadow(light->view, &shadow_ray, &elements))
+	{
+		adj_brightness = (light->brightness * light_disp * 1000.0)
+			/ (4 * M_PI * pow(v_length(shadow_ray.direction), 2));
+		light_add = color_multiply(light->color, color_ratio(ray->color,
+					adj_brightness));
+		base_light = color_add(base_light, light_add);
+	}
+	return (base_light);
+}
+
+t_array_int	get_color(t_ray *ray, t_array_int back_light, t_elem elements)
+{
+	t_l				*light;
 	t_array_int		base_light;
 
 	light = elements.lights;
 	base_light = color_ratio(light->color, 0);
-	while (light)
+	while (light != NULL)
 	{
-		shadow_ray.direction = v_subtract(light->view, ray->intersection);
-		shadow_ray.intersection = ray->intersection;
-		shadow_ray.t = INFINITY;
-		light_disp = v_dot_product(ray->normal, v_normalize(shadow_ray.direction));
-		if (light_disp > 0 && !in_shadow(light->view, &shadow_ray, &elements))
-		{
-			adj_brightness = (light->brightness * light_disp * 1000.0)
-				/ (4 * M_PI * pow(v_length(shadow_ray.direction), 2));
-			light_add = color_multiply(light->color, color_ratio(ray->color, adj_brightness));
-			base_light = color_add(base_light, light_add);
-		}
+		base_light = get_base_light(base_light, light, ray, elements);
 		light = light->next;
 	}
 	return (color_add(back_light, base_light));

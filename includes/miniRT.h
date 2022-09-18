@@ -183,7 +183,6 @@ int				ft_errors(int error_code);
 t_array_float	get_ray_dir(int pixel_x, int pixel_y, t_elem *elements);
 
 /* draw */
-//static int	rgb_to_color(t_array_int rgb)
 //void	my_mlx_pixel_put(t_mlx_img *img_data, int x, int y, t_array_int rgb)
 //static void	draw_core(int x, int y, t_mlx_img img, t_elem elements)
 void			draw(t_window *mlx_data);
@@ -201,6 +200,7 @@ void			cylinder(t_array_float ray_orig, t_ray *ray, t_cy *cylinder);
 t_array_int		color_ratio(t_array_int color, float ratio);
 t_array_int		color_add(t_array_int color, t_array_int color2);
 t_array_int		color_multiply(t_array_int color1, t_array_int color2);
+int             rgb_to_color(t_array_int rgb);
 
 /* ------------- utils ------------- */
 /* ft_gnl */
