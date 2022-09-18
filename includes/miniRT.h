@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/18 17:21:18 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/18 19:46:45 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,7 @@ bool			ray_intersect(t_array_float ray_orig, t_ray *ray,
 					t_elem *elements);
 void			sphere(t_array_float ray_orig, t_ray *ray, t_sp *sphere);
 void			plane(t_array_float ray_orig, t_ray *ray, t_pl *plane);
+void			cylinder(t_array_float ray_orig, t_ray *ray, t_cy *cylinder);
 
 /* colors */
 t_array_int		color_ratio(t_array_int color, float ratio);
@@ -214,6 +215,8 @@ t_array_float	v_subtract(t_array_float v1, t_array_float v2);
 t_array_float	v_cross_product(t_array_float v1, t_array_float v2);
 t_array_float	m_multiply(t_array_float vector, t_c cam);
 float			v_dot_product(t_array_float v1, t_array_float v2);
+t_array_float	v_scale(t_array_float vector, float f);
+t_array_float	v_add(t_array_float v1, t_array_float v2);
 
 /* ft_split */
 // static int ft_words(char const *str, char del)
