@@ -18,6 +18,22 @@ static int	free_array_and_return(char **array, int ret)
 	return (ret);
 }
 
+int	ft_str_is_number(char *str)
+{
+	int	i;
+
+	if (ft_line_has_alpha(str))
+		return (1);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == ',')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	ft_line_has_alpha(char *str)
 {
 	int		i;

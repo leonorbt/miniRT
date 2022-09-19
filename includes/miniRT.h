@@ -263,6 +263,7 @@ float			ft_parse_float(char *str);
 t_array_int		ft_parse_3int(char *str);
 t_array_float	ft_parse_3float(char *str);
 int				ft_line_has_alpha(char *str);
+int				ft_str_is_number(char *str);
 
 /* ft_object_list */
 void			ft_free_obj_list(t_obj *lst);

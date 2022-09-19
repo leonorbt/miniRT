@@ -40,7 +40,7 @@ static int	sphere_core(char **line_in_pieces, t_sp **sphere)
 			break ;
 		if (i == 1)
 			(*sphere)->center = ft_parse_3float(line_in_pieces[i]);
-		if (i == 2)
+		if (i == 2 && ft_str_is_number(line_in_pieces[i]))
 			(*sphere)->diameter = ft_parse_float(line_in_pieces[i]);
 		if (i == 3)
 			(*sphere)->color = ft_parse_3int(line_in_pieces[i]);

@@ -112,7 +112,10 @@ t_array_float	ft_parse_3float(char *str)
 			array.elem3 = ft_parse_float(parts[size]);
 		size++;
 	}
-	if (size == 3)
+	if (size == 3
+		&& ft_str_is_number(parts[0])
+		&& ft_str_is_number(parts[1])
+		&& ft_str_is_number(parts[2]))
 		array.f_error = 0;
 	else
 		array.f_error = 1;

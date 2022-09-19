@@ -43,7 +43,7 @@ int	ft_parse_ambient(char *line, t_elem *elements)
 	{
 		if (i == 0 && ft_strcmp(line_in_pieces[i], "A") != 0)
 			break ;
-		if (i == 1)
+		if (i == 1 && ft_str_is_number(line_in_pieces[i]))
 			ambient_light.ratio = ft_parse_float(line_in_pieces[i]);
 		if (i == 2)
 			ambient_light.color = ft_parse_3int(line_in_pieces[i]);

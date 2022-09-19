@@ -52,9 +52,9 @@ static int	cylinder_core(char **line_in_pieces, t_cy **cylinder)
 			(*cylinder)->view = ft_parse_3float(line_in_pieces[i]);
 		if (i == 2)
 			(*cylinder)->vector = ft_parse_3float(line_in_pieces[i]);
-		if (i == 3)
+		if (i == 3 && ft_str_is_number(line_in_pieces[i]))
 			(*cylinder)->diameter = ft_parse_float(line_in_pieces[i]);
-		if (i == 4)
+		if (i == 4 && ft_str_is_number(line_in_pieces[i]))
 			(*cylinder)->height = ft_parse_float(line_in_pieces[i]);
 		if (i == 5)
 			(*cylinder)->color = ft_parse_3int(line_in_pieces[i]);

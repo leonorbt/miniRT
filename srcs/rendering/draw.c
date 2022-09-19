@@ -103,6 +103,5 @@ void	draw(t_window *window)
 		}
 		x++;
 	}
-	printf("End of image building\n");
 	mlx_put_image_to_window(window->mlx, window->mlx_win, img.img, 0, 0);
 }
