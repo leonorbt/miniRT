@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 22:12:37 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/08/21 15:57:29 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/19 01:39:22 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	ft_parse_line(char *line, t_elem *elements)
 		f_error = ft_parse_sphere(line, elements);
 	else if (line[i] == 'c' && ft_strlen(line) > i + 1 && line[i + 1] == 'y')
 		f_error = ft_parse_cylinder(line, elements);
+	else if (line[i] == 't' && ft_strlen(line) > i + 1 && line[i + 1] == 'r')
+		f_error = ft_parse_triangle(line, elements);
 	else if (ft_strlen(line) == i)
 		f_error = 0;
 	return (f_error);

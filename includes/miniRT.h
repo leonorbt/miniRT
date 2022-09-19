@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/18 23:53:08 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/19 01:35:40 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,24 @@ typedef struct s_cy
 	struct s_cy		*next;
 }	t_cy;
 
+typedef struct s_tr
+{
+	t_array_float	p1;
+	t_array_float	p2;
+	t_array_float	p3;
+	t_array_float	normal;
+	float			area;
+	t_array_int		color;
+	struct t_tr		*next;
+}	t_tr;
+
+
 typedef struct s_obj
 {
 	t_pl			*plane;
 	t_sp			*sphere;
 	t_cy			*cylinder;
+	t_tr			*triangle;
 	struct s_obj	*next;
 }	t_obj;
 
@@ -125,6 +138,8 @@ typedef struct s_elem
 	t_sp	*spheres;
 	int		n_cylinder;
 	t_cy	*cylinders;
+	int		n_triangle;
+	t_tr	*triangle;
 	t_obj	*obj_list;
 }	t_elem;
 
@@ -152,7 +167,8 @@ typedef enum e_error_codes
 	ERR_LIGHT_ARGS,
 	ERR_PLANE_ARGS,
 	ERR_SPHERE_ARGS,
-	ERR_CYLINDER_ARGS
+	ERR_CYLINDER_ARGS,
+	ERR_TRIANGLE_ARGS
 }	t_error_codes;
 
 typedef struct s_window
@@ -197,6 +213,7 @@ void			plane(t_array_float ray_orig, t_ray *ray, t_pl *plane);
 void			cylinder(t_array_float ray_orig, t_ray *ray, t_cy *cylinder);
 void			bottom_cap(t_array_float ray_orig, t_ray *ray, t_cy *cylinder);
 void			top_cap(t_array_float ray_orig, t_ray *ray, t_cy *cylinder);
+void			triangle(t_array_float ray_orig, t_ray *ray, t_tr *triangle);
 
 /* colors */
 t_array_int		color_ratio(t_array_int color, float ratio);
@@ -242,6 +259,7 @@ int				ft_parse_light(char *line, t_elem *elements);
 int				ft_parse_plane(char *line, t_elem *elements);
 int				ft_parse_sphere(char *line, t_elem *elements);
 int				ft_parse_cylinder(char *line, t_elem *elements);
+int				ft_parse_triangle(char *line, t_elem *elements);
 
 /* ft_parsing */
 int				ft_start_parsing(char *scene_file, t_elem *elements);
@@ -257,6 +275,7 @@ int				ft_line_has_alpha(char *str);
 void			ft_lstadd_back_obj_plane(t_obj **lst, t_pl **plane);
 void			ft_lstadd_back_obj_sphere(t_obj **lst, t_sp **sphere);
 void			ft_lstadd_back_obj_cylinder(t_obj **lst, t_cy **cylinder);
+void			ft_lstadd_back_obj_triangle(t_obj **lst, t_tr **triangle);
 
 void			quadratic_function(t_array_float params, float *t0, float *t1);
 
