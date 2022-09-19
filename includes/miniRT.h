@@ -265,6 +265,7 @@ t_array_float	ft_parse_3float(char *str);
 int				ft_line_has_alpha(char *str);
 
 /* ft_object_list */
+void			ft_free_obj_list(t_obj *lst);
 void			ft_lstadd_back_obj_plane(t_obj **lst, t_pl **plane);
 void			ft_lstadd_back_obj_sphere(t_obj **lst, t_sp **sphere);
 void			ft_lstadd_back_obj_cylinder(t_obj **lst, t_cy **cylinder);

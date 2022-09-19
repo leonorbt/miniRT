@@ -12,6 +12,24 @@
 
 #include "../../includes/miniRT.h"
 
+void	ft_free_obj_list(t_obj *lst)
+{
+	t_obj	*obj;
+	t_obj	*prev;
+	
+	if (lst == NULL)
+		return ;
+	obj = lst;
+	prev = NULL;
+	while (obj != NULL)
+	{
+		obj = obj->next;
+		if (prev != NULL)
+			free(prev);
+	}
+	free(prev);
+}
+
 void	ft_lstadd_back_obj_plane(t_obj **lst, t_pl **plane)
 {
 	t_obj	*element;

@@ -25,8 +25,8 @@ int	on_key_press(int keycode, t_window *data)
 	if (keycode == KEY_ESC)
 	{
 		mlx_destroy_window(data->mlx, data->mlx_win);
+		ft_free_obj_list(data->elements->obj_list);
 		free(data);
-		// TODO! free program data
 		exit(0);
 	}
 	return (0);
