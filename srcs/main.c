@@ -55,7 +55,6 @@ t_elem	ft_element_init(void)
 	elements.obj_list = NULL;
 	elements.has_ambient = 0;
 	elements.has_camera = 0;
-	elements.n_lights = 0;
 	elements.lights = NULL;
 	return (elements);
 }

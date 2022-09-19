@@ -128,16 +128,7 @@ typedef struct s_elem
 	t_a		ambient_light;
 	int		has_camera;
 	t_c		camera;
-	int		n_lights;
 	t_l		*lights;
-	// int		n_plane;
-	// t_pl	*planes;
-	// int		n_sphere;
-	// t_sp	*spheres;
-	// int		n_cylinder;
-	// t_cy	*cylinders;
-	// int		n_triangle;
-	// t_tr	*triangle;
 	t_obj	*obj_list;
 }	t_elem;
 
