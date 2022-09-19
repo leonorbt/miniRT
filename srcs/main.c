@@ -57,28 +57,18 @@ t_elem	ft_element_init(void)
 	elements.has_camera = 0;
 	elements.n_lights = 0;
 	elements.lights = NULL;
-	elements.n_plane = 0;
-	elements.planes = NULL;
-	elements.n_sphere = 0;
-	elements.spheres = NULL;
-	elements.n_cylinder = 0;
-	elements.cylinders = NULL;
-	elements.n_triangle = 0;
-	elements.triangle = NULL;
 	return (elements);
 }
 
 int	main(int argc, char **argv)
 {
 	t_elem		elements;
-	t_window	*window;
 
 	if (argc != 2)
 		return (ft_errors(ERR_N_ARGS));
 	elements = ft_element_init();
 	if (ft_start_parsing(argv[1], &elements) == 1)
 		return (1);
-	// debug_print(&elements);
-	window = init_window(&elements, &draw);
+	init_window(&elements, &draw);
 	return (0);
 }

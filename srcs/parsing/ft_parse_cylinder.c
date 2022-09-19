@@ -39,21 +39,6 @@ int	ft_validate_cylinder(t_cy cylinder)
 	return (0);
 }
 
-static void	ft_lstadd_back_cylinder(t_cy **lst, t_cy **new)
-{
-	t_cy	*element;
-
-	if (*lst == NULL)
-	{
-		*lst = *new;
-		return ;
-	}
-	element = *lst;
-	while (element->next)
-		element = element->next;
-	element->next = *new;
-}
-
 static int	cylinder_core(char **line_in_pieces, t_cy **cylinder)
 {
 	int	i;
@@ -93,8 +78,6 @@ int	ft_parse_cylinder(char *line, t_elem *elements)
 	ft_free_arrays(line_in_pieces);
 	if (err == 1 || ft_validate_cylinder(*cylinder) == 1)
 		return (ft_errors(ERR_CYLINDER_ARGS));
-	ft_lstadd_back_cylinder(&elements->cylinders, &cylinder);
 	ft_lstadd_back_obj_cylinder(&elements->obj_list, &cylinder);
-	elements->n_cylinder += 1;
 	return (0);
 }

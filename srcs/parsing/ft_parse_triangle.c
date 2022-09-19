@@ -33,21 +33,6 @@ int	ft_validate_triangle(t_tr triangle)
 	return (0);
 }
 
-static void	ft_lstadd_back_triangle(t_tr **lst, t_tr **new)
-{
-	t_tr	*element;
-
-	if (*lst == NULL)
-	{
-		*lst = *new;
-		return ;
-	}
-	element = *lst;
-	while (element->next)
-		element = element->next;
-	element->next = *new;
-}
-
 static int	triangle_core(char **line_in_pieces, t_tr **triangle)
 {
 	int	i;
@@ -88,8 +73,6 @@ int	ft_parse_triangle(char *line, t_elem *elements)
 	ft_free_arrays(line_in_pieces);
 	if (err == 1 || ft_validate_triangle(*triangle) == 1)
 		return (ft_errors(ERR_TRIANGLE_ARGS));
-	ft_lstadd_back_triangle(&elements->triangle, &triangle);
 	ft_lstadd_back_obj_triangle(&elements->obj_list, &triangle);
-	elements->n_triangle += 1;
 	return (0);
 }

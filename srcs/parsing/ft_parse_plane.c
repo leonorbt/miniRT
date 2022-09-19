@@ -35,21 +35,6 @@ int	ft_validate_plane(t_pl plane)
 	return (0);
 }
 
-static void	ft_lstadd_back_plane(t_pl **lst, t_pl **new)
-{
-	t_pl	*element;
-
-	if (*lst == NULL)
-	{
-		*lst = *new;
-		return ;
-	}
-	element = *lst;
-	while (element->next)
-		element = element->next;
-	element->next = *new;
-}
-
 static int	plane_core(char **line_in_pieces, t_pl **plane)
 {
 	int	i;
@@ -85,8 +70,6 @@ int	ft_parse_plane(char *line, t_elem *elements)
 	ft_free_arrays(line_in_pieces);
 	if (err == 1 || ft_validate_plane(*plane) == 1)
 		return (ft_errors(ERR_PLANE_ARGS));
-	ft_lstadd_back_plane(&elements->planes, &plane);
 	ft_lstadd_back_obj_plane(&elements->obj_list, &plane);
-	elements->n_plane += 1;
 	return (0);
 }

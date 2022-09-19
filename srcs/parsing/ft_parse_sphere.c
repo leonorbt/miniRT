@@ -29,21 +29,6 @@ int	ft_validate_sphere(t_sp sphere)
 	return (0);
 }
 
-static void	ft_lstadd_back_sphere(t_sp **lst, t_sp **new)
-{
-	t_sp	*element;
-
-	if (*lst == NULL)
-	{
-		*lst = *new;
-		return ;
-	}
-	element = *lst;
-	while (element->next)
-		element = element->next;
-	element->next = *new;
-}
-
 static int	sphere_core(char **line_in_pieces, t_sp **sphere)
 {
 	int	i;
@@ -79,8 +64,6 @@ int	ft_parse_sphere(char *line, t_elem *elements)
 	ft_free_arrays(line_in_pieces);
 	if (err == 1 || ft_validate_sphere(*sphere) == 1)
 		return (ft_errors(ERR_SPHERE_ARGS));
-	ft_lstadd_back_sphere(&elements->spheres, &sphere);
 	ft_lstadd_back_obj_sphere(&elements->obj_list, &sphere);
-	elements->n_sphere += 1;
 	return (0);
 }
