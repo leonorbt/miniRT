@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 22:12:37 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/19 23:48:11 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/20 00:37:28 by aazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	ft_parse_line(char *line, t_elem *elements)
 		i++;
 	if (ft_line_has_alpha(line) == 1)
 		return (ft_errors(ERR_ALPHA));
-	f_obj_error = ft_parse_object(line, elements);
+	f_obj_error = ft_parse_object(&line[i], elements);
 	if (f_obj_error == 1 || f_obj_error == 0)
 		return (f_obj_error);
 	if (line[i] == 'A')
