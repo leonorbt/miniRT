@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_errors.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 23:46:02 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/16 14:16:05 by aazevedo         ###   ########.fr       */
+/*   Updated: 2022/09/19 01:53:58 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static void	ft_error_elements(int error_code)
 		ft_putstr_fd("Error\nThe sphere is ill formated\n", 2);
 	else if (error_code == ERR_CYLINDER_ARGS)
 		ft_putstr_fd("Error\nThe cylinder is ill formated\n", 2);
+	else if (error_code == ERR_TRIANGLE_ARGS)
+		ft_putstr_fd("Error\nThe triangle is ill formated\n", 2);
 }
 
 int	ft_errors(int error_code)

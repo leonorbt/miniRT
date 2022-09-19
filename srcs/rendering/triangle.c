@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 01:26:33 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/19 01:35:16 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/19 01:55:04 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	triangle(t_array_float ray_orig, t_ray *ray, t_tr *triangle)
 	float			t;
 
 	temp = v_subtract(triangle->p1, ray_orig);
-	num = v_dot_product(temp, triangle->normal);
-	den = v_dot_product(ray->direction, triangle->normal);
+	num = v_dot_product(temp, v_normalize(triangle->normal));
+	den = v_dot_product(ray->direction, v_normalize(triangle->normal));
 	if (pow(den, 2) < 0.001)
 		return ;
 	t = num / den;
