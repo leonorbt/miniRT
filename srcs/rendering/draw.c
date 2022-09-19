@@ -103,5 +103,6 @@ void	draw(t_window *window)
 		}
 		x++;
 	}
+	printf("Enjoy your beautiful image!\n");
 	mlx_put_image_to_window(window->mlx, window->mlx_win, img.img, 0, 0);
 }
