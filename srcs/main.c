@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:23:52 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/19 18:38:21 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/19 19:50:19 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int	main(int argc, char **argv)
 	elements = ft_element_init();
 	if (ft_start_parsing(argv[1], &elements) == 1)
 		return (1);
+	if (elements.has_camera == 0)
+		return (ft_errors(ERR_N_CAMERA));
 	init_window(&elements, &draw);
 	return (0);
 }
