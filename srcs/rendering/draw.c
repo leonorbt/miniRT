@@ -50,6 +50,8 @@ t_array_int	get_color(t_ray *ray, t_array_int back_light, t_elem elements)
 	t_array_int		base_light;
 
 	light = elements.lights;
+	if (light == NULL)
+		return (back_light);
 	base_light = color_ratio(light->color, 0);
 	while (light != NULL)
 	{
