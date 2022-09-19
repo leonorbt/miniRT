@@ -17,11 +17,7 @@ SRCS	= $(wildcard srcs/*.c) \
 			$(wildcard srcs/rendering/*.c) \
 			$(wildcard srcs/utils/*.c)
 
-ifeq ($(USER),tony)
-	MINILIBX_DIR = includes/minilibx_opengl_20191021
-	MINILIBX_FLAGS = -L${MINILIBX_DIR} -lmlx -framework OpenGL -framework AppKit
-	MINILIBX_LIB_FILE = libmlx.a
-else ifeq ($(UNAME_S),Darwin)
+ifeq ($(UNAME_S),Darwin)
 	MINILIBX_DIR = includes/minilibx_macos
 	MINILIBX_FLAGS = -L${MINILIBX_DIR} -lmlx -framework OpenGL -framework AppKit
 	MINILIBX_LIB_FILE = libmlx.dylib
@@ -37,7 +33,6 @@ INCLUDES = -I.
 CC		= cc
 RM		= rm -f
 CFLAGS	= -Wall -Werror -Wextra -fsanitize=address -g
-#CFLAGS	= -Wall -Wextra -fsanitize=address -g
 
 MAKE	=	make
 
@@ -62,7 +57,7 @@ clean:
 	${RM} ${OBJS}
 
 fclean: clean
-	#make clean -C ./${MINILIBX_DIR}
+	make clean -C ./${MINILIBX_DIR}
 	${RM} ${NAME}
 
 re:	fclean all

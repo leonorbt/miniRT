@@ -68,8 +68,8 @@ int	ft_parse_plane(char *line, t_elem *elements)
 	plane = (t_pl *) malloc(sizeof(t_pl));
 	err = plane_core(line_in_pieces, &plane);
 	ft_free_arrays(line_in_pieces);
+	ft_lstadd_back_obj_plane(&elements->obj_list, &plane);
 	if (err == 1 || ft_validate_plane(*plane) == 1)
 		return (ft_errors(ERR_PLANE_ARGS));
-	ft_lstadd_back_obj_plane(&elements->obj_list, &plane);
 	return (0);
 }

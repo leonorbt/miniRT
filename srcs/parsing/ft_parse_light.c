@@ -68,8 +68,8 @@ int	ft_parse_light(char *line, t_elem *elements)
 	}
 	light->next = NULL;
 	ft_free_arrays(line_in_pieces);
+	ft_lstadd_back_light(&elements->lights, &light);
 	if (i > 4 || ft_validate_light(*light) == 1)
 		return (ft_errors(ERR_LIGHT_ARGS));
-	ft_lstadd_back_light(&elements->lights, &light);
 	return (0);
 }

@@ -67,9 +67,15 @@ int	main(int argc, char **argv)
 		return (ft_errors(ERR_N_ARGS));
 	elements = ft_element_init();
 	if (ft_start_parsing(argv[1], &elements) == 1)
+	{
+		ft_free_obj_list(elements.obj_list);
 		return (1);
+	}
 	if (elements.has_camera == 0)
+	{
+		ft_free_obj_list(elements.obj_list);
 		return (ft_errors(ERR_N_CAMERA));
+	}
 	init_window(&elements, &draw);
 	return (0);
 }

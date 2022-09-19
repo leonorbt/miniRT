@@ -76,8 +76,8 @@ int	ft_parse_cylinder(char *line, t_elem *elements)
 	cylinder = (t_cy *) malloc(sizeof(t_cy));
 	err = cylinder_core(line_in_pieces, &cylinder);
 	ft_free_arrays(line_in_pieces);
+	ft_lstadd_back_obj_cylinder(&elements->obj_list, &cylinder);
 	if (err == 1 || ft_validate_cylinder(*cylinder) == 1)
 		return (ft_errors(ERR_CYLINDER_ARGS));
-	ft_lstadd_back_obj_cylinder(&elements->obj_list, &cylinder);
 	return (0);
 }

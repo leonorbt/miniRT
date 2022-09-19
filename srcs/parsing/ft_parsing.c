@@ -36,9 +36,7 @@ static int	ft_parse_object(char *line, t_elem *elements)
 		return (ft_parse_sphere(line, elements));
 	else if (line[0] == 'c' && ft_strlen(line) > 1 && line[1] == 'y')
 		return (ft_parse_cylinder(line, elements));
-	else if (line[0] == 't' && ft_strlen(line) > 1 && line[1] == 'r')
-		return (ft_parse_triangle(line, elements));
-	return (-1);
+	return (2);
 }
 
 /*
@@ -60,7 +58,7 @@ int	ft_parse_line(char *line, t_elem *elements)
 	if (ft_line_has_alpha(line) == 1)
 		return (ft_errors(ERR_ALPHA));
 	f_obj_error = ft_parse_object(line, elements);
-	if (f_obj_error != -1)
+	if (f_obj_error == 1 || f_obj_error == 0)
 		return (f_obj_error);
 	if (line[i] == 'A')
 		f_error = ft_parse_ambient(line, elements);

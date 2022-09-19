@@ -40,8 +40,6 @@ static void	ray_loop_objs(t_elem *elements, t_array_float ray_orig, t_ray *ray)
 			bottom_cap(ray_orig, ray, obj->cylinder);
 			top_cap(ray_orig, ray, obj->cylinder);
 		}
-		else if (obj->triangle != NULL)
-			triangle(ray_orig, ray, obj->triangle);
 		obj = obj->next;
 	}
 }

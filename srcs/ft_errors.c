@@ -34,8 +34,8 @@ static void	ft_error_elements(int error_code)
 		ft_putstr_fd("Error\nThe sphere is ill formated\n", 2);
 	else if (error_code == ERR_CYLINDER_ARGS)
 		ft_putstr_fd("Error\nThe cylinder is ill formated\n", 2);
-	else if (error_code == ERR_TRIANGLE_ARGS)
-		ft_putstr_fd("Error\nThe triangle is ill formated\n", 2);
+	else if (error_code == ERR_OBJS)
+		ft_putstr_fd("Error\nInvalid objects were found\n", 2);
 }
 
 int	ft_errors(int error_code)

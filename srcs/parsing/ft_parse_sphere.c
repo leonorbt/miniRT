@@ -62,8 +62,8 @@ int	ft_parse_sphere(char *line, t_elem *elements)
 	sphere = (t_sp *) malloc(sizeof(t_sp));
 	err = sphere_core(line_in_pieces, &sphere);
 	ft_free_arrays(line_in_pieces);
+	ft_lstadd_back_obj_sphere(&elements->obj_list, &sphere);
 	if (err == 1 || ft_validate_sphere(*sphere) == 1)
 		return (ft_errors(ERR_SPHERE_ARGS));
-	ft_lstadd_back_obj_sphere(&elements->obj_list, &sphere);
 	return (0);
 }
