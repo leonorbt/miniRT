@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 22:12:37 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/19 01:39:22 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/19 18:32:21 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,11 @@ int	ft_parse_line(char *line, t_elem *elements)
 		f_error = ft_parse_triangle(line, elements);
 	else if (ft_strlen(line) == i)
 		f_error = 0;
+	else
+		f_error = ft_errors(ERR_ALPHA);
 	return (f_error);
 }
 
-/* Should I add a variable that is the position
-so the objects can be "painted" in the right order?
- */
 int	ft_parser(int fd, t_elem *elements)
 {
 	char	*line;

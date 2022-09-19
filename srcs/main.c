@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aazevedo <aazevedo@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:23:52 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/18 16:55:55 by aazevedo         ###   ########.fr       */
+/*   Updated: 2022/09/19 18:38:21 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ t_elem	ft_element_init(void)
 	elements.spheres = NULL;
 	elements.n_cylinder = 0;
 	elements.cylinders = NULL;
+	elements.n_triangle = 0;
+	elements.triangle = NULL;
 	return (elements);
 }
 

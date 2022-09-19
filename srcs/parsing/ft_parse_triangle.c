@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 00:18:25 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/19 01:23:00 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/19 18:52:23 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ static int	triangle_core(char **line_in_pieces, t_tr **triangle)
 			(*triangle)->color = ft_parse_3int(line_in_pieces[i]);
 		i++;
 	}
-	(*triangle)->normal = v_cross_product(v_subtract((*triangle)->p2, 
-		(*triangle)->p1),v_subtract((*triangle)->p3, (*triangle)->p1));
+	(*triangle)->normal = v_cross_product(v_subtract((*triangle)->p2,
+				(*triangle)->p1), v_subtract((*triangle)->p3, (*triangle)->p1));
 	(*triangle)->area = 0.5 * v_length((*triangle)->normal);
 	(*triangle)->next = NULL;
 	if (i > 5)

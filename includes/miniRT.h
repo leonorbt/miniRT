@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/19 01:35:40 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/19 18:51:24 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ typedef struct s_tr
 	t_array_int		color;
 	struct t_tr		*next;
 }	t_tr;
-
 
 typedef struct s_obj
 {

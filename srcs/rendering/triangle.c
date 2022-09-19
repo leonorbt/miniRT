@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 01:26:33 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/19 01:55:04 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/19 18:52:12 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ static bool	inside(t_array_float intersection, t_tr *triangle)
 	t_array_float	normal_b;
 	t_array_float	normal_c;
 
-	normal_a = v_cross_product(v_subtract(triangle->p2, 
-		intersection),v_subtract(triangle->p3, intersection));
-	normal_b = v_cross_product(v_subtract(intersection, 
-		triangle->p1),v_subtract(triangle->p3, triangle->p1));
-	normal_c = v_cross_product(v_subtract(triangle->p2, 
-		triangle->p1),v_subtract(intersection, triangle->p1));
-	if (0.5 * v_length(normal_a) + 0.5 * v_length(normal_b)
-		+ 0.5 * v_length(normal_c) == triangle->area)
+	normal_a = v_cross_product(v_subtract(triangle->p2,
+				intersection), v_subtract(triangle->p3, intersection));
+	normal_b = v_cross_product(v_subtract(intersection,
+				triangle->p1), v_subtract(triangle->p3, triangle->p1));
+	normal_c = v_cross_product(v_subtract(triangle->p2,
+				triangle->p1), v_subtract(intersection, triangle->p1));
+	if (pow(0.5 * v_length(normal_a) + 0.5 * v_length(normal_b)
+			+ 0.5 * v_length(normal_c) - triangle->area, 2) < 0.001)
 		return (true);
 	return (false);
 }
