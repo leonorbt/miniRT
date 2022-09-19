@@ -14,7 +14,7 @@
 
 int	on_window_destroy(t_window *data)
 {
-	// TODO! free program data
+	ft_free_obj_list(data->elements->obj_list);
 	free(data);
 	exit(0);
 	return (0);

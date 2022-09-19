@@ -16,7 +16,7 @@ void	ft_free_obj_list(t_obj *lst)
 {
 	t_obj	*obj;
 	t_obj	*prev;
-	
+
 	if (lst == NULL)
 		return ;
 	obj = lst;

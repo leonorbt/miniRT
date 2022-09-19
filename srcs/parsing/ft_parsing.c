@@ -28,8 +28,19 @@ static int	ft_file_type(char *str)
 	return (0);
 }
 
-// !! test for empty lines. are they size 0?
-//what is the minimum length of the line?
+static int	ft_parse_object(char *line, t_elem *elements)
+{
+	if (line[0] == 'p' && ft_strlen(line) > 1 && line[1] == 'l')
+		return (ft_parse_plane(line, elements));
+	else if (line[0] == 's' && ft_strlen(line) > 1 && line[1] == 'p')
+		return (ft_parse_sphere(line, elements));
+	else if (line[0] == 'c' && ft_strlen(line) > 1 && line[1] == 'y')
+		return (ft_parse_cylinder(line, elements));
+	else if (line[0] == 't' && ft_strlen(line) > 1 && line[1] == 'r')
+		return (ft_parse_triangle(line, elements));
+	return (-1);
+}
+
 /*
  We are going to skip the spaces and then check the identifier
  we try to store the element according to the identifier and
@@ -40,6 +51,7 @@ int	ft_parse_line(char *line, t_elem *elements)
 {
 	int	i;
 	int	f_error;
+	int	f_obj_error;
 
 	i = 0;
 	f_error = 1;
@@ -47,20 +59,15 @@ int	ft_parse_line(char *line, t_elem *elements)
 		i++;
 	if (ft_line_has_alpha(line) == 1)
 		return (ft_errors(ERR_ALPHA));
+	f_obj_error = ft_parse_object(line, elements);
+	if (f_obj_error != -1)
+		return (f_obj_error);
 	if (line[i] == 'A')
 		f_error = ft_parse_ambient(line, elements);
 	else if (line[i] == 'C')
 		f_error = ft_parse_camera(line, elements);
 	else if (line[i] == 'L')
 		f_error = ft_parse_light(line, elements);
-	else if (line[i] == 'p' && ft_strlen(line) > i + 1 && line[i + 1] == 'l')
-		f_error = ft_parse_plane(line, elements);
-	else if (line[i] == 's' && ft_strlen(line) > i + 1 && line[i + 1] == 'p')
-		f_error = ft_parse_sphere(line, elements);
-	else if (line[i] == 'c' && ft_strlen(line) > i + 1 && line[i + 1] == 'y')
-		f_error = ft_parse_cylinder(line, elements);
-	else if (line[i] == 't' && ft_strlen(line) > i + 1 && line[i + 1] == 'r')
-		f_error = ft_parse_triangle(line, elements);
 	else if (ft_strlen(line) == i)
 		f_error = 0;
 	else
@@ -108,6 +115,5 @@ int	ft_start_parsing(char *scene_file, t_elem *elements)
 		return (1);
 	if (close(fd) == -1)
 		return (ft_errors(ERR_CLOSE));
-	//  !! todo: free each plane, sphere and cylinder
 	return (0);
 }
