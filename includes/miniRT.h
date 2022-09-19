@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/19 18:51:24 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/19 23:44:08 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ typedef struct s_obj
 	t_pl			*plane;
 	t_sp			*sphere;
 	t_cy			*cylinder;
+	t_tr 			*triangle;
 	struct s_obj	*next;
 }	t_obj;
 
@@ -160,6 +161,7 @@ typedef enum e_error_codes
 	ERR_PLANE_ARGS,
 	ERR_SPHERE_ARGS,
 	ERR_CYLINDER_ARGS,
+	ERR_TRIANGLE_ARGS,
 	ERR_OBJS
 }	t_error_codes;
 
@@ -251,6 +253,7 @@ int				ft_parse_light(char *line, t_elem *elements);
 int				ft_parse_plane(char *line, t_elem *elements);
 int				ft_parse_sphere(char *line, t_elem *elements);
 int				ft_parse_cylinder(char *line, t_elem *elements);
+int 			ft_parse_triangle(char *line, t_elem *elements);
 
 /* ft_parsing */
 int				ft_start_parsing(char *scene_file, t_elem *elements);
@@ -268,6 +271,7 @@ void			ft_free_obj_list(t_obj *lst);
 void			ft_lstadd_back_obj_plane(t_obj **lst, t_pl **plane);
 void			ft_lstadd_back_obj_sphere(t_obj **lst, t_sp **sphere);
 void			ft_lstadd_back_obj_cylinder(t_obj **lst, t_cy **cylinder);
+void			ft_lstadd_back_obj_triangle(t_obj **lst, t_tr **triangle);
 
 void			quadratic_function(t_array_float params, float *t0, float *t1);
 

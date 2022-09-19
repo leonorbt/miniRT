@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 22:12:37 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/19 18:32:21 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/19 23:48:11 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ static int	ft_parse_object(char *line, t_elem *elements)
 		return (ft_parse_sphere(line, elements));
 	else if (line[0] == 'c' && ft_strlen(line) > 1 && line[1] == 'y')
 		return (ft_parse_cylinder(line, elements));
+	else if (line[0] == 't' && ft_strlen(line) > 1 && line[1] == 'r')
+		return (ft_parse_triangle(line, elements));
 	return (2);
 }
 

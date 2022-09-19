@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 23:46:02 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/19 19:51:38 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/19 23:44:37 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static void	ft_error_elements(int error_code)
 		ft_putstr_fd("Error\nThe sphere is ill formated\n", 2);
 	else if (error_code == ERR_CYLINDER_ARGS)
 		ft_putstr_fd("Error\nThe cylinder is ill formated\n", 2);
+	else if (error_code == ERR_TRIANGLE_ARGS)
+		ft_putstr_fd("Error\nThe triangle is ill formated\n", 2);
 	else if (error_code == ERR_OBJS)
 		ft_putstr_fd("Error\nInvalid objects were found\n", 2);
 }

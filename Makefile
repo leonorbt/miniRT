@@ -6,7 +6,7 @@
 #    By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/14 23:55:45 by lbraz-te          #+#    #+#              #
-#    Updated: 2022/09/19 18:41:24 by lbraz-te         ###   ########.fr        #
+#    Updated: 2022/09/19 23:44:39 by lbraz-te         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ clean:
 	${RM} ${OBJS}
 
 fclean: clean
-	make clean -C ./${MINILIBX_DIR}
+	#make clean -C ./${MINILIBX_DIR}
 	${RM} ${NAME}
 
 re:	fclean all
