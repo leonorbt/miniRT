@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 23:46:02 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/19 01:53:58 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/19 19:51:38 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	ft_error_elements(int error_code)
 	else if (error_code == ERR_AMBIENT_ARGS)
 		ft_putstr_fd("Error\nThe ambient light is ill formated\n", 2);
 	else if (error_code == ERR_N_CAMERA)
-		ft_putstr_fd("Error\nThere is more than 1 camera\n", 2);
+		ft_putstr_fd("Error\nThere shold be exactly 1 camera\n", 2);
 	else if (error_code == ERR_CAMERA_ARGS)
 		ft_putstr_fd("Error\nThe camera is ill formated\n", 2);
 	else if (error_code == ERR_N_LIGHT)
