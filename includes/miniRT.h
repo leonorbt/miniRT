@@ -26,7 +26,11 @@
 # endif
 
 # ifndef KEY_ESCAPE
-#  define KEY_ESCAPE 53
+#  if __APPLE__
+#   define KEY_ESC 53
+#  else
+#   define KEY_ESC 65307
+#  endif
 # endif
 
 # include <stdio.h> //this is for debugging only so far

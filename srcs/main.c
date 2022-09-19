@@ -22,7 +22,7 @@ int	on_window_destroy(t_window *data)
 
 int	on_key_press(int keycode, t_window *data)
 {
-	if (keycode == KEY_ESCAPE)
+	if (keycode == KEY_ESC)
 	{
 		mlx_destroy_window(data->mlx, data->mlx_win);
 		free(data);
