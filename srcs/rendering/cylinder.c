@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:59:33 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/20 18:14:03 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/20 20:40:46 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,14 @@ void	cylinder(t_array_float ray_orig, t_ray *ray, t_cy *cylinder)
 	t_array_float	quadratic_params;
 	float			t0;
 	float			t1;
-	t_array_float	temp;
-	t_array_float	temp2;
+	t_array_float	ray_l_axis;
+	t_array_float	orig_to_view_l_axis;
 
-	temp = v_subtract(ray->direction, v_scale(cylinder->vector,
-				v_dot_product(ray->direction, cylinder->vector)));
-	temp2 = v_subtract(v_subtract(ray_orig, cylinder->view),
-			v_scale(cylinder->vector, v_dot_product(v_subtract(ray_orig,
-						cylinder->view), cylinder->vector)));
-	quadratic_params.elem1 = pow(v_length(temp), 2);
-	quadratic_params.elem2 = 2 * v_dot_product(temp, temp2);
-	quadratic_params.elem3 = pow(v_length(temp2), 2)
-		- pow(cylinder->diameter / 2, 2);
+	ray_l_axis = v_cross_product(ray->direction, v_normalize(cylinder->vector));
+	orig_to_view_l_axis = v_cross_product(v_subtract(ray_orig, cylinder->view), v_normalize(cylinder->vector));
+	quadratic_params.elem1 = pow(v_length(ray_l_axis), 2);
+	quadratic_params.elem2 = 2 * v_dot_product(ray_l_axis, orig_to_view_l_axis);
+	quadratic_params.elem3 = pow(v_length(orig_to_view_l_axis), 2) - pow(cylinder->diameter / 2, 2);
 	quadratic_function(quadratic_params, &t0, &t1);
 	if (t0 > 0 && t0 < t1 && check_height(t0, cylinder, ray_orig, ray))
 		ray->t = t0;
