@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:59:33 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/21 01:18:18 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/21 01:28:39 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ bool	check_height(float t, t_cy *cylinder, t_array_float ray_orig,
  * 1. Let's create a vector that goes from the surface point to the cylinder
  * base center (or any other point on the axis, doesn't really matter)
  * 2. The cross product between the vector in 1 and the axis is perpendicular to
- * both. Visually, it would be the vector going from the axis to the surface point
- * and parallel to the caps --> length should be equal to the radius
+ * both. Visually, it would be the vector going from the axis to the surface 
+ * point and parallel to the caps --> length should be equal to the radius
  * r = || (P - C) * cy ||, being r the radius, P a point on the surface,
  * C the cylinder cap center and cy the cylinder axis
  * 3. If we substitute the P by the ray parametric function (P = O + tD, 
@@ -75,11 +75,14 @@ void	cylinder(t_array_float ray_orig, t_ray *ray, t_cy *cylinder)
 	t_array_float	ray_l_axis;
 	t_array_float	orig_to_view_l_axis;
 
-	ray_l_axis = v_cross_product(ray->direction, v_normalize(cylinder->vector));
-	orig_to_view_l_axis = v_cross_product(v_subtract(ray_orig, cylinder->view), v_normalize(cylinder->vector));
+	cylinder->vector = v_normalize(cylinder->vector);
+	ray_l_axis = v_cross_product(ray->direction, cylinder->vector);
+	orig_to_view_l_axis = v_cross_product(
+			v_subtract(ray_orig, cylinder->view), cylinder->vector);
 	quadratic_params.elem1 = pow(v_length(ray_l_axis), 2);
 	quadratic_params.elem2 = 2 * v_dot_product(ray_l_axis, orig_to_view_l_axis);
-	quadratic_params.elem3 = pow(v_length(orig_to_view_l_axis), 2) - pow(cylinder->diameter / 2, 2);
+	quadratic_params.elem3 = pow(v_length(orig_to_view_l_axis), 2)
+		- pow(cylinder->diameter / 2, 2);
 	quadratic_function(quadratic_params, &t0, &t1);
 	if (t0 > 0 && t0 < t1 && check_height(t0, cylinder, ray_orig, ray))
 		ray->t = t0;

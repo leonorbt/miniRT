@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:39:12 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/19 23:44:08 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/21 01:29:46 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ typedef struct s_obj
 	t_pl			*plane;
 	t_sp			*sphere;
 	t_cy			*cylinder;
-	t_tr 			*triangle;
+	t_tr			*triangle;
 	struct s_obj	*next;
 }	t_obj;
 
@@ -253,7 +253,7 @@ int				ft_parse_light(char *line, t_elem *elements);
 int				ft_parse_plane(char *line, t_elem *elements);
 int				ft_parse_sphere(char *line, t_elem *elements);
 int				ft_parse_cylinder(char *line, t_elem *elements);
-int 			ft_parse_triangle(char *line, t_elem *elements);
+int				ft_parse_triangle(char *line, t_elem *elements);
 
 /* ft_parsing */
 int				ft_start_parsing(char *scene_file, t_elem *elements);
