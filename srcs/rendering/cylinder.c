@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:59:33 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/21 01:07:59 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/21 01:18:18 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,10 @@ bool	check_height(float t, t_cy *cylinder, t_array_float ray_orig,
  * 3. If we substitute the P by the ray parametric function (P = O + tD, 
  * being P a point, O the origin, t what we want to find and D the direction),
  * we get:
- * 		a = (D * cy) ^2
- * 		b = 2 * (D * cy) * ((O - C) * cy)
- * 		c = ((O - C) * cy) ^2
+ * 		a = (D _|/ cy) ^2
+ * 		b = 2 * (D _|/ cy) * ((O - C) _|/ cy)
+ * 		c = ((O - C) _|/ cy) ^2
+ * (using _|/ for cross product)
  */
 void	cylinder(t_array_float ray_orig, t_ray *ray, t_cy *cylinder)
 {
