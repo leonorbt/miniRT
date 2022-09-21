@@ -6,7 +6,7 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:59:33 by lbraz-te          #+#    #+#             */
-/*   Updated: 2022/09/20 20:40:46 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/21 01:07:59 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,23 @@ bool	check_height(float t, t_cy *cylinder, t_array_float ray_orig,
 }
 
 /*
- * https://mrl.cs.nyu.edu/~dzorin/rend05/lecture2.pdf
+ * Any point on the surface of a cylinder must be within radius of the axis.
+ * The cross product of 2 vectors is a 3rd vector that is orthogonal
+ * to the first 2 vectors.
+ * 
+ * 1. Let's create a vector that goes from the surface point to the cylinder
+ * base center (or any other point on the axis, doesn't really matter)
+ * 2. The cross product between the vector in 1 and the axis is perpendicular to
+ * both. Visually, it would be the vector going from the axis to the surface point
+ * and parallel to the caps --> length should be equal to the radius
+ * r = || (P - C) * cy ||, being r the radius, P a point on the surface,
+ * C the cylinder cap center and cy the cylinder axis
+ * 3. If we substitute the P by the ray parametric function (P = O + tD, 
+ * being P a point, O the origin, t what we want to find and D the direction),
+ * we get:
+ * 		a = (D * cy) ^2
+ * 		b = 2 * (D * cy) * ((O - C) * cy)
+ * 		c = ((O - C) * cy) ^2
  */
 void	cylinder(t_array_float ray_orig, t_ray *ray, t_cy *cylinder)
 {

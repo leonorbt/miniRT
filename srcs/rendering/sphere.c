@@ -6,14 +6,22 @@
 /*   By: lbraz-te <lbraz-te@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 01:10:23 by aazevedo          #+#    #+#             */
-/*   Updated: 2022/09/18 17:21:20 by lbraz-te         ###   ########.fr       */
+/*   Updated: 2022/09/21 00:14:55 by lbraz-te         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
-/* !!! Test if the camera is within a sphere (should only see the sphere)
- *
+void	quadratic_function(t_array_float params, float *t0, float *t1)
+{
+	float	discriminant;
+
+	discriminant = pow(params.elem2, 2) - 4 * params.elem1 * params.elem3;
+	*t0 = (-params.elem2 - sqrt(discriminant)) / (2 * params.elem1);
+	*t1 = (-params.elem2 + sqrt(discriminant)) / (2 * params.elem1);
+}
+
+/* 
  * How do we do this?
  * 1. We know that all points on the surface of the sphere are at radius^2
  * distance of the center, that is (P - C)^2 - r^2 = 0, being P a point, C the
@@ -28,16 +36,6 @@
  * 		c = |O - C|^2 - r^2
  * (to avoid using O and C, we created a temp that is O - C)
  */
-
-void	quadratic_function(t_array_float params, float *t0, float *t1)
-{
-	float	discriminant;
-
-	discriminant = pow(params.elem2, 2) - 4 * params.elem1 * params.elem3;
-	*t0 = (-params.elem2 - sqrt(discriminant)) / (2 * params.elem1);
-	*t1 = (-params.elem2 + sqrt(discriminant)) / (2 * params.elem1);
-}
-
 void	sphere(t_array_float ray_orig, t_ray *ray, t_sp *sphere)
 {
 	t_array_float	temp;
