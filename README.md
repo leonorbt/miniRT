@@ -1,5 +1,5 @@
 # miniRT
-Doing miniRT with António.
+Simple RayTracer in C - spheres, planes, cylinders (these were painful), triangles, ambient and diffuse lights.
 
 If you are unsure between doing miniRT and cub3d, [this was the video](https://www.khanacademy.org/computing/pixar/rendering/rendering1/v/overview-rendering) that excited me about miniRT because it gave me a real world application of the project.
 
